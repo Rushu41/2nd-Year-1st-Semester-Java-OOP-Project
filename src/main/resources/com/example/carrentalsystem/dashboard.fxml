@@ -1,10 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0">
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.DashboardController" prefHeight="600.0" prefWidth="800.0">
     <children>
-        <Label layoutX="250.0" layoutY="200.0" text="Welcome to the Dashboard!" style="-fx-font-size: 18px;" />
+        <!-- Sidebar -->
+        <VBox layoutX="0.0" layoutY="0.0" prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #2b2b2b;">
+            <children>
+                <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="10.0">
+                    <image>
+                        <Image url="@images/car.jpg" />
+                    </image>
+                </ImageView>
+                <Label text="Welcome, Admin" style="-fx-font-size: 16px; -fx-text-fill: white;" />
+                <Button text="Available Cars" onAction="#handleAvailableCars" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="180.0" />
+                <Button text="Rent Car" onAction="#handleRentCar" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="180.0" />
+                <Button text="Add Car" onAction="#handleAddCar" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="180.0" />
+                <Button text="Customer " onAction="#handleCustomer" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="180.0" />
+                <Button text="Logout" onAction="#handleLogout" style="-fx-background-color: #f44336; -fx-text-fill: white;" prefWidth="180.0" />
+            </children>
+        </VBox>
+
+        <!-- Main Content -->
+        <HBox layoutX="200.0" layoutY="0.0" prefHeight="600.0" prefWidth="600.0">
+            <children>
+                <VBox spacing="20.0" alignment="CENTER" prefHeight="600.0" prefWidth="600.0" style="-fx-padding: 20;">
+                    <children>
+                        <Label text="Dashboard Statistics" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                        <HBox spacing="50.0" alignment="CENTER">
+                            <VBox spacing="10.0" alignment="CENTER">
+                                <Label text="Available Cars: 10" style="-fx-font-size: 14px;" />
+                                <Label text="Total Income: $12,000" style="-fx-font-size: 14px;" />
+                            </VBox>
+                            <VBox spacing="10.0" alignment="CENTER">
+                                <Label text="Total Customers: 15" style="-fx-font-size: 14px;" />
+                                <Label text="Active Rentals: 3" style="-fx-font-size: 14px;" />
+                            </VBox>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
     </children>
 </AnchorPane>

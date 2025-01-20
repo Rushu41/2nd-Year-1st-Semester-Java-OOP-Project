@@ -17,13 +17,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class SignupController {
-
-    private Stage currentStage;
-
-    public void setStage(Stage stage) {
-        this.currentStage = stage;
-    }
+public class CustomerController {
 
     @FXML
     private TextField userIdField; // User ID field
@@ -96,7 +90,7 @@ public class SignupController {
             statusLabel.setStyle("-fx-text-fill: green;");
 
             // Redirect to login page
-            redirectToLoginPage(event);
+            redirectToDashboardPage(event);
 
         } catch (NumberFormatException e) {
             statusLabel.setText("Age must be a number.");
@@ -126,11 +120,31 @@ public class SignupController {
         }
     }
 
-    private void redirectToLoginPage(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/carrentalsystem/login.fxml"));
+    private void redirectToDashboardPage(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/carrentalsystem/dashboard.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+    public void handleBack(ActionEvent event) {
+        navigateToPage(event, "/com/example/carrentalsystem/dashboard.fxml", "Dashboard");
+    }
+
+    public void handleLogout(ActionEvent event) {
+        navigateToPage(event, "/com/example/carrentalsystem/login.fxml", "Login");
+    }
+
+    private void navigateToPage(ActionEvent event, String fxmlPath, String title) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle(title);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
