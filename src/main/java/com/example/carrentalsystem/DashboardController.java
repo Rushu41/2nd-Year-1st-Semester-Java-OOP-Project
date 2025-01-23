@@ -21,12 +21,21 @@ public class DashboardController {
     public void handleAddCar(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/addCar.fxml", "Add Car");
     }
+
     public void handleCustomer(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/CustomerController.fxml", "Add Car");
     }
 
+    public void handleActiveCustomer(ActionEvent event) {
+        navigateToPage(event, "/com/example/carrentalsystem/activeCustomer.fxml", "Active Customers");
+    }
+
     public void handleLogout(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/login.fxml", "Login");
+    }
+
+    public void handleReturnCar(ActionEvent event) {
+        navigateToPage(event, "/com/example/carrentalsystem/returnCar.fxml", "Return Car");
     }
 
     private void navigateToPage(ActionEvent event, String fxmlPath, String title) {

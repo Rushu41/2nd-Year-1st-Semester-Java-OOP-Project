@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.carrentalsystem.ActiveCustomerController">
+    <children>
+        <TableView fx:id="customerDataTable" layoutX="7.0" layoutY="14.0" prefHeight="400.0" prefWidth="603.0">
+            <columns>
+                <TableColumn fx:id="usernameColumn" prefWidth="100.0" text="Username" />
+                <TableColumn fx:id="carNameColumn" prefWidth="100.0" text="Car Name" />
+                <TableColumn fx:id="rentingStatusColumn" prefWidth="100.0" text="Renting Status" />
+                <TableColumn fx:id="returnCarStatusColumn" prefWidth="100.0" text="Return Status" />
+                <TableColumn fx:id="billColumn" prefWidth="100.0" text="Bill ($)" />
+                <TableColumn fx:id="totalRentingColumn" prefWidth="100.0" text="Total Renting" />
+            </columns>
+        </TableView>
+        <HBox layoutX="200.0" layoutY="430.0" spacing="20.0">
+            <children>
+                <Button onAction="#handleBack" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back" />
+                <Button onAction="#handleLogout" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Logout" />
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

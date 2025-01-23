@@ -41,11 +41,6 @@
                   <Font name="Britannic Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="signupButton" layoutX="43.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleSignup" prefHeight="34.0" prefWidth="319.0" style="-fx-background-color: #b7b5b5; -fx-border-color: black;" text="SignUp" textFill="WHITE">
-               <font>
-                  <Font name="Britannic Bold" size="16.0" />
-               </font>
-            </Button>
          </children>
       </AnchorPane>
    </right>

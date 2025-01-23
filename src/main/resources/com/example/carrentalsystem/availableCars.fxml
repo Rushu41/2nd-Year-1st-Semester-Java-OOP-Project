@@ -12,7 +12,7 @@
             <columns>
                 <TableColumn fx:id="carNameColumn" text="Car Name" prefWidth="200.0" />
                 <TableColumn fx:id="carTypeColumn" text="Car Type" prefWidth="200.0" />
-                <TableColumn fx:id="priceColumn" text="Price Per Day" prefWidth="200.0" />
+                <TableColumn fx:id="priceColumn" text="Price " prefWidth="200.0" />
             </columns>
         </TableView>
         <HBox spacing="20.0" layoutX="300.0" layoutY="500.0">

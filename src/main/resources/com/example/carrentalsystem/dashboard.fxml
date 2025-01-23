@@ -22,7 +22,9 @@
                 <Button text="Available Cars" onAction="#handleAvailableCars" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="180.0" />
                 <Button text="Rent Car" onAction="#handleRentCar" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="180.0" />
                 <Button text="Add Car" onAction="#handleAddCar" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="180.0" />
-                <Button text="Customer " onAction="#handleCustomer" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="180.0" />
+                <Button text="Return Car" onAction="#handleReturnCar" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="180.0" />
+                <Button text="Active Customers" onAction="#handleActiveCustomer" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="180.0" />
+                <Button text="Add Customer " onAction="#handleCustomer" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="180.0" />
                 <Button text="Logout" onAction="#handleLogout" style="-fx-background-color: #f44336; -fx-text-fill: white;" prefWidth="180.0" />
             </children>
         </VBox>
