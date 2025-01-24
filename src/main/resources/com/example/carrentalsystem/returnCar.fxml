@@ -18,12 +18,13 @@
             </columns>
         </TableView>
 
-        <!-- HBox for buttons -->
         <HBox layoutX="300.0" layoutY="500.0" spacing="20.0">
             <children>
                 <Button onAction="#handleReturnCar" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Return Car" />
                 <Button onAction="#handleBack" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back" />
+                <Button fx:id="resetButton" onAction="#handleReset" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Reset" />
             </children>
         </HBox>
+
     </children>
 </AnchorPane>

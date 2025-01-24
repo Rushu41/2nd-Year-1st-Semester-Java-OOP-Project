@@ -10,15 +10,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class LoginController {
 
-    public Button loginButton;
     @FXML
     private TextField usernameField;
 
@@ -26,50 +24,76 @@ public class LoginController {
     private TextField passwordField;
 
     @FXML
+    private Button loginButton;
+
+    /**
+     * Handles the login button click event.
+     *
+     * @param event the ActionEvent triggered by the button click.
+     */
+    @FXML
     private void handleLogin(ActionEvent event) {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
+        // Validate credentials against the CSV file
         if (validateCredentials(username, password)) {
-            goToDashboard(event);
+            goToDashboard(event); // Navigate to the dashboard
         } else {
             showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid username or password.");
         }
     }
 
-    @FXML
-    private void handleSignup(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/CustomerController.fxml"));
-            Scene signupScene = new Scene(fxmlLoader.load());
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(signupScene);
-            stage.setTitle("Sign Up");
-            stage.show();
+    /**
+     * Validates the credentials against the "admin.csv" file.
+     *
+     * @param username the username entered by the user.
+     * @param password the password entered by the user.
+     * @return true if credentials are valid; false otherwise.
+     */
+    private boolean validateCredentials(String username, String password) {
+        // Correct path to access admin.csv in resources
+        try (InputStream inputStream = getClass().getResourceAsStream("/com/example/carrentalsystem/admin.csv");
+             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+
+            // Check if the resource file exists
+            if (inputStream == null) {
+                System.err.println("Resource file 'admin.csv' not found in the classpath.");
+                showAlert(Alert.AlertType.ERROR, "Error", "Credentials file not found.");
+                return false;
+            }
+
+            // Read file line by line and validate credentials
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] credentials = line.split(",");
+                if (credentials.length == 2) {
+                    String csvUsername = credentials[0].trim();
+                    String csvPassword = credentials[1].trim();
+                    if (csvUsername.equals(username) && csvPassword.equals(password)) {
+                        return true; // Valid credentials
+                    }
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "Failed to load the sign-up page.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to read credentials file.");
         }
+
+        return false; // Return false if no match is found
     }
 
-    private boolean validateCredentials(String username, String password) {
-        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
-        try (Connection connection = DatabaseConnector.connect();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            return resultSet.next(); // Returns true if a record is found
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
+    /**
+     * Navigates to the dashboard scene after successful login.
+     *
+     * @param event the ActionEvent triggered by the button click.
+     */
     private void goToDashboard(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/dashboard.fxml"));
             Scene dashboardScene = new Scene(fxmlLoader.load());
+
+            // Get the current stage from the event source
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(dashboardScene);
             stage.setTitle("Dashboard");
@@ -79,20 +103,14 @@ public class LoginController {
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to load the dashboard page.");
         }
     }
-    @FXML
-    private void navigateToLogin(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/login.fxml"));
-            Scene loginScene = new Scene(fxmlLoader.load());
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(loginScene);
-            stage.setTitle("Login");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "Failed to return to the login page.");
-        }
-    }
+
+    /**
+     * Displays an alert dialog with the specified parameters.
+     *
+     * @param alertType the type of alert (e.g., ERROR, INFORMATION).
+     * @param title     the title of the alert dialog.
+     * @param message   the message to display in the alert dialog.
+     */
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

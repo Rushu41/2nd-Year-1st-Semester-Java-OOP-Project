@@ -40,6 +40,9 @@ public class ReturnCarController {
     @FXML
     private Button returnCarButton;
 
+    @FXML
+    private Button resetButton;
+
     private ObservableList<Car> rentedCarList = FXCollections.observableArrayList();
 
     @FXML
@@ -50,6 +53,15 @@ public class ReturnCarController {
         customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
 
         loadRentedCarsFromDatabase();
+    }
+
+    @FXML
+    public void handleReset(ActionEvent event) {
+        // Clear the table data
+        rentedCarList.clear();
+        rentedCarsTable.setItems(rentedCarList);
+
+        showAlert(Alert.AlertType.INFORMATION, "Reset Successful", "All table data has been cleared.");
     }
 
     private void loadRentedCarsFromDatabase() {
