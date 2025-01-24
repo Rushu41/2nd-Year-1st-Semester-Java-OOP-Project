@@ -8,17 +8,28 @@
             prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom, #ff7e5f, #feb47b);"
             xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.carrentalsystem.SignupController">
-    <VBox alignment="CENTER" layoutX="313.0" layoutY="50.0" prefHeight="400.0" prefWidth="155.0" spacing="10">
+    <VBox alignment="CENTER" layoutX="313.0" layoutY="50.0" prefHeight="400.0" prefWidth="300.0" spacing="10">
         <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ffffff;" text="Sign Up"/>
+
+        <!-- User Input Fields -->
         <TextField fx:id="userIdField" promptText="User ID" style="-fx-background-radius: 15; -fx-padding: 10;"/>
         <TextField fx:id="firstNameField" promptText="First Name" style="-fx-background-radius: 15; -fx-padding: 10;"/>
         <TextField fx:id="lastNameField" promptText="Last Name" style="-fx-background-radius: 15; -fx-padding: 10;"/>
         <TextField fx:id="ageField" promptText="Age" style="-fx-background-radius: 15; -fx-padding: 10;"/>
         <TextField fx:id="genderField" promptText="Gender" style="-fx-background-radius: 15; -fx-padding: 10;"/>
-        <TextField fx:id="usernameField" promptText="USERNAME" style="-fx-background-radius: 15; -fx-padding: 10;"/>
+
+        <!-- Date of Birth Field -->
+        <TextField fx:id="dateOfBirthField" promptText="Date of Birth (YYYY-MM-DD)" style="-fx-background-radius: 15; -fx-padding: 10;"/>
+
+        <TextField fx:id="usernameField" promptText="Username" style="-fx-background-radius: 15; -fx-padding: 10;"/>
         <PasswordField fx:id="passwordField" promptText="Enter Password" style="-fx-background-radius: 15; -fx-padding: 10;"/>
         <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password" style="-fx-background-radius: 15; -fx-padding: 10;"/>
-        <Button fx:id="signupButton" onAction="#handleSignup" text="Sign Up" style="-fx-background-color: #ff7e5f; -fx-text-fill: #ffffff; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 10 20;"/>
+
+        <!-- Signup Button -->
+        <Button fx:id="signupButton" onAction="#handleSignup" text="Sign Up"
+                style="-fx-background-color: #ff7e5f; -fx-text-fill: #ffffff; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 10 20;"/>
+
+        <!-- Status Message -->
         <Label fx:id="statusLabel" text="" style="-fx-text-fill: white;"/>
     </VBox>
 </AnchorPane>

@@ -19,10 +19,10 @@
         <TextField fx:id="usernameField" promptText="USERNAME" style="-fx-background-radius: 15; -fx-padding: 10;" />
         <PasswordField fx:id="passwordField" promptText="Enter Password" style="-fx-background-radius: 15; -fx-padding: 10;" />
         <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password" style="-fx-background-radius: 15; -fx-padding: 10;" />
-        <Button fx:id="signupButton" onAction="#handleSignup" style="-fx-background-color: #ff7e5f; -fx-text-fill: #ffffff; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 10 20;" text="Sign Up" />
         <Label fx:id="statusLabel" style="-fx-text-fill: white;" text="" />
     </VBox>
     <HBox layoutX="300.0" layoutY="500.0" spacing="20.0" />
       <Button layoutX="78.0" layoutY="545.0" onAction="#handleBack" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back" />
       <Button layoutX="706.0" layoutY="545.0" onAction="#handleLogout" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Logout" />
+     <Button fx:id="signupButton" layoutX="358.0" layoutY="488.0" onAction="#handleSignup" style="-fx-background-color: #ff7e5f; -fx-text-fill: #ffffff; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 10 20;" text="Sign Up" />
 </AnchorPane>

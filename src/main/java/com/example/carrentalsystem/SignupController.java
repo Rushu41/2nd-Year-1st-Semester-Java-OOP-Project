@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,14 +16,8 @@ import java.sql.SQLException;
 
 public class SignupController {
 
-    private Stage currentStage;
-
-    public void setStage(Stage stage) {
-        this.currentStage = stage;
-    }
-
     @FXML
-    private TextField userIdField; // User ID field
+    private TextField userIdField;
 
     @FXML
     private TextField firstNameField;
@@ -39,6 +30,9 @@ public class SignupController {
 
     @FXML
     private TextField genderField;
+
+    @FXML
+    private TextField dateOfBirthField; // New date of birth field
 
     @FXML
     private TextField usernameField;
@@ -60,42 +54,29 @@ public class SignupController {
 
     @FXML
     public void handleSignup(ActionEvent event) {
-        // Retrieve input values
         String userId = userIdField.getText();
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String age = ageField.getText();
         String gender = genderField.getText();
+        String dob = dateOfBirthField.getText(); // Get the date of birth
         String username = usernameField.getText();
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
 
-        // Validate inputs
-        if (userId.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || age.isEmpty() || gender.isEmpty() ||
-                username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-            statusLabel.setText("Please fill out all fields.");
-            statusLabel.setStyle("-fx-text-fill: red;");
-            return;
-        }
-
-        if (!password.equals(confirmPassword)) {
-            statusLabel.setText("Passwords do not match!");
-            statusLabel.setStyle("-fx-text-fill: red;");
+        if (!areInputsValid(userId, firstName, lastName, age, gender, dob, username, password, confirmPassword)) {
             return;
         }
 
         try {
-            // Convert age to integer
             int ageInt = Integer.parseInt(age);
 
-            // Insert data into the database
-            insertUser(userId, firstName, lastName, ageInt, gender, username, password);
+            // Insert user into the database
+            insertUser(userId, firstName, lastName, ageInt, gender, dob, username, password);
 
-            // Success message
             statusLabel.setText("Signup successful! Redirecting to login...");
             statusLabel.setStyle("-fx-text-fill: green;");
 
-            // Redirect to login page
             redirectToLoginPage(event);
 
         } catch (NumberFormatException e) {
@@ -110,8 +91,25 @@ public class SignupController {
         }
     }
 
-    private void insertUser(String userId, String firstName, String lastName, int age, String gender, String username, String password) throws SQLException {
-        String query = "INSERT INTO users (user_id, First_Name, Last_Name, Age, Gender, USERNAME, Password) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private boolean areInputsValid(String userId, String firstName, String lastName, String age, String gender, String dob, String username, String password, String confirmPassword) {
+        if (userId.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || age.isEmpty() || gender.isEmpty() ||
+                dob.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            statusLabel.setText("Please fill out all fields.");
+            statusLabel.setStyle("-fx-text-fill: red;");
+            return false;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            statusLabel.setText("Passwords do not match!");
+            statusLabel.setStyle("-fx-text-fill: red;");
+            return false;
+        }
+
+        return true;
+    }
+
+    private void insertUser(String userId, String firstName, String lastName, int age, String gender, String dob, String username, String password) throws SQLException {
+        String query = "INSERT INTO users (user_id, First_Name, Last_Name, Age, Gender, Date_Of_Birth, USERNAME, Password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseConnector.connect();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -120,8 +118,9 @@ public class SignupController {
             preparedStatement.setString(3, lastName);
             preparedStatement.setInt(4, age);
             preparedStatement.setString(5, gender);
-            preparedStatement.setString(6, username);
-            preparedStatement.setString(7, password);
+            preparedStatement.setString(6, dob);
+            preparedStatement.setString(7, username);
+            preparedStatement.setString(8, password);
             preparedStatement.executeUpdate();
         }
     }

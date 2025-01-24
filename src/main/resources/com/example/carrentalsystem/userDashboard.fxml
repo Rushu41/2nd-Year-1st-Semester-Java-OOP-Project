@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="600.0" prefWidth="800.0"
+            style="-fx-background-color: linear-gradient(to bottom, #ff7e5f, #feb47b);"
+            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.carrentalsystem.UserDashboardController">
+
+    <HBox spacing="20" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+        <!-- Sidebar Buttons -->
+        <VBox spacing="25" alignment="CENTER_LEFT" style="-fx-padding: 20;" prefWidth="300.0">
+            <!-- Profile Button -->
+            <Button text="Profile" onAction="#handleProfile"
+                    style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-padding: 20 30; -fx-background-radius: 30; -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-background-color: linear-gradient(to right, #6a11cb, #2575fc);">
+                <graphic>
+                    <FontAwesomeIconView glyphName="USER" style="-fx-fill: white; -fx-font-size: 24px;" />
+                </graphic>
+            </Button>
+
+            <!-- Rent Car Button -->
+            <Button text="Rent Car" onAction="#handleRentCar"
+                    style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-padding: 20 30; -fx-background-radius: 30; -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-background-color: linear-gradient(to right, #00b09b, #96c93d);">
+                <graphic>
+                    <FontAwesomeIconView glyphName="CAR" style="-fx-fill: white; -fx-font-size: 24px;" />
+                </graphic>
+            </Button>
+
+            <!-- Return Car Button -->
+            <Button text="Return Car" onAction="#handleReturnCar"
+                    style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-padding: 20 30; -fx-background-radius: 30; -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-background-color: linear-gradient(to right, #6a11cb, #b721ff);">
+                <graphic>
+                    <FontAwesomeIconView glyphName="UNDO" style="-fx-fill: white; -fx-font-size: 24px;" />
+                </graphic>
+            </Button>
+
+            <!-- Subscription Button -->
+            <Button text="Subscription" onAction="#handleSubscription"
+                    style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-padding: 20 30; -fx-background-radius: 30; -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-background-color: linear-gradient(to right, #ff8008, #ffc837);">
+                <graphic>
+                    <FontAwesomeIconView glyphName="CREDIT_CARD" style="-fx-fill: white; -fx-font-size: 24px;" />
+                </graphic>
+            </Button>
+
+            <!-- Feedback Button -->
+            <Button text="Feedback" onAction="#handleFeedback"
+                    style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-padding: 20 30; -fx-background-radius: 30; -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-background-color: linear-gradient(to right, #ff4b1f, #ff9068);">
+                <graphic>
+                    <FontAwesomeIconView glyphName="COMMENTS" style="-fx-fill: white; -fx-font-size: 24px;" />
+                </graphic>
+            </Button>
+
+            <!-- My Bookings Button -->
+            <Button text="My Bookings" onAction="#handleMyBookings"
+                    style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-padding: 20 30; -fx-background-radius: 30; -fx-text-fill: white; -fx-alignment: CENTER_LEFT; -fx-background-color: linear-gradient(to right, #232526, #414345);">
+                <graphic>
+                    <FontAwesomeIconView glyphName="BOOK" style="-fx-fill: white; -fx-font-size: 24px;" />
+                </graphic>
+            </Button>
+        </VBox>
+
+        <!-- Main Content -->
+        <AnchorPane style="-fx-background-color: white; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 5);" prefWidth="500.0" />
+    </HBox>
+</AnchorPane>

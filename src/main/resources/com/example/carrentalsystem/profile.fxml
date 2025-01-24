@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.carrentalsystem.ProfileController"
+            style="-fx-background-color: #ffffff; -fx-padding: 20;">
+    <VBox alignment="CENTER" spacing="10">
+        <Label text="Profile" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #34495e;" />
+        <TextField promptText="Name" style="-fx-font-size: 16;" />
+        <TextField promptText="Email" style="-fx-font-size: 16;" />
+        <TextField promptText="Contact" style="-fx-font-size: 16;" />
+        <TextField promptText="Address" style="-fx-font-size: 16;" />
+        <Button text="Save Changes" style="-fx-font-size: 18;" onAction="#handleSaveProfile" />
+    </VBox>
+</AnchorPane>

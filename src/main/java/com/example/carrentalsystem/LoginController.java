@@ -1,6 +1,7 @@
 package com.example.carrentalsystem;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,11 +10,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class LoginController {
 
@@ -24,46 +30,57 @@ public class LoginController {
     private TextField passwordField;
 
     @FXML
-    private Button loginButton;
+    private Button adminLoginButton;
 
-    /**
-     * Handles the login button click event.
-     *
-     * @param event the ActionEvent triggered by the button click.
-     */
     @FXML
-    private void handleLogin(ActionEvent event) {
+    private Button userLoginButton;
+
+    @FXML
+    private Button signUpButton;
+
+    @FXML
+    private void handleAdminLogin(ActionEvent event) {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        // Validate credentials against the CSV file
-        if (validateCredentials(username, password)) {
-            goToDashboard(event); // Navigate to the dashboard
+        if (validateAdminCredentials(username, password)) {
+            goToPage(event, "/com/example/carrentalsystem/dashboard.fxml", "Admin Dashboard");
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid admin username or password.");
+        }
+    }
+
+    @FXML
+    private void handleUserLogin(ActionEvent event) {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+        if (validateUserCredentials(username, password)) {
+            goToPage(event, "/com/example/carrentalsystem/userDashboard.fxml", "User Dashboard");
         } else {
             showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid username or password.");
         }
     }
 
-    /**
-     * Validates the credentials against the "admin.csv" file.
-     *
-     * @param username the username entered by the user.
-     * @param password the password entered by the user.
-     * @return true if credentials are valid; false otherwise.
-     */
-    private boolean validateCredentials(String username, String password) {
-        // Correct path to access admin.csv in resources
+    @FXML
+    private void handleSignUp(ActionEvent event) {
+        goToPage(event, "/com/example/carrentalsystem/signUp.fxml", "Sign Up");
+    }
+
+    public void handleForgetPassword(Event event) {
+        goToPageMouse(event, "/com/example/carrentalsystem/forgotPassword.fxml", "Forgot Password");
+    }
+
+
+    private boolean validateAdminCredentials(String username, String password) {
         try (InputStream inputStream = getClass().getResourceAsStream("/com/example/carrentalsystem/admin.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 
-            // Check if the resource file exists
             if (inputStream == null) {
-                System.err.println("Resource file 'admin.csv' not found in the classpath.");
-                showAlert(Alert.AlertType.ERROR, "Error", "Credentials file not found.");
+                showAlert(Alert.AlertType.ERROR, "Error", "Admin credentials file not found.");
                 return false;
             }
 
-            // Read file line by line and validate credentials
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] credentials = line.split(",");
@@ -71,46 +88,72 @@ public class LoginController {
                     String csvUsername = credentials[0].trim();
                     String csvPassword = credentials[1].trim();
                     if (csvUsername.equals(username) && csvPassword.equals(password)) {
-                        return true; // Valid credentials
+                        return true;
                     }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "Failed to read credentials file.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to read admin credentials file.");
         }
 
-        return false; // Return false if no match is found
+        return false;
     }
 
-    /**
-     * Navigates to the dashboard scene after successful login.
-     *
-     * @param event the ActionEvent triggered by the button click.
-     */
-    private void goToDashboard(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/dashboard.fxml"));
-            Scene dashboardScene = new Scene(fxmlLoader.load());
+    private boolean validateUserCredentials(String username, String password) {
+        String query = "SELECT * FROM users WHERE USERNAME = ? AND Password = ?";
 
-            // Get the current stage from the event source
+        try (Connection connection = DatabaseConnector.connect();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, username);
+            statement.setString(2, password);
+            ResultSet resultSet = statement.executeQuery();
+
+            return resultSet.next();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Database Error", "Could not validate user credentials.");
+        }
+
+        return false;
+    }
+
+    private void goToPage(ActionEvent event, String fxmlFile, String title) {
+        try {
+            URL resource = getClass().getResource(fxmlFile);
+            if (resource == null) {
+                showAlert(Alert.AlertType.ERROR, "File Not Found", "Could not find " + fxmlFile);
+                return;
+            }
+            FXMLLoader fxmlLoader = new FXMLLoader(resource);
+            Scene scene = new Scene(fxmlLoader.load());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(dashboardScene);
-            stage.setTitle("Dashboard");
+            stage.setScene(scene);
+            stage.setTitle(title);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "Failed to load the dashboard page.");
+            showAlert(Alert.AlertType.ERROR, "Navigation Error", "Could not load the page: " + fxmlFile);
         }
     }
 
-    /**
-     * Displays an alert dialog with the specified parameters.
-     *
-     * @param alertType the type of alert (e.g., ERROR, INFORMATION).
-     * @param title     the title of the alert dialog.
-     * @param message   the message to display in the alert dialog.
-     */
+    private void goToPageMouse(Event event, String fxmlFile, String title) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle(title);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Navigation Error", "Could not load the page.");
+        }
+    }
+
+
+
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -118,4 +161,6 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+
 }

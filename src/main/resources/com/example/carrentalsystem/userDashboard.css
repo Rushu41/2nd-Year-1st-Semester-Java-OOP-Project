@@ -1,0 +1,71 @@
+.large-button {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-padding: 20 30;
+    -fx-background-radius: 30;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER_LEFT;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 8, 0, 2, 4);
+    -fx-transition: all 0.3s ease-in-out;
+    -fx-cursor: hand;
+    -fx-pref-width: 250px;
+}
+
+.large-button:hover {
+    -fx-translate-x: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 12, 0, 4, 6);
+}
+
+.custom-button {
+    -fx-background-color: linear-gradient(to right, #6a11cb, #2575fc);
+}
+
+.custom-button:hover {
+    -fx-background-color: linear-gradient(to right, #5e17eb, #1a6dff);
+}
+
+.custom-button-green {
+    -fx-background-color: linear-gradient(to right, #00b09b, #96c93d);
+}
+
+.custom-button-green:hover {
+    -fx-background-color: linear-gradient(to right, #009873, #78b337);
+}
+
+.custom-button-purple {
+    -fx-background-color: linear-gradient(to right, #6a11cb, #b721ff);
+}
+
+.custom-button-purple:hover {
+    -fx-background-color: linear-gradient(to right, #581dc8, #a11dff);
+}
+
+.custom-button-orange {
+    -fx-background-color: linear-gradient(to right, #ff8008, #ffc837);
+}
+
+.custom-button-orange:hover {
+    -fx-background-color: linear-gradient(to right, #ff6e00, #e7ae34);
+}
+
+.custom-button-red {
+    -fx-background-color: linear-gradient(to right, #ff4b1f, #ff9068);
+}
+
+.custom-button-red:hover {
+    -fx-background-color: linear-gradient(to right, #e84116, #ff7b57);
+}
+
+.custom-button-dark {
+    -fx-background-color: linear-gradient(to right, #232526, #414345);
+}
+
+.custom-button-dark:hover {
+    -fx-background-color: linear-gradient(to right, #1b1c1d, #303334);
+}
+
+.icon-style-large {
+    -fx-fill: white;
+    -fx-font-size: 24px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0, 1, 1);
+}

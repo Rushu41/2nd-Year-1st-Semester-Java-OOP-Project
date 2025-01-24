@@ -36,11 +36,22 @@
             </Label>
             <TextField fx:id="usernameField" layoutX="109.0" layoutY="111.0" prefHeight="37.0" prefWidth="250.0" promptText="Username" />
             <TextField fx:id="passwordField" layoutX="108.0" layoutY="170.0" prefHeight="35.0" prefWidth="251.0" promptText="Password" />
-            <Button fx:id="loginButton" layoutX="43.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="34.0" prefWidth="319.0" style="-fx-background-color: #b7b5b5; -fx-border-color: black;" text="Login" textFill="WHITE">
+            <Button fx:id="adminLoginButton" layoutX="43.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleAdminLogin" prefHeight="34.0" prefWidth="319.0" style="-fx-background-color: #b7b5b5; -fx-border-color: black;" text="Admin Login" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font>
             </Button>
+            <Button fx:id="userLoginButton" layoutX="43.0" layoutY="329.0" mnemonicParsing="false" onAction="#handleUserLogin" prefHeight="34.0" prefWidth="319.0" style="-fx-background-color: #b7b5b5; -fx-border-color: black;" text="User Login" textFill="WHITE">
+               <font>
+                  <Font name="Britannic Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="signUpButton" layoutX="43.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="34.0" prefWidth="319.0" style="-fx-background-color: #b7b5b5; -fx-border-color: black;" text="Sign Up" textFill="WHITE">
+               <font>
+                  <Font name="Britannic Bold" size="16.0" />
+               </font>
+            </Button>
+            <Label layoutX="153.0" layoutY="472.0" onMouseClicked="#handleForgetPassword" style="-fx-text-fill: blue;" text="Forgot Password?" underline="true" />
          </children>
       </AnchorPane>
    </right>
