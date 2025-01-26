@@ -39,6 +39,10 @@ public class UserDashboardController {
         navigateToPage(event, "/com/example/carrentalsystem/myBookings.fxml", "My Bookings");
     }
 
+    public void handleLogout(ActionEvent event) {
+        navigateToPage(event, "/com/example/carrentalsystem/login.fxml", "Login");
+    }
+
     private void navigateToPage(ActionEvent event, String fxmlFile, String title) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));

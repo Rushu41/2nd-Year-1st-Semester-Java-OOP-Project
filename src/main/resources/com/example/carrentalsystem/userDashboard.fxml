@@ -51,6 +51,8 @@
                     <FontAwesomeIconView glyphName="COMMENTS" style="-fx-fill: white; -fx-font-size: 24px;" />
                 </graphic>
             </Button>
+            <Button text="Logout" onAction="#handleLogout" style="-fx-background-color: #f44336; -fx-text-fill: white;" prefWidth="180.0" />
+
 
             <!-- My Bookings Button -->
             <Button text="My Bookings" onAction="#handleMyBookings"

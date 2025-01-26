@@ -1,5 +1,6 @@
 package com.example.carrentalsystem;
 
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -8,42 +9,75 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class LoginController {
 
-    @FXML
-    private TextField usernameField;
 
     @FXML
-    private TextField passwordField;
+    private AnchorPane adminPane, userPane, employeePane;
 
     @FXML
-    private Button adminLoginButton;
+    private TextField adminUsernameField, userUsernameField, employeeUsernameField;
 
     @FXML
-    private Button userLoginButton;
+    private PasswordField adminPasswordField, userPasswordField, employeePasswordField;
 
     @FXML
-    private Button signUpButton;
+    private Button adminLoginButton, userLoginButton, employeeLoginButton;
+
+    @FXML
+    public void initialize() {
+        adminPane.setTranslateX(0);
+        userPane.setTranslateX(800);
+        employeePane.setTranslateX(1600);
+    }
+
+    @FXML
+    private void switchToAdmin() {
+        animatePane(adminPane, 0);
+        animatePane(userPane, 800);
+        animatePane(employeePane, 1600);
+    }
+
+    @FXML
+    private void switchToUser() {
+        animatePane(adminPane, -800);
+        animatePane(userPane, 0);
+        animatePane(employeePane, 800);
+    }
+
+    @FXML
+    private void switchToEmployee() {
+        animatePane(adminPane, -1600);
+        animatePane(userPane, -800);
+        animatePane(employeePane, 0);
+    }
+
+    private void animatePane(AnchorPane pane, double targetX) {
+        TranslateTransition transition = new TranslateTransition(Duration.millis(300), pane);
+        transition.setToX(targetX);
+        transition.play();
+    }
+
 
     @FXML
     private void handleAdminLogin(ActionEvent event) {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+        String username = adminUsernameField.getText();
+        String password = adminPasswordField.getText();
 
-        if (validateAdminCredentials(username, password)) {
+        if (validateCredentials(username, password, "admins")) {
             goToPage(event, "/com/example/carrentalsystem/dashboard.fxml", "Admin Dashboard");
         } else {
             showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid admin username or password.");
@@ -52,13 +86,24 @@ public class LoginController {
 
     @FXML
     private void handleUserLogin(ActionEvent event) {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+        String username = userUsernameField.getText();
+        String password = userPasswordField.getText();
 
-        if (validateUserCredentials(username, password)) {
+        if (validateCredentials(username, password, "users")) {
             goToPage(event, "/com/example/carrentalsystem/userDashboard.fxml", "User Dashboard");
         } else {
-            showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid username or password.");
+            showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid user username or password.");
+        }
+    }
+    @FXML
+    private void handleEmployeeLogin(ActionEvent event) {
+        String username = employeeUsernameField.getText();
+        String password = employeePasswordField.getText();
+
+        if (validateCredentials(username, password, "employees")) {
+            goToPage(event, "/com/example/carrentalsystem/employeeDashboard.fxml", "Employee Dashboard");
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid employee username or password.");
         }
     }
 
@@ -70,38 +115,8 @@ public class LoginController {
     public void handleForgetPassword(Event event) {
         goToPageMouse(event, "/com/example/carrentalsystem/forgotPassword.fxml", "Forgot Password");
     }
-
-
-    private boolean validateAdminCredentials(String username, String password) {
-        try (InputStream inputStream = getClass().getResourceAsStream("/com/example/carrentalsystem/admin.csv");
-             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-
-            if (inputStream == null) {
-                showAlert(Alert.AlertType.ERROR, "Error", "Admin credentials file not found.");
-                return false;
-            }
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] credentials = line.split(",");
-                if (credentials.length == 2) {
-                    String csvUsername = credentials[0].trim();
-                    String csvPassword = credentials[1].trim();
-                    if (csvUsername.equals(username) && csvPassword.equals(password)) {
-                        return true;
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "Failed to read admin credentials file.");
-        }
-
-        return false;
-    }
-
-    private boolean validateUserCredentials(String username, String password) {
-        String query = "SELECT * FROM users WHERE USERNAME = ? AND Password = ?";
+    private boolean validateCredentials(String username, String password, String tableName) {
+        String query = "SELECT * FROM users WHERE USERNAME = ? AND password = ?";
 
         try (Connection connection = DatabaseConnector.connect();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -111,9 +126,9 @@ public class LoginController {
             ResultSet resultSet = statement.executeQuery();
 
             return resultSet.next();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Database Error", "Could not validate user credentials.");
+            showAlert(Alert.AlertType.ERROR, "Database Error", "Could not validate credentials.");
         }
 
         return false;
@@ -134,10 +149,9 @@ public class LoginController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Navigation Error", "Could not load the page: " + fxmlFile);
+            showAlert(Alert.AlertType.ERROR, "Navigation Error", "Could not load the page.");
         }
     }
-
     private void goToPageMouse(Event event, String fxmlFile, String title) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
@@ -152,8 +166,6 @@ public class LoginController {
         }
     }
 
-
-
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -161,6 +173,4 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
-
 }
