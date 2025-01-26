@@ -27,7 +27,7 @@ public class DashboardController {
     }
 
     public void handleActiveCustomer(ActionEvent event) {
-        navigateToPage(event, "/com/example/carrentalsystem/activeCustomer.fxml", "Active Customers");
+        navigateToPage(event, "/com/example/carrentalsystem/ActiveCustomer.fxml", "Active Customers");
     }
 
     public void handleLogout(ActionEvent event) {

@@ -6,7 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,15 +29,27 @@ public class AddCarController {
     @FXML
     private TextField carPriceField;
 
+    @FXML
+    private Label errorLabel; // A label for error messages
+
     public void handleAddCar(ActionEvent event) {
         String carName = carNameField.getText();
         String carType = carTypeField.getText();
         double carPrice;
 
+        if (carName.isEmpty() || carType.isEmpty() || carPriceField.getText().isEmpty()) {
+            showError("All fields must be filled.");
+            return;
+        }
+
         try {
             carPrice = Double.parseDouble(carPriceField.getText());
+            if (carPrice <= 0) {
+                showError("Price must be greater than 0.");
+                return;
+            }
         } catch (NumberFormatException e) {
-            showAlert(Alert.AlertType.ERROR, "Invalid Input", "Price must be a valid number.");
+            showError("Price must be a valid number.");
             return;
         }
 
@@ -64,10 +80,30 @@ public class AddCarController {
         }
     }
 
+    // Handle the hover effect when mouse enters the button
+    public void handleButtonHover(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        button.setStyle("-fx-background-color: #45a049; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 12px 30px; -fx-background-radius: 20px;");
+        button.setEffect(new DropShadow(10, javafx.scene.paint.Color.rgb(0, 0, 0, 0.3)));  // Apply shadow effect on hover
+    }
+
+    // Handle the hover effect when mouse exits the button
+    public void handleButtonExit(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        button.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 12px 30px; -fx-background-radius: 20px;");
+        button.setEffect(null);  // Remove shadow effect when mouse exits
+    }
+
     private void clearFields() {
         carNameField.clear();
         carTypeField.clear();
         carPriceField.clear();
+        errorLabel.setText("");  // Clear error message when fields are cleared
+    }
+
+    private void showError(String message) {
+        errorLabel.setText(message);
+        errorLabel.setStyle("-fx-text-fill: red; -fx-font-size: 14px;");
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
@@ -77,6 +113,7 @@ public class AddCarController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
     public void handleBack(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/dashboard.fxml", "Dashboard");
     }

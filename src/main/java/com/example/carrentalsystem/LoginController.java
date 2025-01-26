@@ -15,7 +15,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -77,7 +80,7 @@ public class LoginController {
         String username = adminUsernameField.getText();
         String password = adminPasswordField.getText();
 
-        if (validateCredentials(username, password, "admins")) {
+        if (validateAdminCredentials(username, password)) {
             goToPage(event, "/com/example/carrentalsystem/dashboard.fxml", "Admin Dashboard");
         } else {
             showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid admin username or password.");
@@ -105,6 +108,37 @@ public class LoginController {
         } else {
             showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid employee username or password.");
         }
+    }
+    private boolean validateAdminCredentials(String username, String password) {
+        try (InputStream inputStream = getClass().getResourceAsStream("/com/example/carrentalsystem/admin.csv");
+             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+
+            // Check if the resource file exists
+            if (inputStream == null) {
+                System.err.println("Resource file 'admin.csv' not found in the classpath.");
+                showAlert(Alert.AlertType.ERROR, "Error", "Credentials file not found.");
+                showAlert(Alert.AlertType.ERROR, "Error", "Admin credentials file not found.");
+                return false;
+            }
+
+            // Read file line by line and validate credentials
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] credentials = line.split(",");
+                if (credentials.length == 2) {
+                    String csvUsername = credentials[0].trim();
+                    String csvPassword = credentials[1].trim();
+                    if (csvUsername.equals(username) && csvPassword.equals(password)) {
+                        return true; // Valid credentials
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to read credentials file.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to read admin credentials file.");
+        }
+        return false;
     }
 
     @FXML

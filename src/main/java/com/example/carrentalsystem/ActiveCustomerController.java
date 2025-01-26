@@ -10,8 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,118 +22,70 @@ import java.sql.SQLException;
 public class ActiveCustomerController {
 
     @FXML
-    private TableView<ObservableList<Object>> customerDataTable;
+    private TableView<Rental> rentalsTable;
 
     @FXML
-    private TableColumn<ObservableList<Object>, String> usernameColumn;
+    private TableColumn<Rental, Integer> idColumn;
 
     @FXML
-    private TableColumn<ObservableList<Object>, String> carNameColumn;
+    private TableColumn<Rental, String> carNameColumn;
 
     @FXML
-    private TableColumn<ObservableList<Object>, String> rentingStatusColumn;
+    private TableColumn<Rental, String> customerNameColumn;
 
     @FXML
-    private TableColumn<ObservableList<Object>, String> returnCarStatusColumn;
+    private TableColumn<Rental, String> startDateColumn;
 
     @FXML
-    private TableColumn<ObservableList<Object>, Double> billColumn;
+    private TableColumn<Rental, String> endDateColumn;
 
     @FXML
-    private TableColumn<ObservableList<Object>, Integer> totalRentingColumn;
+    private TableColumn<Rental, Long> rentalDaysColumn;
 
-    private ObservableList<ObservableList<Object>> customerDataList = FXCollections.observableArrayList();
+    private ObservableList<Rental> rentalsList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-        usernameColumn.setCellValueFactory(data -> new SimpleStringProperty((String) data.getValue().get(0)));
-        carNameColumn.setCellValueFactory(data -> new SimpleStringProperty((String) data.getValue().get(1)));
-        rentingStatusColumn.setCellValueFactory(data -> new SimpleStringProperty((String) data.getValue().get(2)));
-        returnCarStatusColumn.setCellValueFactory(data -> new SimpleStringProperty((String) data.getValue().get(3)));
-        billColumn.setCellValueFactory(data -> new SimpleObjectProperty<>((Double) data.getValue().get(4)));
-        totalRentingColumn.setCellValueFactory(data -> new SimpleObjectProperty<>((Integer) data.getValue().get(5)));
+        // Map TableColumn with Rental properties
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        carNameColumn.setCellValueFactory(new PropertyValueFactory<>("carName"));
+        customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        rentalDaysColumn.setCellValueFactory(new PropertyValueFactory<>("rentalDays"));
 
-        loadCustomerData();
+        // Load data from the rentals table
+        loadRentals();
     }
 
-    private void loadCustomerData() {
-        String query = """
-            SELECT 
-                r.customer_name AS customer_name,
-                GROUP_CONCAT(DISTINCT COALESCE(r.car_name, rc.car_name)) AS car_names,
-                CASE WHEN COUNT(rc.return_date) = 0 THEN 'Yes' ELSE 'No' END AS renting_status,
-                CASE WHEN COUNT(rc.return_date) > 0 THEN 'Yes' ELSE 'No' END AS return_car_status,
-                SUM(IFNULL(r.rental_days * c.price, 0)) AS bill,
-                COALESCE(cm.total_renting, 0) AS total_renting
-            FROM rentals r
-            LEFT JOIN return_car rc 
-                ON r.car_name = rc.car_name AND r.customer_name = rc.customer_name
-            LEFT JOIN cars c ON r.car_name = c.name
-            LEFT JOIN customer cm ON cm.username = r.customer_name
-            GROUP BY r.customer_name;
-            """;
-
+    private void loadRentals() {
+        String query = "SELECT * FROM rentals";
         try (Connection connection = DatabaseConnector.connect();
-             PreparedStatement preparedStatement = connection.prepareStatement(query);
-             ResultSet resultSet = preparedStatement.executeQuery()) {
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
 
-            // Clear existing data
-            customerDataList.clear();
-
-            // Fetch and add data
             while (resultSet.next()) {
-                ObservableList<Object> row = FXCollections.observableArrayList();
-                row.add(resultSet.getString("customer_name")); // Customer name
-                row.add(resultSet.getString("car_names")); // Aggregated car names
-                row.add(resultSet.getString("renting_status")); // Renting status
-                row.add(resultSet.getString("return_car_status")); // Return car status
-                row.add(resultSet.getDouble("bill")); // Total bill
-                row.add(resultSet.getInt("total_renting")); // Total renting count
-                customerDataList.add(row);
+                int id = resultSet.getInt("id");
+                String carName = resultSet.getString("car_name");
+                String customerName = resultSet.getString("customer_name");
+                String startDate = resultSet.getString("start_date");
+                String endDate = resultSet.getString("end_date");
+                long rentalDays = resultSet.getLong("rental_days");
+
+                rentalsList.add(new Rental(id, carName, customerName, startDate, endDate, rentalDays));
             }
 
-            // Bind data to TableView
-            customerDataTable.setItems(customerDataList);
+            rentalsTable.setItems(rentalsList);
 
         } catch (SQLException e) {
-            showAlert(Alert.AlertType.ERROR, "Database Error", "Failed to load customer data.");
             e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Database Error", "Failed to load rental data.");
         }
     }
-    private void updateOrInsertCustomer(String customerName) {
-        String selectQuery = "SELECT total_renting FROM customer WHERE username = ?";
-        String updateQuery = "UPDATE customer SET total_renting = total_renting + 1 WHERE username = ?";
-        String insertQuery = "INSERT INTO customer (username, total_renting) VALUES (?, 1)";
-
-        try (Connection connection = DatabaseConnector.connect();
-             PreparedStatement selectStatement = connection.prepareStatement(selectQuery);
-             PreparedStatement updateStatement = connection.prepareStatement(updateQuery);
-             PreparedStatement insertStatement = connection.prepareStatement(insertQuery)) {
-
-            selectStatement.setString(1, customerName);
-            ResultSet resultSet = selectStatement.executeQuery();
-
-            if (resultSet.next()) {
-                updateStatement.setString(1, customerName);
-                updateStatement.executeUpdate();
-            } else {
-                insertStatement.setString(1, customerName);
-                insertStatement.executeUpdate();
-            }
-
-        } catch (SQLException e) {
-            showAlert(Alert.AlertType.ERROR, "Database Error", "Failed to update or insert customer data.");
-            e.printStackTrace();
-        }
-    }
-
-
-    @FXML
     public void handleBack(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/dashboard.fxml", "Dashboard");
     }
 
-    @FXML
     public void handleLogout(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/login.fxml", "Login");
     }
@@ -151,7 +102,6 @@ public class ActiveCustomerController {
             e.printStackTrace();
         }
     }
-
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

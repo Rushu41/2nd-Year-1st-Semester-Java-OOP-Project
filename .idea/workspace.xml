@@ -5,10 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d7cb55a-3cf9-4f4d-920c-9cb559efbf18" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/Rental.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/images/default_profile.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/ActiveCustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/ActiveCustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/AddCarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/AddCarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/CustomerData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/DashboardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/ProfileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/UserDashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/UserDashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/ActiveCustomer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/ActiveCustomer.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/addCar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/addCar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/profile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/profile.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/userDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/userDashboard.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +60,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/USER/Downloads/fontawesomefx-fontawesome-4.7.0-9.1.2.jar",
+    "last_opened_file_path": "C:/Users/USER/IdeaProjects/CarRentalSystem/src/main/resources/com/example/carrentalsystem/images",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -66,6 +75,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\USER\IdeaProjects\CarRentalSystem\src\main\resources\com\example\carrentalsystem\images" />
       <recent name="C:\Users\USER\IdeaProjects\CarRentalSystem\src\main\resources\com\example\carrentalsystem" />
       <recent name="C:\Users\USER\IdeaProjects\CarRentalSystem\src\main\java\com\example\carrentalsystem" />
     </key>
@@ -86,7 +96,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1737234754873</updated>
-      <workItem from="1737907336717" duration="4390000" />
+      <workItem from="1737907336717" duration="19921000" />
     </task>
     <servers />
   </component>

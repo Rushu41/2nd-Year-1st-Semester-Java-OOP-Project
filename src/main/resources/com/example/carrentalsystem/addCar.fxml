@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-
-<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.carrentalsystem.AddCarController" spacing="20" alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.ActiveCustomerController">
     <children>
-        <Label text="Add New Car" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
-        <TextField fx:id="carNameField" promptText="Car Name" />
-        <TextField fx:id="carTypeField" promptText="Car Type" />
-        <TextField fx:id="carPriceField" promptText="Car Price" />
-        <Button text="Add Car" onAction="#handleAddCar" style="-fx-background-color: #4caf50; -fx-text-fill: white;" />
+        <TableView fx:id="customerDataTable" layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0">
+            <columns>
+                <TableColumn fx:id="usernameColumn" prefWidth="100.0" text="Username" />
+                <TableColumn fx:id="carNameColumn" prefWidth="100.0" text="Car Name" />
+                <TableColumn fx:id="rentingStatusColumn" prefWidth="100.0" text="Renting Status" />
+                <TableColumn fx:id="returnCarStatusColumn" prefWidth="100.0" text="Return Status" />
+                <TableColumn fx:id="billColumn" prefWidth="100.0" text="Bill ($)" />
+                <TableColumn fx:id="totalRentingColumn" prefWidth="100.0" text="Total Renting" />
+            </columns>
+        </TableView>
+        <HBox layoutX="14.0" layoutY="430.0" spacing="20.0">
+            <Button onAction="#handleBack" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back" />
+            <Button onAction="#handleLogout" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Logout" />
+        </HBox>
     </children>
-    <HBox spacing="20.0" layoutX="300.0" layoutY="500.0">
-        <children>
-            <Button text="Back" onAction="#handleBack" style="-fx-background-color: #4caf50; -fx-text-fill: white;" />
-            <Button text="Logout" onAction="#handleLogout" style="-fx-background-color: #f44336; -fx-text-fill: white;" />
-        </children>
-    </HBox>
-</VBox>
+</AnchorPane>
