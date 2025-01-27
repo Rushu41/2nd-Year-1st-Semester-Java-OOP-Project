@@ -5,8 +5,8 @@
 
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.carrentalsystem.ActiveCustomerController"
-      spacing="10" alignment="CENTER" prefWidth="800" prefHeight="400">
-    <TableView fx:id="rentalsTable" prefHeight="300" prefWidth="780">
+      spacing="10" alignment="CENTER" prefWidth="800" >
+    <TableView fx:id="rentalsTable" prefHeight="300" >
         <columns>
             <TableColumn fx:id="idColumn" text="ID" />
             <TableColumn fx:id="carNameColumn" text="Car Name" />

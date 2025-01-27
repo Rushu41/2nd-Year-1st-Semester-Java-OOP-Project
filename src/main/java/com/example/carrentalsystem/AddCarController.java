@@ -173,6 +173,10 @@ public class AddCarController {
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
+            stage.setWidth(800); // Your fixed width
+            stage.setHeight(600); // Your fixed height
+            stage.setResizable(false); // Disable resizing
+
             stage.setTitle(title);
             stage.show();
         } catch (IOException e) {

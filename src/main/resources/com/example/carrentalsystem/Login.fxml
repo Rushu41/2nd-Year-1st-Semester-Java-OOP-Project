@@ -1,52 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.LoginController" styleClass="root-pane">
+<StackPane styleClass="root-pane" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.LoginController">
    <children>
-      <!-- Admin Login Pane -->
-      <AnchorPane fx:id="adminPane" styleClass="login-pane" prefWidth="800.0" prefHeight="600.0">
-         <children>
-            <Label layoutX="300.0" layoutY="50.0" text="Admin Login" styleClass="title" />
-            <Label layoutX="200.0" layoutY="150.0" text="Username" styleClass="label" />
-            <TextField fx:id="adminUsernameField" layoutX="300.0" layoutY="150.0" prefWidth="250.0" styleClass="input" />
-            <Label layoutX="200.0" layoutY="200.0" text="Password" styleClass="label" />
-            <PasswordField fx:id="adminPasswordField" layoutX="300.0" layoutY="200.0" prefWidth="250.0" styleClass="input" />
-            <Button fx:id="adminLoginButton" layoutX="300.0" layoutY="270.0" text="Login" onAction="#handleAdminLogin" styleClass="btn" />
-            <Button layoutX="500.0" layoutY="10.0" text="Switch to User" onAction="#switchToUser" styleClass="switch-btn" />
-            <Button layoutX="500.0" layoutY="50.0" text="Switch to Employee" onAction="#switchToEmployee" styleClass="switch-btn" />
-
-         </children>
-      </AnchorPane>
+      <!-- Background Image -->
+      <ImageView fx:id="backgroundImage" fitHeight="600.0" fitWidth="800.0" preserveRatio="true">
+         <image>
+            <Image url="@images/logincars.jpg" />
+         </image>
+      </ImageView>
 
       <!-- User Login Pane -->
-      <AnchorPane fx:id="userPane" styleClass="login-pane" translateX="800.0" prefWidth="800.0" prefHeight="600.0">
+      <AnchorPane fx:id="userPane" prefHeight="600.0" prefWidth="800.0" styleClass="login-pane" translateX="800.0">
          <children>
-            <Label layoutX="300.0" layoutY="50.0" text="User Login" styleClass="title" />
-            <Label layoutX="200.0" layoutY="150.0" text="Username" styleClass="label" />
-            <TextField fx:id="userUsernameField" layoutX="300.0" layoutY="150.0" prefWidth="250.0" styleClass="input" />
-            <Label layoutX="200.0" layoutY="200.0" text="Password" styleClass="label" />
+            <Label layoutX="300.0" layoutY="50.0" styleClass="title" text="User Login" />
+            <Label layoutX="200.0" layoutY="150.0" styleClass="label" text="Username" />
+            <TextField fx:id="userUsernameField" layoutX="300.0" layoutY="150.0" prefWidth="250.0" style="-fx-background-color: #f0f0f0; -fx-text-fill: black; -fx-font-size: 14px; -fx-padding: 10px; -fx-background-radius: 5px;" />
+            <Label layoutX="200.0" layoutY="200.0" styleClass="label" text="Password" />
             <PasswordField fx:id="userPasswordField" layoutX="300.0" layoutY="200.0" prefWidth="250.0" styleClass="input" />
-            <Button fx:id="userLoginButton" layoutX="300.0" layoutY="270.0" text="Login" onAction="#handleUserLogin" styleClass="btn" />
-            <Button fx:id="signUpButton" layoutX="300.0" layoutY="320.0" text="Sign Up" onAction="#handleSignUp" styleClass="btn" />
+            <Button fx:id="userLoginButton" layoutX="300.0" layoutY="270.0" onAction="#handleUserLogin" opacity="0.8" styleClass="btn" text="Login" />
+            <Button fx:id="signUpButton" layoutX="300.0" layoutY="320.0" onAction="#handleSignUp" opacity="0.8" styleClass="btn" text="Sign Up" />
             <Label layoutX="153.0" layoutY="472.0" onMouseClicked="#handleForgetPassword" style="-fx-text-fill: blue;" text="Forgot Password?" underline="true" />
-            <Button layoutX="500.0" layoutY="10.0" text="Switch to Admin" onAction="#switchToAdmin" styleClass="switch-btn" />
-            <Button layoutX="500.0" layoutY="50.0" text="Switch to Employee" onAction="#switchToEmployee" styleClass="switch-btn" />
-
+            <Button layoutX="500.0" layoutY="10.0" onAction="#switchToAdmin" opacity="0.8" styleClass="switch-btn" text="Switch to Admin" />
+            <Button layoutX="500.0" layoutY="50.0" onAction="#switchToEmployee" opacity="0.8" styleClass="switch-btn" text="Switch to Employee" />
          </children>
       </AnchorPane>
 
-      <AnchorPane fx:id="employeePane" styleClass="login-pane" translateX="1600.0" prefWidth="800.0" prefHeight="600.0">
+      <!-- Employee Login Pane -->
+      <AnchorPane fx:id="employeePane" prefHeight="600.0" prefWidth="800.0" styleClass="login-pane" translateX="1600.0">
          <children>
-            <Label layoutX="300.0" layoutY="50.0" text="Employee Login" styleClass="title" />
-            <Label layoutX="200.0" layoutY="150.0" text="Username" styleClass="label" />
-            <TextField fx:id="employeeUsernameField" layoutX="300.0" layoutY="150.0" prefWidth="250.0" styleClass="input" />
-            <Label layoutX="200.0" layoutY="200.0" text="Password" styleClass="label" />
+            <Label layoutX="300.0" layoutY="50.0" styleClass="title" text="Employee Login" />
+            <Label layoutX="200.0" layoutY="150.0" styleClass="label" text="Username" />
+            <TextField fx:id="employeeUsernameField" layoutX="300.0" layoutY="150.0" prefWidth="250.0" style="-fx-background-color: #f0f0f0; -fx-text-fill: black; -fx-font-size: 14px; -fx-padding: 10px; -fx-background-radius: 5px;" />
+            <Label layoutX="200.0" layoutY="200.0" styleClass="label" text="Password" />
             <PasswordField fx:id="employeePasswordField" layoutX="300.0" layoutY="200.0" prefWidth="250.0" styleClass="input" />
-            <Button fx:id="employeeLoginButton" layoutX="300.0" layoutY="270.0" text="Login" onAction="#handleEmployeeLogin" styleClass="btn" />
-            <Button layoutX="500.0" layoutY="10.0" text="Switch to Admin" onAction="#switchToAdmin" styleClass="switch-btn" />
-            <Button layoutX="500.0" layoutY="50.0" text="Switch to User" onAction="#switchToUser" styleClass="switch-btn" />
+            <Button fx:id="employeeLoginButton" layoutX="300.0" layoutY="270.0" onAction="#handleEmployeeLogin" opacity="0.8" styleClass="btn" text="Login" />
+            <Button layoutX="500.0" layoutY="10.0" onAction="#switchToAdmin" opacity="0.8" styleClass="switch-btn" text="Switch to Admin" />
+            <Button layoutX="500.0" layoutY="50.0" onAction="#switchToUser" opacity="0.8" styleClass="switch-btn" text="Switch to User" />
+         </children>
+      </AnchorPane>
+
+      <!-- Admin Login Pane -->
+      <AnchorPane fx:id="adminPane" prefHeight="600.0" prefWidth="800.0" styleClass="login-pane">
+         <children>
+            <Label alignment="CENTER" layoutX="14.0" layoutY="38.0" prefHeight="72.0" prefWidth="210.0" styleClass="title" text="Admin Login" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="141.0" layoutY="137.0" prefHeight="40.0" prefWidth="120.0" styleClass="label" text="Username" textFill="#fffdfd">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Label>
+            <TextField fx:id="adminUsernameField" layoutX="68.0" layoutY="197.0" prefHeight="17.0" prefWidth="250.0" style="-fx-background-color: #f0f0f0; -fx-text-fill: black; -fx-font-size: 14px; -fx-padding: 10px; -fx-background-radius: 5px;" />
+            <Label alignment="CENTER" layoutX="155.0" layoutY="260.0" prefHeight="40.0" prefWidth="92.0" styleClass="label" text="Password" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Label>
+            <PasswordField fx:id="adminPasswordField" layoutX="68.0" layoutY="315.0" prefWidth="250.0" styleClass="input" />
+            <Button fx:id="adminLoginButton" layoutX="178.0" layoutY="367.0" onAction="#handleAdminLogin" opacity="0.8" styleClass="btn" text="Login" />
+            <Button layoutX="73.0" layoutY="446.0" onAction="#switchToUser" prefHeight="25.0" prefWidth="113.0" styleClass="switch-btn" text="Switch to User" />
+            <Button layoutX="73.0" layoutY="486.0" onAction="#switchToEmployee" opacity="0.8" prefHeight="17.0" prefWidth="120.0" styleClass="switch-btn" text="Switch to Employee" />
          </children>
       </AnchorPane>
 

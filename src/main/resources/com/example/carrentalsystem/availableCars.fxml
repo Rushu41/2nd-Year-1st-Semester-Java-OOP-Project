@@ -3,21 +3,36 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.AvailableCarsController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.AvailableCarsController">
     <children>
-        <TableView fx:id="carsTable" layoutY="1.0" prefHeight="456.0" prefWidth="914.0">
+        <!-- Background Image -->
+        <ImageView fx:id="backgroundImage" fitHeight="600.0" fitWidth="800.0" managed="false">
+            <image>
+                <Image url="@images/addcars.png" />
+            </image>
+        </ImageView>
+
+        <TableView fx:id="carsTable" layoutX="121.0" layoutY="93.0" prefHeight="322.0" prefWidth="565.0" fixedCellSize="25.0">
             <columns>
-                <TableColumn fx:id="carNameColumn" prefWidth="300.0" text="Car Name" />
-                <TableColumn fx:id="carTypeColumn" prefWidth="300.0" text="Fuel Type" />
-<!--                <TableColumn fx:id="carSeatsColumn" text="Seats" prefWidth="200.0" />-->
-                <TableColumn fx:id="priceColumn" prefWidth="300.0" text="Rent Price" />
+                <TableColumn fx:id="carNameColumn" prefWidth="200.0" text="Car Name" resizable="false" />
+                <TableColumn fx:id="carTypeColumn" prefWidth="200.0" text="Fuel Type" resizable="false" />
+                <!-- <TableColumn fx:id="carSeatsColumn" text="Seats" prefWidth="200.0" resizable="false" /> -->
+                <TableColumn fx:id="priceColumn" prefWidth="200.0" text="Rent Price" resizable="false" />
             </columns>
         </TableView>
+
         <HBox layoutX="300.0" layoutY="500.0" spacing="20.0" />
-          <Button layoutX="28.0" layoutY="488.0" onAction="#handleBack" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back" />
-          <Button layoutX="846.0" layoutY="488.0" onAction="#handleLogout" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Logout" />
+        <Button layoutX="653.0" layoutY="500.0" onAction="#handleLogout" prefHeight="31.0" prefWidth="66.0" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Logout" />
+        <Button layoutX="55.0" layoutY="500.0" onAction="#handleBack" prefHeight="31.0" prefWidth="66.0" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
     </children>
 </AnchorPane>

@@ -128,6 +128,10 @@ public class UserDashboardController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle("Feedback");
+            stage.setWidth(800); // Your fixed width
+            stage.setHeight(600); // Your fixed height
+            stage.setResizable(false); // Disable resizing
+
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
