@@ -88,8 +88,12 @@ public class AddCarController {
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to add the car. Please try again.");
         }
     }
-    @FXML
     public void handleImageUpload(ActionEvent event) {
+        if (carNameLabel == null) {
+            System.out.println("carNameLabel is null! Check FXML file and fx:id.");
+            return;
+        }
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
         File file = fileChooser.showOpenDialog(uploadImageButton.getScene().getWindow());

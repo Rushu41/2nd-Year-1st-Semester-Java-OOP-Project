@@ -37,6 +37,7 @@ public class RentFormController {
     @FXML
     private Button rentButton;
 
+
     private int carId;
     private double rentPricePerDay;
 

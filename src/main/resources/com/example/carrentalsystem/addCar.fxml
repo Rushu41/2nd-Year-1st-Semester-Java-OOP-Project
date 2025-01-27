@@ -29,7 +29,7 @@
         <ImageView fx:id="carImageView" layoutX="350.0" layoutY="50.0" fitWidth="250.0" fitHeight="200.0" preserveRatio="true" styleClass="image-preview" />
 
 <!--        &lt;!&ndash; Display Car Name &ndash;&gt;-->
-<!--        <Label fx:id="carNameLabel" layoutX="350.0" layoutY="270.0" text="Car's Name:" styleClass="car-name-label" />-->
+        <Label fx:id="carNameLabel" layoutX="350.0" layoutY="270.0" text="Car's Name:" styleClass="car-name-label" />
 
         <!-- Add Car Button -->
         <Button layoutX="20.0" layoutY="330.0" onAction="#handleAddCar" styleClass="add-button" prefWidth="300.0">

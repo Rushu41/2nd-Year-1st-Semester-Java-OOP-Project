@@ -71,7 +71,21 @@ public class UserDashboardController {
     }
 
     public void handleRentCar(ActionEvent event) {
-        navigateToPage(event, "/com/example/carrentalsystem/rentCar.fxml", "Rent Car");
+        // Pass the username to RentCArController
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/rentCar.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            RentCarController rentCarController = loader.getController();
+            rentCarController.setUsername(username);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("rent car");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleReturnCar(ActionEvent event) {

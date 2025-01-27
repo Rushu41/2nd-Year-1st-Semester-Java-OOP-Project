@@ -1,0 +1,120 @@
+/* Main container */
+.main-container {
+    -fx-padding: 30;
+    -fx-spacing: 25;
+    -fx-background-color: linear-gradient(to bottom, #74ebd5, #9face6);
+    -fx-alignment: center;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+}
+
+/* Title styles */
+.title-label {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 4, 0.7, 0, 1.5);
+    -fx-underline: true;
+}
+
+/* Form section */
+.form-section-pane {
+    -fx-font-size: 16px;
+    -fx-text-fill: #2c3e50;
+    -fx-background-color: linear-gradient(to right, #ffffff, #f3f8fc);
+    -fx-border-color: #7f8c8d;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-padding: 15;
+}
+
+/* Form labels */
+.form-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Combo box */
+.form-combo-box {
+    -fx-pref-width: 220px;
+    -fx-background-color: #ecf0f1;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5;
+}
+
+/* Date pickers */
+.date-picker {
+    -fx-pref-width: 220px;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5;
+    -fx-background-color: #ecf0f1;
+}
+
+/* Text fields */
+.hours-text-field {
+    -fx-prompt-text-fill: #7f8c8d;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5;
+    -fx-background-color: #ecf0f1;
+}
+
+/* Buttons */
+.primary-button {
+    -fx-font-size: 16px;
+    -fx-background-color: linear-gradient(to right, #1abc9c, #16a085);
+    -fx-text-fill: white;
+    -fx-border-radius: 8px;
+    -fx-padding: 8 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0.5, 0, 1);
+}
+
+.primary-button:hover {
+    -fx-background-color: linear-gradient(to right, #16a085, #0e6655);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.secondary-button {
+    -fx-font-size: 16px;
+    -fx-background-color: linear-gradient(to right, #3498db, #2980b9);
+    -fx-text-fill: white;
+    -fx-border-radius: 8px;
+    -fx-padding: 8 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0.5, 0, 1);
+}
+
+.secondary-button:hover {
+    -fx-background-color: linear-gradient(to right, #2980b9, #1f618d);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.navigation-button {
+    -fx-font-size: 14px;
+    -fx-background-color: linear-gradient(to right, #e74c3c, #c0392b);
+    -fx-text-fill: white;
+    -fx-border-radius: 8px;
+    -fx-padding: 8 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0.5, 0, 1);
+}
+
+.navigation-button:hover {
+    -fx-background-color: linear-gradient(to right, #c0392b, #922b21);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* Total cost label */
+.total-cost-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #e67e22;
+    -fx-font-weight: bold;
+}
+
+/* Separator */
+.main-separator {
+    -fx-border-color: #7f8c8d;
+    -fx-border-width: 1;
+    -fx-padding: 20 0;
+}

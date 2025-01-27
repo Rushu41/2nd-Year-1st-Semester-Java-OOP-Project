@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class SignupController {
 
@@ -29,10 +30,10 @@ public class SignupController {
     private TextField ageField;
 
     @FXML
-    private TextField genderField;
+    private ComboBox<String> genderComboBox; // Changed to ComboBox
 
     @FXML
-    private TextField dateOfBirthField; // New date of birth field
+    private DatePicker dateOfBirthPicker;
 
     @FXML
     private TextField usernameField;
@@ -53,13 +54,25 @@ public class SignupController {
     private Scene scene;
 
     @FXML
+    public void initialize() {
+        // Generate random 5-digit user ID
+        String userId = generateUserId();
+        userIdField.setText(userId);
+        userIdField.setEditable(false); // Prevent user from editing the user ID
+
+        // Populate the gender combo box
+        genderComboBox.getItems().addAll("Male", "Female", "Transgender");
+        genderComboBox.setPromptText("Select Gender");
+    }
+
+    @FXML
     public void handleSignup(ActionEvent event) {
         String userId = userIdField.getText();
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String age = ageField.getText();
-        String gender = genderField.getText();
-        String dob = dateOfBirthField.getText(); // Get the date of birth
+        String gender = genderComboBox.getValue(); // Get selected gender
+        LocalDate dob = dateOfBirthPicker.getValue();
         String username = usernameField.getText();
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
@@ -72,7 +85,7 @@ public class SignupController {
             int ageInt = Integer.parseInt(age);
 
             // Insert user into the database
-            insertUser(userId, firstName, lastName, ageInt, gender, dob, username, password);
+            insertUser(userId, firstName, lastName, ageInt, gender, dob.toString(), username, password);
 
             statusLabel.setText("Signup successful! Redirecting to login...");
             statusLabel.setStyle("-fx-text-fill: green;");
@@ -91,9 +104,9 @@ public class SignupController {
         }
     }
 
-    private boolean areInputsValid(String userId, String firstName, String lastName, String age, String gender, String dob, String username, String password, String confirmPassword) {
-        if (userId.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || age.isEmpty() || gender.isEmpty() ||
-                dob.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+    private boolean areInputsValid(String userId, String firstName, String lastName, String age, String gender, LocalDate dob, String username, String password, String confirmPassword) {
+        if (userId.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || age.isEmpty() || gender == null ||
+                dob == null || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             statusLabel.setText("Please fill out all fields.");
             statusLabel.setStyle("-fx-text-fill: red;");
             return false;
@@ -131,5 +144,10 @@ public class SignupController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    private String generateUserId() {
+        int randomId = 10000 + (int) (Math.random() * 90000);
+        return String.valueOf(randomId);
     }
 }
