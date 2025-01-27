@@ -9,10 +9,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,36 +25,51 @@ public class AddCarController {
     private TextField carNameField;
 
     @FXML
-    private TextField carTypeField;
+    private TextField totalSeatsField;
 
     @FXML
-    private TextField carPriceField;
+    private TextField fuelTypeField;
 
     @FXML
-    private Label errorLabel; // A label for error messages
+    private TextField rentPriceField;
 
+    @FXML
+    private Button uploadImageButton;
+
+    @FXML
+    private Label errorLabel;
+
+    private byte[] carImage;  // To store the image in byte array
+
+    @FXML
     public void handleAddCar(ActionEvent event) {
-        String carName = carNameField.getText();
-        String carType = carTypeField.getText();
-        double carPrice;
+        String carName = carNameField.getText().trim();
+        String fuelType = fuelTypeField.getText().trim();
+        int totalSeats;
+        double rentPrice;
 
-        if (carName.isEmpty() || carType.isEmpty() || carPriceField.getText().isEmpty()) {
-            showError("All fields must be filled.");
+        // Validate inputs
+        if (carName.isEmpty() || fuelType.isEmpty() || totalSeatsField.getText().isEmpty()
+                || rentPriceField.getText().isEmpty() || carImage == null) {
+            showError("All fields must be filled and a photo must be uploaded.");
             return;
         }
 
         try {
-            carPrice = Double.parseDouble(carPriceField.getText());
-            if (carPrice <= 0) {
-                showError("Price must be greater than 0.");
+            totalSeats = Integer.parseInt(totalSeatsField.getText().trim());
+            rentPrice = Double.parseDouble(rentPriceField.getText().trim());
+
+            if (totalSeats <= 0 || rentPrice <= 0) {
+                showError("Seats and rent price must be greater than 0.");
                 return;
             }
         } catch (NumberFormatException e) {
-            showError("Price must be a valid number.");
+            showError("Seats and rent price must be valid numbers.");
             return;
         }
 
-        if (addCarToDatabase(carName, carType, carPrice)) {
+        // Insert car into the database
+        if (addCarToDatabase(carName, totalSeats, fuelType, rentPrice, carImage)) {
             showAlert(Alert.AlertType.INFORMATION, "Success", "Car added successfully.");
             clearFields();
         } else {
@@ -61,57 +77,62 @@ public class AddCarController {
         }
     }
 
-    private boolean addCarToDatabase(String name, String type, double price) {
-        String query = "INSERT INTO cars (name, type, price, available) VALUES (?, ?, ?, 1)";
+    @FXML
+    public void handleImageUpload(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        File file = fileChooser.showOpenDialog(uploadImageButton.getScene().getWindow());
+
+        if (file != null) {
+            try {
+                // Convert the image file to a byte array
+                carImage = new byte[(int) file.length()];
+                FileInputStream fis = new FileInputStream(file);
+                fis.read(carImage);
+                fis.close();
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Photo uploaded successfully.");
+            } catch (IOException e) {
+                showError("Failed to read the image file.");
+            }
+        }
+    }
+
+    private boolean addCarToDatabase(String name, int totalSeats, String fuelType, double rentPrice, byte[] image) {
+        String query = "INSERT INTO cars (name, total_seats, fuel_type, rent_price_per_day,  photo,available) VALUES (?, ?, ?, ?, ?, 1)";
 
         try (Connection connection = DatabaseConnector.connect();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, name);
-            statement.setString(2, type);
-            statement.setDouble(3, price);
-            statement.executeUpdate();
+            statement.setInt(2, totalSeats);
+            statement.setString(3, fuelType);
+            statement.setDouble(4, rentPrice);
+            statement.setBytes(5, image); // Insert photo as a BLOB
 
+            statement.executeUpdate();
             return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
+            showError("Database error: " + e.getMessage());
             return false;
         }
     }
 
-    // Handle the hover effect when mouse enters the button
-    public void handleButtonHover(MouseEvent event) {
-        Button button = (Button) event.getSource();
-        button.setStyle("-fx-background-color: #45a049; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 12px 30px; -fx-background-radius: 20px;");
-        button.setEffect(new DropShadow(10, javafx.scene.paint.Color.rgb(0, 0, 0, 0.3)));  // Apply shadow effect on hover
-    }
-
-    // Handle the hover effect when mouse exits the button
-    public void handleButtonExit(MouseEvent event) {
-        Button button = (Button) event.getSource();
-        button.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 12px 30px; -fx-background-radius: 20px;");
-        button.setEffect(null);  // Remove shadow effect when mouse exits
-    }
-
     private void clearFields() {
+        // Clear all fields and reset the image
         carNameField.clear();
-        carTypeField.clear();
-        carPriceField.clear();
-        errorLabel.setText("");  // Clear error message when fields are cleared
+        totalSeatsField.clear();
+        fuelTypeField.clear();
+        rentPriceField.clear();
+        errorLabel.setText("");  // Clear error message
+        carImage = null;  // Clear the image
     }
 
     private void showError(String message) {
+        // Display error message in the error label
         errorLabel.setText(message);
         errorLabel.setStyle("-fx-text-fill: red; -fx-font-size: 14px;");
-    }
-
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 
     public void handleBack(ActionEvent event) {
@@ -133,5 +154,14 @@ public class AddCarController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        // Show an alert dialog with a message
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

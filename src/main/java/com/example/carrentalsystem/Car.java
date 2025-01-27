@@ -1,51 +1,78 @@
 package com.example.carrentalsystem;
 
 public class Car {
-    private String name;
-    private String type;
-    private double price;
-    private String customerName;
+    private String name;         // Car name
+    private int totalSeats;      // Number of seats in the car
+    private String fuelType;     // Type of fuel (e.g., Petrol, Diesel)
+    private double rentPricePerDay; // Daily rental price
+    private String customerName; // Customer name for rented cars
 
-    public Car(String name, String type, double price) {
+    // Constructor for available cars
+    public Car(String name, int totalSeats, String fuelType, double rentPricePerDay) {
         this.name = name;
-        this.type = type;
-        this.price = price;
+        this.totalSeats = totalSeats;
+        this.fuelType = fuelType;
+        this.rentPricePerDay = rentPricePerDay;
     }
-    public Car(String name, String type, double price, String customerName) {
+
+    // Constructor for rented cars
+    public Car(String name, String type, double rentPricePerDay, String customerName) {
         this.name = name;
-        this.type = type;
-        this.price = price;
+        this.fuelType = type; // Alias `fuelType` as `type` in query
+        this.rentPricePerDay = rentPricePerDay;
         this.customerName = customerName;
     }
 
-    // Getters
+
+    // Constructor with all fields
+    public Car(String name, String type, int totalSeats, String fuelType, double rentPricePerDay, String customerName) {
+        this.name = name;
+        this.totalSeats = totalSeats;
+        this.fuelType = fuelType;
+        this.rentPricePerDay = rentPricePerDay;
+        this.customerName = customerName;
+    }
+
+    // Getters and Setters
     public String getName() {
         return name;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public String getCustomerName() { return customerName;}
-
-    // Setters (optional if you need to update the car object)
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setType(String type) {
-        this.type = type;
+
+
+    public int getTotalSeats() {
+        return totalSeats;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setTotalSeats(int totalSeats) {
+        this.totalSeats = totalSeats;
     }
 
-    public void setCustomerName() { this.customerName = customerName;}
+    public String getFuelType() {
+        return fuelType;
+    }
 
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    public double getRentPricePerDay() {
+        return rentPricePerDay;
+    }
+
+    public void setRentPricePerDay(double rentPricePerDay) {
+        this.rentPricePerDay = rentPricePerDay;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
 }

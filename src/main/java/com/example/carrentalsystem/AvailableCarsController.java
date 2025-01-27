@@ -12,8 +12,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
-
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,6 +26,9 @@ public class AvailableCarsController {
     private TableColumn<Car, String> carNameColumn;
 
     @FXML
+    private TableColumn<Car, Integer> carSeatsColumn;
+
+    @FXML
     private TableColumn<Car, String> carTypeColumn;
 
     @FXML
@@ -37,28 +38,33 @@ public class AvailableCarsController {
 
     @FXML
     public void initialize() {
+        // Bind TableColumns to Car properties
         carNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        carTypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        carTypeColumn.setCellValueFactory(new PropertyValueFactory<>("fuelType"));
+//        carSeatsColumn.setCellValueFactory(new PropertyValueFactory<>("seats"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("rentPricePerDay"));
 
-        loadCarsFromDatabase();
+        loadCarsFromDatabase();  // Load car data from the database
     }
 
-    private void loadCarsFromDatabase() {
-        String query = "SELECT name, type, price FROM cars WHERE available = 1";
+    public void loadCarsFromDatabase() {
+        carList.clear();  // Clear the current list of cars
+        String query = "SELECT name, fuel_type, total_seats, rent_price_per_day FROM cars WHERE available = 1";
         try (Connection connection = DatabaseConnector.connect();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
 
             while (resultSet.next()) {
                 String name = resultSet.getString("name");
-                String type = resultSet.getString("type");
-                double price = resultSet.getDouble("price");
+                String fuelType = resultSet.getString("fuel_type");
+                int seats = resultSet.getInt("total_seats");
+                double rentPricePerDay = resultSet.getDouble("rent_price_per_day");
 
-                carList.add(new Car(name, type, price));
+                // Add a new Car object to the list
+                carList.add(new Car(name, seats, fuelType, rentPricePerDay));
             }
 
-            carsTable.setItems(carList);
+            carsTable.setItems(carList);  // Set the list to the TableView
 
         } catch (SQLException e) {
             e.printStackTrace();

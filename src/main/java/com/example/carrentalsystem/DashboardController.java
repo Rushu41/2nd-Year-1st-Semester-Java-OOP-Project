@@ -14,17 +14,17 @@ public class DashboardController {
         navigateToPage(event, "/com/example/carrentalsystem/availableCars.fxml", "Available Cars");
     }
 
-    public void handleRentCar(ActionEvent event) {
-        navigateToPage(event, "/com/example/carrentalsystem/rentCar.fxml", "Rent Car");
-    }
+//    public void handleRentCar(ActionEvent event) {
+//        navigateToPage(event, "/com/example/carrentalsystem/rentCar.fxml", "Rent Car");
+//    }
 
     public void handleAddCar(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/addCar.fxml", "Add Car");
     }
 
-    public void handleCustomer(ActionEvent event) {
-        navigateToPage(event, "/com/example/carrentalsystem/CustomerController.fxml", "Add Car");
-    }
+//    public void handleCustomer(ActionEvent event) {
+//        navigateToPage(event, "/com/example/carrentalsystem/CustomerController.fxml", "Add Car");
+//    }
 
     public void handleActiveCustomer(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/ActiveCustomer.fxml", "Active Customers");

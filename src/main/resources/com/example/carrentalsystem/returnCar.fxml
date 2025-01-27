@@ -8,23 +8,17 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.ReturnCarController">
     <children>
-        <!-- TableView to display rented cars -->
-        <TableView fx:id="rentedCarsTable" layoutX="50.0" layoutY="50.0" prefHeight="400.0" prefWidth="700.0">
+        <TableView fx:id="rentedCarsTable" layoutX="140.0" layoutY="60.0" prefHeight="392.0" prefWidth="501.0">
             <columns>
                 <TableColumn fx:id="carNameColumn" prefWidth="200.0" text="Car Name" />
-                <TableColumn fx:id="carTypeColumn" prefWidth="200.0" text="Car Type" />
+<!--                <TableColumn fx:id="carTypeColumn" prefWidth="200.0" text="Car Type" />-->
                 <TableColumn fx:id="priceColumn" prefWidth="100.0" text="Price" />
                 <TableColumn fx:id="customerNameColumn" prefWidth="200.0" text="Customer Name" />
             </columns>
         </TableView>
 
-        <HBox layoutX="300.0" layoutY="500.0" spacing="20.0">
-            <children>
-                <Button onAction="#handleReturnCar" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Return Car" />
-                <Button onAction="#handleBack" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back" />
-                <Button fx:id="resetButton" onAction="#handleReset" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Reset" />
-            </children>
-        </HBox>
-
+        <HBox layoutX="300.0" layoutY="500.0" spacing="20.0" />
+          <Button layoutX="140.0" layoutY="502.0" onAction="#handleReturnCar" text="Return Car" />
+          <Button layoutX="600.0" layoutY="502.0" onAction="#handleBack" text="Back" />
     </children>
 </AnchorPane>

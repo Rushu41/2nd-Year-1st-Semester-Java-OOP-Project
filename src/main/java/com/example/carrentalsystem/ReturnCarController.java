@@ -48,24 +48,23 @@ public class ReturnCarController {
     @FXML
     public void initialize() {
         carNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        carTypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+//        carTypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("rentPricePerDay")); // Alias as "price" in the query
         customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
 
         loadRentedCarsFromDatabase();
     }
 
+
     @FXML
     public void handleReset(ActionEvent event) {
-        // Clear the table data
         rentedCarList.clear();
         rentedCarsTable.setItems(rentedCarList);
-
         showAlert(Alert.AlertType.INFORMATION, "Reset Successful", "All table data has been cleared.");
     }
-
+    @FXML
     private void loadRentedCarsFromDatabase() {
-        String query = "SELECT r.car_name, c.type AS car_type, c.price AS car_price, r.customer_name " +
+        String query = "SELECT r.car_name AS name, c.fuel_type AS type, c.rent_price_per_day AS price, r.customer_name " +
                 "FROM rentals r " +
                 "INNER JOIN cars c ON r.car_name = c.name";
 
@@ -74,9 +73,9 @@ public class ReturnCarController {
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
-                String carName = resultSet.getString("car_name");
-                String carType = resultSet.getString("car_type");
-                double carPrice = resultSet.getDouble("car_price");
+                String carName = resultSet.getString("name");
+                String carType = resultSet.getString("type");
+                double carPrice = resultSet.getDouble("price");
                 String customerName = resultSet.getString("customer_name");
 
                 rentedCarList.add(new Car(carName, carType, carPrice, customerName));
@@ -90,6 +89,7 @@ public class ReturnCarController {
         }
     }
 
+
     @FXML
     public void handleReturnCar(ActionEvent event) {
         Car selectedCar = rentedCarsTable.getSelectionModel().getSelectedItem();
@@ -101,35 +101,25 @@ public class ReturnCarController {
         try (Connection connection = DatabaseConnector.connect()) {
             connection.setAutoCommit(false);
 
-            // Retrieve the customer's name from the rentals table
             String customerName = selectedCar.getCustomerName();
 
-            if (customerName == null) {
-                showAlert(Alert.AlertType.ERROR, "Error", "Failed to find the customer associated with the car.");
-                connection.rollback();
-                return;
-            }
-
-            // Remove the car from the rentals table
             String deleteRentalQuery = "DELETE FROM rentals WHERE car_name = ?";
             try (PreparedStatement deleteRentalStmt = connection.prepareStatement(deleteRentalQuery)) {
                 deleteRentalStmt.setString(1, selectedCar.getName());
                 deleteRentalStmt.executeUpdate();
             }
 
-            // Update the car availability in the cars table
             String updateCarQuery = "UPDATE cars SET available = 1 WHERE name = ?";
             try (PreparedStatement updateCarStmt = connection.prepareStatement(updateCarQuery)) {
                 updateCarStmt.setString(1, selectedCar.getName());
                 updateCarStmt.executeUpdate();
             }
 
-            // Insert the returned car details into the return_cars table
             String insertReturnCarQuery = "INSERT INTO return_car (car_name, car_type, price, customer_name, return_date) VALUES (?, ?, ?, ?, CURRENT_DATE)";
             try (PreparedStatement insertReturnCarStmt = connection.prepareStatement(insertReturnCarQuery)) {
                 insertReturnCarStmt.setString(1, selectedCar.getName());
-                insertReturnCarStmt.setString(2, selectedCar.getType());
-                insertReturnCarStmt.setDouble(3, selectedCar.getPrice());
+                insertReturnCarStmt.setString(2, selectedCar.getFuelType());
+                insertReturnCarStmt.setDouble(3, selectedCar.getRentPricePerDay());
                 insertReturnCarStmt.setString(4, customerName);
                 insertReturnCarStmt.executeUpdate();
             }
