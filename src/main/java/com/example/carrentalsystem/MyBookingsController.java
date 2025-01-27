@@ -46,6 +46,7 @@ public class MyBookingsController {
     }
 
     public void loadUserBookings(String username) {
+        username=UserSession.getLoggedInUsername();
         String query = "SELECT * FROM rentals WHERE customer_name = ?";
         try (Connection connection = DatabaseConnector.connect();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {

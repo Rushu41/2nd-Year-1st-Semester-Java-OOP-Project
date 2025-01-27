@@ -38,6 +38,11 @@ public class DashboardController {
         navigateToPage(event, "/com/example/carrentalsystem/returnCar.fxml", "Return Car");
     }
 
+
+    public void handleFeedback(ActionEvent event) {
+        navigateToPage(event, "/com/example/carrentalsystem/adminFeedback.fxml", "Admin Feedback");
+    }
+
     private void navigateToPage(ActionEvent event, String fxmlPath, String title) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));

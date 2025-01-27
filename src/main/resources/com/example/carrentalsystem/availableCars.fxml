@@ -6,21 +6,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.AvailableCarsController" prefHeight="600.0" prefWidth="800.0">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.AvailableCarsController">
     <children>
-        <TableView fx:id="carsTable" layoutX="50.0" layoutY="50.0" prefHeight="400.0" prefWidth="700.0">
+        <TableView fx:id="carsTable" layoutY="1.0" prefHeight="456.0" prefWidth="914.0">
             <columns>
-                <TableColumn fx:id="carNameColumn" text="Car Name" prefWidth="200.0" />
-                <TableColumn fx:id="carTypeColumn" text="Fuel Type" prefWidth="200.0" />
+                <TableColumn fx:id="carNameColumn" prefWidth="300.0" text="Car Name" />
+                <TableColumn fx:id="carTypeColumn" prefWidth="300.0" text="Fuel Type" />
 <!--                <TableColumn fx:id="carSeatsColumn" text="Seats" prefWidth="200.0" />-->
-                <TableColumn fx:id="priceColumn" text="Rent Price" prefWidth="200.0" />
+                <TableColumn fx:id="priceColumn" prefWidth="300.0" text="Rent Price" />
             </columns>
         </TableView>
-        <HBox spacing="20.0" layoutX="300.0" layoutY="500.0">
-            <children>
-                <Button text="Back" onAction="#handleBack" style="-fx-background-color: #4caf50; -fx-text-fill: white;" />
-                <Button text="Logout" onAction="#handleLogout" style="-fx-background-color: #f44336; -fx-text-fill: white;" />
-            </children>
-        </HBox>
+        <HBox layoutX="300.0" layoutY="500.0" spacing="20.0" />
+          <Button layoutX="28.0" layoutY="488.0" onAction="#handleBack" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back" />
+          <Button layoutX="846.0" layoutY="488.0" onAction="#handleLogout" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Logout" />
     </children>
 </AnchorPane>

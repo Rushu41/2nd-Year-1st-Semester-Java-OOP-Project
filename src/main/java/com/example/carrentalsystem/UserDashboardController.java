@@ -88,17 +88,11 @@ public class UserDashboardController {
         }
     }
 
-    public void handleReturnCar(ActionEvent event) {
-        navigateToPage(event, "/com/example/carrentalsystem/returnCar.fxml", "Return Car");
-    }
 
     public void handleSubscription(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/subscription.fxml", "Subscription");
     }
 
-    public void handleFeedback(ActionEvent event) {
-        navigateToPage(event, "/com/example/carrentalsystem/feedback.fxml", "Feedback");
-    }
 
     public void handleMyBookings(ActionEvent event) {
         // Pass the username to MyBookingsController
@@ -115,6 +109,25 @@ public class UserDashboardController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle("My Bookings");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void handleFeedback(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/feedback.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            // Get the FeedbackController instance
+            FeedbackController feedbackController = loader.getController();
+
+            // Pass the logged-in username to the controller
+            feedbackController.setLoggedInUsername(loggedInUsername);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Feedback");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
