@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.carrentalsystem.MyBookings"
-            prefHeight="400.0" prefWidth="600.0">
+<?import javafx.scene.control.Button?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.carrentalsystem.MyBookingsController">
+    <TableView fx:id="rentalTable" prefHeight="404.0" prefWidth="402.0">
+        <columns>
+            <TableColumn fx:id="carNameColumn" text="Car Name" />
+            <TableColumn fx:id="customerNameColumn" text="Customer Name" />
+            <TableColumn fx:id="startDateColumn" text="Start Date" />
+            <TableColumn fx:id="endDateColumn" text="End Date" />
+            <TableColumn fx:id="rentalDaysColumn" text="Rental Days" />
+        </columns>
+    </TableView>
+   <children>
 
-</AnchorPane>
+       <Button onAction="#handleBack" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back" />
+
+
+   </children>
+</VBox>

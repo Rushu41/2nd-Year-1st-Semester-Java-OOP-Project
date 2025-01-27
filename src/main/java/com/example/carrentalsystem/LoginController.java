@@ -95,7 +95,26 @@ public class LoginController {
         if (validateCredentials(username, password, "users")) {
             // Set the username in UserSession class
             UserSession.setLoggedInUsername(username);
-            goToPage(event, "/com/example/carrentalsystem/userDashboard.fxml", "User Dashboard");
+
+            try {
+                // Navigate to the user dashboard
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/userDashboard.fxml"));
+                Scene scene = new Scene(loader.load());
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                // Get the controller for the user dashboard
+                UserDashboardController userDashboardController = loader.getController();
+
+                // Pass the username to the UserDashboardController
+                userDashboardController.setUsername(username);
+
+                stage.setScene(scene);
+                stage.setTitle("User Dashboard");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert(Alert.AlertType.ERROR, "Navigation Error", "Could not load the page: userDashboard.fxml");
+            }
         } else {
             showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid user username or password.");
         }

@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d7cb55a-3cf9-4f4d-920c-9cb559efbf18" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/UserSession.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/profile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/profile.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/MyBookingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/MyBookingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/UserDashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/UserDashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/myBookings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/myBookings.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +88,7 @@
       <option name="presentableId" value="Default" />
       <updated>1737234754873</updated>
       <workItem from="1737907336717" duration="19921000" />
-      <workItem from="1737956538973" duration="9183000" />
+      <workItem from="1737956538973" duration="14317000" />
     </task>
     <servers />
   </component>

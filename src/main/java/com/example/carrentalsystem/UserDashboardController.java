@@ -23,6 +23,18 @@ public class UserDashboardController {
 
     private String loggedInUsername; // Store logged-in user's username
 
+    private String username; // Store the username for the logged-in user
+
+    // Getter for the username
+    public String getUsername() {
+        return username;
+    }
+
+    // Setter for the username
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public void initialize() {
         loadUserProfilePhoto();
     }
@@ -75,9 +87,25 @@ public class UserDashboardController {
     }
 
     public void handleMyBookings(ActionEvent event) {
-        navigateToPage(event, "/com/example/carrentalsystem/myBookings.fxml", "My Bookings");
-    }
+        // Pass the username to MyBookingsController
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/myBookings.fxml"));
+            Scene scene = new Scene(loader.load());
 
+            // Get the controller for the MyBookings.fxml
+            MyBookingsController myBookingsController = loader.getController();
+
+            // Pass the username to the MyBookingsController
+            myBookingsController.loadUserBookings(username);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("My Bookings");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void handleLogout(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/login.fxml", "Login");
     }
