@@ -1,60 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.carrentalsystem.RentCarController"
-      stylesheets="rentcarstyles.css"
-      spacing="20"
-      alignment="CENTER"
+      stylesheets="freestyles.css"
       prefWidth="800.0" prefHeight="600.0"
       styleClass="main-container">
 
     <!-- Title -->
     <Label text="Car Rental System" styleClass="title-label"/>
 
-    <!-- Rental Information Section -->
+    <!-- Form Section -->
     <TitledPane text="Rental Information" styleClass="form-section-pane" expanded="true">
-        <VBox spacing="15" alignment="CENTER_LEFT" styleClass="form-container">
+        <GridPane styleClass="form-grid">
             <!-- Car Selection -->
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Label text="Select Car:" styleClass="form-label"/>
-                <ComboBox fx:id="carNameComboBox" styleClass="form-combo-box"/>
-            </HBox>
+            <Label text="Select Car:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <ComboBox fx:id="carNameComboBox" styleClass="form-combo-box" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
             <!-- Rental Option -->
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Label text="Rental Option:" styleClass="form-label"/>
+            <Label text="Rental Option:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <HBox styleClass="radio-group" GridPane.columnIndex="1" GridPane.rowIndex="1">
                 <RadioButton fx:id="hourlyRadioButton" text="Hourly" onAction="#handleRentalOptionChange"/>
                 <RadioButton fx:id="dailyRadioButton" text="Daily" onAction="#handleRentalOptionChange"/>
             </HBox>
 
-            <!-- Hours Input -->
-            <HBox spacing="10" alignment="CENTER_LEFT" visible="false" fx:id="hoursContainer">
-                <Label text="Hours:" styleClass="form-label"/>
-                <TextField fx:id="hourlyTextField" styleClass="hours-text-field" promptText="Enter hours"/>
-            </HBox>
+            <!-- Hours Field -->
+            <Label text="Hours:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="hourlyTextField" styleClass="hours-text-field" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="Enter hours" visible="false"/>
 
-            <!-- Start and End Dates -->
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Label text="Start Date:" styleClass="form-label"/>
-                <DatePicker fx:id="startDatePicker" styleClass="date-picker"/>
-            </HBox>
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Label text="End Date:" styleClass="form-label"/>
-                <DatePicker fx:id="endDatePicker" styleClass="date-picker"/>
-            </HBox>
-        </VBox>
+            <!-- Start Date -->
+            <Label text="Start Date:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <DatePicker fx:id="startDatePicker" styleClass="date-picker" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+            <!-- End Date -->
+            <Label text="End Date:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <DatePicker fx:id="endDatePicker" styleClass="date-picker" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+        </GridPane>
     </TitledPane>
 
     <!-- Cost Section -->
-    <VBox spacing="10" alignment="CENTER">
+    <VBox styleClass="cost-section">
         <Button text="Calculate Cost" styleClass="primary-button" onAction="#handleCalculateCost"/>
         <Label fx:id="totalCostLabel" text="Total Cost: $" styleClass="total-cost-label"/>
     </VBox>
 
-    <!-- Action Buttons -->
-    <HBox spacing="15" alignment="CENTER">
+    <!-- Actions Section -->
+    <HBox styleClass="action-buttons">
         <Button text="Rent Car" styleClass="secondary-button" onAction="#handleRentCar"/>
         <Button text="Generate Receipt" styleClass="secondary-button" onAction="#handleGenerateReceipt"/>
     </HBox>
@@ -62,7 +55,7 @@
     <Separator styleClass="main-separator"/>
 
     <!-- Navigation Buttons -->
-    <HBox spacing="15" alignment="CENTER">
+    <HBox styleClass="navigation-buttons">
         <Button text="Back" styleClass="navigation-button" onAction="#handleBack"/>
         <Button text="Logout" styleClass="navigation-button" onAction="#handleLogout"/>
     </HBox>
