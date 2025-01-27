@@ -5,7 +5,6 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
@@ -18,28 +17,32 @@
             </StackPane>
             <Button onAction="#handlePhotoUpload" text="Upload Photo" />
         </VBox>
-        <VBox layoutX="40.0" layoutY="14.0" spacing="15">
+        <VBox layoutX="105.0" layoutY="8.0" prefHeight="747.0" prefWidth="149.0" spacing="15">
             <Label text="User ID:" />
-            <TextField fx:id="userIdField" />
+            <TextField fx:id="userIdField" editable="false" />
             <Label text="First Name:" />
-            <TextField fx:id="firstNameField" />
+            <TextField fx:id="firstNameField" editable="false" />
             <Label text="Last Name:" />
-            <TextField fx:id="lastNameField" />
+            <TextField fx:id="lastNameField" editable="false" />
             <Label text="Age:" />
-            <TextField fx:id="ageField" />
+            <TextField fx:id="ageField" editable="false" />
             <Label text="Gender:" />
-            <TextField fx:id="genderField" />
+            <TextField fx:id="genderField" editable="false" />
             <Label text="Date of Birth:" />
-            <TextField fx:id="dateOfBirthField" />
+            <TextField fx:id="dateOfBirthField" editable="false" />
             <Label text="Username:" />
-            <TextField fx:id="usernameField" />
+            <TextField fx:id="usernameField" editable="false" />
+            <Label text="Email:" />
+            <TextField fx:id="emailField" />
+            <Label text="Phone:" />
+            <TextField fx:id="phoneField" />
             <Label text="Password:" />
             <PasswordField fx:id="passwordField" />
             <Button onAction="#handleSaveChanges" text="Save Changes" />
-            <Label fx:id="statusLabel" />
+            <Label fx:id="statusLabel" layoutX="105" layoutY="715" style="-fx-text-fill: red;" text="" />
+
         </VBox>
-        <HBox layoutX="14.0" layoutY="430.0" spacing="20.0" />
-         <Button layoutX="524.0" layoutY="713.0" onAction="#handleLogout" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Logout" />
-         <Button layoutX="40.0" layoutY="713.0" onAction="#handleBack" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back" />
+        <Button layoutX="551.0" layoutY="734.0" onAction="#handleLogout" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Logout" />
+        <Button layoutX="14.0" layoutY="746.0" onAction="#handleBack" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back" />
     </children>
 </AnchorPane>

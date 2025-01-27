@@ -93,11 +93,16 @@ public class LoginController {
         String password = userPasswordField.getText();
 
         if (validateCredentials(username, password, "users")) {
+            // Set the username in UserSession class
+            UserSession.setLoggedInUsername(username);
             goToPage(event, "/com/example/carrentalsystem/userDashboard.fxml", "User Dashboard");
         } else {
             showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid user username or password.");
         }
     }
+
+
+
     @FXML
     private void handleEmployeeLogin(ActionEvent event) {
         String username = employeeUsernameField.getText();
@@ -149,9 +154,9 @@ public class LoginController {
     public void handleForgetPassword(Event event) {
         goToPageMouse(event, "/com/example/carrentalsystem/forgotPassword.fxml", "Forgot Password");
     }
-    private boolean validateCredentials(String username, String password, String tableName) {
-        String query = "SELECT * FROM users WHERE USERNAME = ? AND password = ?";
 
+    private boolean validateCredentials(String username, String password, String tableName) {
+        String query = "SELECT * FROM users WHERE USERNAME = ? AND Password = ?";
         try (Connection connection = DatabaseConnector.connect();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
@@ -164,9 +169,10 @@ public class LoginController {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Database Error", "Could not validate credentials.");
         }
-
         return false;
     }
+
+
 
     private void goToPage(ActionEvent event, String fxmlFile, String title) {
         try {
@@ -186,6 +192,7 @@ public class LoginController {
             showAlert(Alert.AlertType.ERROR, "Navigation Error", "Could not load the page.");
         }
     }
+
     private void goToPageMouse(Event event, String fxmlFile, String title) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));

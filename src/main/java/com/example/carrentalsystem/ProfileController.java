@@ -12,12 +12,10 @@ import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.sql.*;
 
 public class ProfileController {
 
@@ -25,6 +23,8 @@ public class ProfileController {
     private Circle photoCircle;
     @FXML
     private TextField userIdField, firstNameField, lastNameField, ageField, genderField, dateOfBirthField, usernameField;
+    @FXML
+    private TextField emailField, phoneField;
     @FXML
     private PasswordField passwordField;
     @FXML
@@ -35,11 +35,13 @@ public class ProfileController {
 
     public void setLoggedInUsername(String username) {
         this.loggedInUsername = username;
-        loadUserData();
+        loadUserData();  // Load user data using the username
     }
 
     private void loadUserData() {
+        String loggedInUsername = UserSession.getLoggedInUsername();  // Get the username from UserSession
         String query = "SELECT * FROM users WHERE USERNAME = ?";
+
         try (Connection connection = DatabaseConnector.connect();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
@@ -47,26 +49,41 @@ public class ProfileController {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                userIdField.setText(resultSet.getString("user_id"));
-                firstNameField.setText(resultSet.getString("First_Name"));
-                lastNameField.setText(resultSet.getString("Last_Name"));
-                ageField.setText(String.valueOf(resultSet.getInt("Age")));
-                genderField.setText(resultSet.getString("Gender"));
-                dateOfBirthField.setText(resultSet.getString("Date_Of_Birth"));
-                usernameField.setText(resultSet.getString("USERNAME"));
-                passwordField.setText(resultSet.getString("Password"));
-
-                String photoPath = resultSet.getString("photo");
-                if (photoPath != null && !photoPath.isEmpty()) {
-                    File file = new File(photoPath);
-                    if (file.exists()) {
-                        Image profileImage = new Image(file.toURI().toString());
-                        photoCircle.setFill(new ImagePattern(profileImage));
-                    }
-                }
+                populateFields(resultSet);
+                loadProfilePhotoFromBlob(resultSet.getBytes("photo"));
+            } else {
+                statusLabel.setText("User not found!");
             }
+
         } catch (SQLException e) {
-            statusLabel.setText("Error loading user data: " + e.getMessage());
+            showError("Error loading user data: " + e.getMessage());
+        }
+    }
+
+    private void populateFields(ResultSet resultSet) throws SQLException {
+        userIdField.setText(resultSet.getString("user_id"));
+        firstNameField.setText(resultSet.getString("First_Name"));
+        lastNameField.setText(resultSet.getString("Last_Name"));
+        ageField.setText(resultSet.getString("Age"));
+        genderField.setText(resultSet.getString("Gender"));
+        dateOfBirthField.setText(resultSet.getString("Date_Of_Birth"));
+        usernameField.setText(resultSet.getString("USERNAME"));
+        emailField.setText(resultSet.getString("Email"));
+        phoneField.setText(resultSet.getString("Phone"));
+        passwordField.setText(resultSet.getString("Password"));
+    }
+
+    private void loadProfilePhotoFromBlob(byte[] photoBlob) {
+        if (photoBlob != null) {
+            try {
+                InputStream is = new ByteArrayInputStream(photoBlob);
+                Image image = new Image(is);
+                photoCircle.setFill(new ImagePattern(image));
+            } catch (Exception e) {
+                showError("Failed to load profile photo: " + e.getMessage());
+            }
+        } else {
+            statusLabel.setText("Profile photo not set.");
         }
     }
 
@@ -76,6 +93,7 @@ public class ProfileController {
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
         selectedPhotoFile = fileChooser.showOpenDialog(null);
         if (selectedPhotoFile != null) {
+            // Show the selected photo in the UI
             Image image = new Image(selectedPhotoFile.toURI().toString());
             photoCircle.setFill(new ImagePattern(image));
         }
@@ -83,26 +101,78 @@ public class ProfileController {
 
     @FXML
     public void handleSaveChanges() {
-        String query = "UPDATE users SET First_Name = ?, Last_Name = ?, Age = ?, Gender = ?, Date_Of_Birth = ?, USERNAME = ?, Password = ?, photo = ? WHERE USERNAME = ?";
+        boolean profileUpdated = updateUserProfile();
+        boolean photoUpdated = updateProfilePhoto();
+
+        if (profileUpdated && photoUpdated) {
+            statusLabel.setText("Profile updated successfully!");
+        } else if (profileUpdated) {
+            showError("Profile details updated, but the photo was not.");
+        } else if (photoUpdated) {
+            showError("Photo updated, but profile details were not.");
+        } else {
+            showError("No changes were made.");
+        }
+    }
+
+    private boolean updateUserProfile() {
+        String query = "UPDATE users SET Email = ?, Phone = ?, Password = ? WHERE USERNAME = ?";
+        int rowsUpdated = executeUpdateQuery(query, preparedStatement -> {
+            preparedStatement.setString(1, emailField.getText().trim());
+            preparedStatement.setString(2, phoneField.getText().trim());
+            preparedStatement.setString(3, passwordField.getText().trim());
+            preparedStatement.setString(4, loggedInUsername);
+        });
+
+        return rowsUpdated > 0;
+    }
+
+    private boolean updateProfilePhoto() {
+        if (selectedPhotoFile == null) {
+            return true; // No photo update needed
+        }
+
+        String query = "UPDATE users SET photo = ? WHERE USERNAME = ?";
+        int rowsUpdated = executeUpdateQuery(query, preparedStatement -> {
+            try {
+                byte[] photoBytes = Files.readAllBytes(selectedPhotoFile.toPath());
+                preparedStatement.setBytes(1, photoBytes);
+            } catch (IOException e) {
+                showError("Error reading photo file: " + e.getMessage());
+            }
+            preparedStatement.setString(2, loggedInUsername);
+        });
+
+        return rowsUpdated > 0;
+    }
+
+    private int executeUpdateQuery(String query, PreparedStatementHandler handler) {
         try (Connection connection = DatabaseConnector.connect();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            preparedStatement.setString(1, firstNameField.getText());
-            preparedStatement.setString(2, lastNameField.getText());
-            preparedStatement.setInt(3, Integer.parseInt(ageField.getText()));
-            preparedStatement.setString(4, genderField.getText());
-            preparedStatement.setString(5, dateOfBirthField.getText());
-            preparedStatement.setString(6, usernameField.getText());
-            preparedStatement.setString(7, passwordField.getText());
-            preparedStatement.setString(8, selectedPhotoFile != null ? selectedPhotoFile.getAbsolutePath() : null);
-            preparedStatement.setString(9, loggedInUsername);
+            // Pass the prepared statement to the handler for customization
+            handler.handle(preparedStatement);
 
-            preparedStatement.executeUpdate();
-            statusLabel.setText("Profile updated successfully!");
-        } catch (SQLException | NumberFormatException e) {
-            statusLabel.setText("Failed to update profile: " + e.getMessage());
+            // Execute the update query and return rows affected
+            return preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            showError("Database error: " + e.getMessage());
         }
+        return 0;
     }
+
+    // Functional interface for prepared statement customization
+    @FunctionalInterface
+    private interface PreparedStatementHandler {
+        void handle(PreparedStatement preparedStatement) throws SQLException;
+    }
+
+    private void showError(String message) {
+        statusLabel.setText(message);
+        statusLabel.setStyle("-fx-text-fill: red;");
+    }
+
     @FXML
     public void handleBack(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/userDashboard.fxml", "Dashboard");
@@ -122,7 +192,7 @@ public class ProfileController {
             stage.setTitle(title);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            showError("Error loading page: " + e.getMessage());
         }
     }
 }
