@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.carrentalsystem.RentFormController"
+      alignment="CENTER" spacing="15" style="-fx-padding: 20;">
+    <Label fx:id="carNameLabel" text="Car: "/>
+    <Label fx:id="usernameLabel" text="User: "/>
+
+    <DatePicker fx:id="startDatePicker" promptText="Start Date"/>
+    <DatePicker fx:id="endDatePicker" promptText="End Date"/>
+
+        <RadioButton fx:id="hourlyRadioButton" text="Rent Hourly" selected="true"/>
+        <RadioButton fx:id="dailyRadioButton" text="Rent Daily"/>
+
+    <Button fx:id="rentButton" text="Rent Car" onAction="#rentCar"/>
+</VBox>

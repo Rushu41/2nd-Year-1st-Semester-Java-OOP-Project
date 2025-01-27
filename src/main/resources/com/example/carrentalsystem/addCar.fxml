@@ -5,29 +5,54 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.AddCarController">
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.AddCarController" stylesheets="@styles.css" prefWidth="800.0" prefHeight="600.0">
     <children>
         <!-- Input Fields Section -->
-        <TextField fx:id="carNameField" layoutX="20.0" layoutY="30.0" promptText="Car Name" prefWidth="300.0" />
-        <TextField fx:id="totalSeatsField" layoutX="20.0" layoutY="80.0" promptText="Total Seats" prefWidth="300.0" />
-        <TextField fx:id="fuelTypeField" layoutX="20.0" layoutY="130.0" promptText="Fuel Type" prefWidth="300.0" />
-        <TextField fx:id="rentPriceField" layoutX="20.0" layoutY="180.0" promptText="Rent Price per Day" prefWidth="300.0" />
+        <Label layoutX="20.0" layoutY="10.0" text="Add Car" styleClass="header-label" />
+        <TextField fx:id="carNameField" layoutX="20.0" layoutY="50.0" promptText="Car Name" prefWidth="300.0" styleClass="input-field" />
+        <TextField fx:id="totalSeatsField" layoutX="20.0" layoutY="100.0" promptText="Total Seats" prefWidth="300.0" styleClass="input-field" />
+        <TextField fx:id="fuelTypeField" layoutX="20.0" layoutY="150.0" promptText="Fuel Type" prefWidth="300.0" styleClass="input-field" />
+        <TextField fx:id="rentPriceField" layoutX="20.0" layoutY="200.0" promptText="Rent Price per Day" prefWidth="300.0" styleClass="input-field" />
 
         <!-- Upload Image Section -->
-        <Button fx:id="uploadImageButton" layoutX="20.0" layoutY="230.0" text="Upload Image" onAction="#handleImageUpload" prefWidth="300.0" />
-        <Label fx:id="errorLabel" layoutX="20.0" layoutY="270.0" text="" style="-fx-text-fill: red; -fx-font-size: 14px;" />
+        <Button fx:id="uploadImageButton" layoutX="20.0" layoutY="250.0" onAction="#handleImageUpload" prefWidth="300.0" styleClass="upload-button">
+            <graphic>
+                <FontAwesomeIconView glyphName="UPLOAD" size="16" />
+            </graphic>
+            Upload Image
+        </Button>
+        <Label fx:id="errorLabel" layoutX="20.0" layoutY="290.0" text="" styleClass="error-label" />
 
         <!-- Preview of Uploaded Image -->
-        <ImageView fx:id="carImageView" layoutX="350.0" layoutY="30.0" fitWidth="250.0" fitHeight="200.0" preserveRatio="true" style="-fx-border-color: gray;" />
+        <ImageView fx:id="carImageView" layoutX="350.0" layoutY="50.0" fitWidth="250.0" fitHeight="200.0" preserveRatio="true" styleClass="image-preview" />
+
+<!--        &lt;!&ndash; Display Car Name &ndash;&gt;-->
+<!--        <Label fx:id="carNameLabel" layoutX="350.0" layoutY="270.0" text="Car's Name:" styleClass="car-name-label" />-->
 
         <!-- Add Car Button -->
-        <Button layoutX="20.0" layoutY="310.0" text="Add Car" onAction="#handleAddCar" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" prefWidth="300.0" />
+        <Button layoutX="20.0" layoutY="330.0" onAction="#handleAddCar" styleClass="add-button" prefWidth="300.0">
+            <graphic>
+                <FontAwesomeIconView glyphName="PLUS" size="16" />
+            </graphic>
+            Add Car
+        </Button>
 
         <!-- Navigation Buttons -->
-        <HBox layoutX="20.0" layoutY="360.0" spacing="20.0">
-            <Button text="Back" onAction="#handleBack" style="-fx-background-color: #2196F3; -fx-text-fill: white;" prefWidth="140.0" />
-            <Button text="Logout" onAction="#handleLogout" style="-fx-background-color: #f44336; -fx-text-fill: white;" prefWidth="140.0" />
+        <HBox layoutX="20.0" layoutY="380.0" spacing="20.0">
+            <Button onAction="#handleBack" styleClass="nav-button">
+                <graphic>
+                    <FontAwesomeIconView glyphName="ARROW_LEFT" size="16" />
+                </graphic>
+                Back
+            </Button>
+            <Button onAction="#handleLogout" styleClass="nav-button">
+                <graphic>
+                    <FontAwesomeIconView glyphName="SIGN_OUT" size="16" />
+                </graphic>
+                Logout
+            </Button>
         </HBox>
     </children>
 </AnchorPane>

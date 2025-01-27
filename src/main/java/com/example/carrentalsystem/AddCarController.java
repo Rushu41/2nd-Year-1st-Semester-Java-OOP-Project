@@ -1,3 +1,4 @@
+// AddCarController.java
 package com.example.carrentalsystem;
 
 import javafx.event.ActionEvent;
@@ -9,6 +10,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -35,6 +38,14 @@ public class AddCarController {
 
     @FXML
     private Button uploadImageButton;
+
+    @FXML
+    private ImageView carImageView;
+
+    @FXML
+    private Label carNameLabel;
+
+
 
     @FXML
     private Label errorLabel;
@@ -70,13 +81,13 @@ public class AddCarController {
 
         // Insert car into the database
         if (addCarToDatabase(carName, totalSeats, fuelType, rentPrice, carImage)) {
+            carNameLabel.setText("Car's Name: " + carName);
             showAlert(Alert.AlertType.INFORMATION, "Success", "Car added successfully.");
             clearFields();
         } else {
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to add the car. Please try again.");
         }
     }
-
     @FXML
     public void handleImageUpload(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -90,6 +101,14 @@ public class AddCarController {
                 FileInputStream fis = new FileInputStream(file);
                 fis.read(carImage);
                 fis.close();
+
+                // Display the image in the ImageView
+                Image image = new Image(file.toURI().toString());
+                carImageView.setImage(image);
+
+                // Set the car's name in the label
+                carNameLabel.setText("Car's Name: " + carNameField.getText().trim());
+
                 showAlert(Alert.AlertType.INFORMATION, "Success", "Photo uploaded successfully.");
             } catch (IOException e) {
                 showError("Failed to read the image file.");
@@ -97,8 +116,9 @@ public class AddCarController {
         }
     }
 
+
     private boolean addCarToDatabase(String name, int totalSeats, String fuelType, double rentPrice, byte[] image) {
-        String query = "INSERT INTO cars (name, total_seats, fuel_type, rent_price_per_day,  photo,available) VALUES (?, ?, ?, ?, ?, 1)";
+        String query = "INSERT INTO cars (name, total_seats, fuel_type, rent_price_per_day, photo, available) VALUES (?, ?, ?, ?, ?, 1)";
 
         try (Connection connection = DatabaseConnector.connect();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -120,17 +140,17 @@ public class AddCarController {
     }
 
     private void clearFields() {
-        // Clear all fields and reset the image
         carNameField.clear();
         totalSeatsField.clear();
         fuelTypeField.clear();
         rentPriceField.clear();
-        errorLabel.setText("");  // Clear error message
-        carImage = null;  // Clear the image
+        errorLabel.setText("");
+        carImage = null;
+        carImageView.setImage(null);
+        carNameLabel.setText("");
     }
 
     private void showError(String message) {
-        // Display error message in the error label
         errorLabel.setText(message);
         errorLabel.setStyle("-fx-text-fill: red; -fx-font-size: 14px;");
     }
@@ -157,7 +177,6 @@ public class AddCarController {
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
-        // Show an alert dialog with a message
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
