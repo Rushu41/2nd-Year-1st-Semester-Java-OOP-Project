@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.SubscriptionController">
     <!-- Background Image -->
     <ImageView fitHeight="800.0" fitWidth="1000.0" layoutX="0.0" layoutY="0.0">
@@ -22,4 +23,13 @@
             </font></Label>
         <Button onAction="#handleSubscribe" style="-fx-font-size: 16; -fx-padding: 10 20; -fx-font-weight: bold; -fx-base: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #388E3C; -fx-border-width: 2;" text="Subscribe Now" />
     </VBox>
+    <!-- Centered Back Button -->
+    <HBox alignment="BOTTOM_LEFT" maxWidth="400" spacing="10">
+        <Button onAction="#handleBack"  style="-fx-font-size: 16; -fx-padding: 10 20; -fx-font-weight: bold; -fx-base: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #388E3C; -fx-border-width: 2;" styleClass="gradient-button-back">
+            <graphic>
+                <FontAwesomeIconView  glyphName="ARROW_LEFT" size="20" />
+            </graphic>
+            Back
+        </Button>
+    </HBox>
 </AnchorPane>

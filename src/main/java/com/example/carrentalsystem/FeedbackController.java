@@ -130,7 +130,7 @@ public class FeedbackController {
         }
     }
     public void handleBack(ActionEvent event) {
-        navigateToPage(event, "/com/example/carrentalsystem/dashboard.fxml", "Dashboard");
+        navigateToPage(event, "/com/example/carrentalsystem/userDashboard.fxml", "Dashboard");
     }
 
     public void handleLogout(ActionEvent event) {

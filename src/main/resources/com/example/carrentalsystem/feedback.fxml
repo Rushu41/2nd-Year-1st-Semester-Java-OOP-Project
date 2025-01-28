@@ -4,14 +4,19 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="801.0" prefWidth="1000" style="-fx-background-color: #f4f4f4;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.carrentalsystem.FeedbackController">
+<AnchorPane prefHeight="801.0" prefWidth="1000" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.FeedbackController">
     <!-- Chat Display -->
-    <TextArea fx:id="chatArea" editable="false" layoutX="30" layoutY="20" prefHeight="600" prefWidth="940" wrapText="true" />
+    <TextArea fx:id="chatArea" editable="false" layoutX="30.0" layoutY="20.0" prefHeight="544.0" prefWidth="940" wrapText="true" />
 
     <!-- User Input -->
-    <TextField fx:id="userInputField" layoutX="30" layoutY="640" prefWidth="820" promptText="Type your feedback or problem here..." />
+    <TextField fx:id="userInputField" layoutX="30.0" layoutY="578.0" prefHeight="44.0" prefWidth="820" promptText="Type your feedback or problem here..." />
 
     <!-- Send Button -->
-    <Button fx:id="sendButton" layoutX="860" layoutY="640" onAction="#handleSend" prefWidth="90" text="Send" />
+    <Button fx:id="sendButton" layoutX="863.0" layoutY="578.0" onAction="#handleSend" prefHeight="44.0" prefWidth="107.0" text="Send" />
+
+    <!-- Buttons at the bottom -->
+    <HBox layoutX="200.0" layoutY="600.0" spacing="40.0" />
+     <Button layoutX="30.0" layoutY="638.0" onAction="#handleBack" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back" />
 </AnchorPane>
