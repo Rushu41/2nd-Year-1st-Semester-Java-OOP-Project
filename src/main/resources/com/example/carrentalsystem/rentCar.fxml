@@ -5,7 +5,7 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.carrentalsystem.RentCarController"
-      stylesheets="@freestyles.css"
+      stylesheets="@styles/freestyles.css"
       prefWidth="1000.0" prefHeight="800.0"
       styleClass="main-container" spacing="20" style="-fx-padding: 40;">
 
@@ -50,9 +50,8 @@
     <HBox styleClass="action-buttons" spacing="20" alignment="CENTER">
 
         <Button fx:id="rentCarButton" text="Rent Car" styleClass="secondary-button" onAction="#handleRentCar"/>
-        <Button  text="Confirm Bill" styleClass="secondary-button" onAction="#handleConfirmBill"/>
-        <Button fx:id="generateReceiptButton" text="Generate Receipt" onAction="#handleGenerateReceipt" styleClass="button-primary"/>
-
+        <Button fx:id="confirmBillButton" text="Confirm Bill" onAction="#handleConfirmBill" disable="true"/>
+        <Button fx:id="generateReceiptButton" text="Generate Receipt" onAction="#handleGenerateReceipt" disable="true"/>
 
 
     </HBox>

@@ -82,7 +82,7 @@
 
 .btn-switch {
     -fx-background-color: transparent;
-    -fx-text-fill: #2c3e50;
+    -fx-text-fill: #1a3e6e; /* Deep Blue for the admin button */
     -fx-font-weight: bold;
     -fx-cursor: hand;
     -fx-underline: true;
@@ -90,7 +90,7 @@
 }
 
 .btn-switch:hover {
-    -fx-text-fill: #3498db;
+    -fx-text-fill: #1a3e6e;  /* No hover effect, keeps the same deep blue color */
 }
 
 .link-text {

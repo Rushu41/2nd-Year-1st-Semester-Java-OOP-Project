@@ -14,13 +14,13 @@
 
 <StackPane styleClass="root-pane" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.LoginController">
    <stylesheets>
-      <URL value="@login.css" />
+      <URL value="@styles/login.css" />
    </stylesheets>
    <children>
       <!-- Background Image with Overlay -->
-      <ImageView fx:id="backgroundImage" fitHeight="900.0" fitWidth="1100.0" preserveRatio="true">
+      <ImageView fx:id="backgroundImage" fitHeight="800.0" fitWidth="1000.0" preserveRatio="true">
          <image>
-            <Image url="@images/bg.jpg" />
+            <Image url="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=formatfit=cropw=800q=80" />
          </image>
       </ImageView>
       <AnchorPane style="-fx-background-color: rgba(0, 0, 0, 0.3);" />
@@ -51,7 +51,8 @@
                   <FontAwesomeIconView glyphName="QUESTION_CIRCLE" />
                </graphic>
             </Label>
-            <Button layoutX="350.0" layoutY="30.0" onAction="#switchToAdmin" styleClass="btn-switch" text="ADMIN →" />
+            <!-- ADMIN BUTTON MOVED HERE -->
+            <Button layoutX="180.0" layoutY="600.0" onAction="#switchToAdmin" styleClass="btn-switch" text="ADMIN →" />
             <ProgressIndicator fx:id="loadingSpinner" layoutX="230.0" layoutY="430.0" visible="false" />
          </children>
       </AnchorPane>

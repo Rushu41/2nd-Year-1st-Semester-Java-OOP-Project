@@ -18,7 +18,7 @@
             </image>
         </ImageView>
 
-        <TableView fx:id="carsTable" fixedCellSize="25.0" layoutX="152.0" layoutY="58.0" prefHeight="555.0" prefWidth="743.0">
+        <TableView fx:id="carsTable" fixedCellSize="25.0" layoutX="129.0" layoutY="33.0" prefHeight="555.0" prefWidth="743.0">
             <columns>
                 <TableColumn fx:id="carNameColumn" prefWidth="262.0" resizable="false" text="Car Name" />
                 <TableColumn fx:id="carTypeColumn" prefWidth="242.0" resizable="false" text="Fuel Type" />
@@ -27,11 +27,11 @@
         </TableView>
 
         <HBox layoutX="200.0" layoutY="600.0" spacing="40.0" />
-         <Button layoutX="23.0" layoutY="736.0" onAction="#handleBack" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back">
+         <Button layoutX="29.0" layoutY="686.0" onAction="#handleBack" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back">
              <font>
                  <Font size="15.0" />
              </font>
          </Button>
-         <Button layoutX="873.0" layoutY="738.0" onAction="#handleLogout" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Logout" />
+         <Button layoutX="872.0" layoutY="686.0" onAction="#handleLogout" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Logout" />
     </children>
 </AnchorPane>

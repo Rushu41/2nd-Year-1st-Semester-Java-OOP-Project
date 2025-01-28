@@ -1,39 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.DashboardController" prefHeight="800.0" prefWidth="1000.0">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.DashboardController">
     <children>
         <!-- Sidebar -->
-        <VBox layoutX="0.0" layoutY="0.0" prefHeight="800.0" prefWidth="250.0" style="-fx-background-color: #2b2b2b;">
+        <VBox alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="800.0" prefWidth="250.0" style="-fx-background-color: #2b2b2b;">
             <children>
-                <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="65.0" layoutY="10.0">
+                <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="75.0" layoutY="10.0">
                     <image>
-                        <Image url="@images/car.jpg" />
+                        <Image url="@images/admin_icon.png" />
                     </image>
                 </ImageView>
-                <Label text="Welcome, Admin" style="-fx-font-size: 18px; -fx-text-fill: white; -fx-padding: 10 0 20 0;" />
-                <Button text="Available Cars" onAction="#handleAvailableCars" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="220.0" />
-                <Button text="Add Car" onAction="#handleAddCar" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="220.0" />
-                <Button text="Return Car" onAction="#handleReturnCar" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="220.0" />
-                <Button text="Active Customers" onAction="#handleActiveCustomer" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="220.0" />
-                <Button text="Feedback" onAction="#handleFeedback" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="220.0" />
-                <Button text="Rental History" onAction="#handleRentalHistory" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="220.0" />
-
-                <Button layoutX="250.0" layoutY="300.0" text="Logout" onAction="#handleLogout" />
-
+                <Label alignment="CENTER" style="-fx-font-size: 18px; -fx-text-fill: white; -fx-padding: 10;" text="Welcome, Admin" />
+                <Button onAction="#handleAvailableCars" prefWidth="220.0" style="-fx-background-color: #d4c4a8; -fx-text-fill: black; -fx-background-radius: 30; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 15px 25px; -fx-effect: dropshadow(gaussian, #000000, 10, 0.2, 0, 4);" text="Available Cars" />
+                <Button onAction="#handleAddCar" prefWidth="220.0" style="-fx-background-color: #d4c4a8; -fx-text-fill: black; -fx-background-radius: 30; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 15px 25px; -fx-effect: dropshadow(gaussian, #000000, 10, 0.2, 0, 4);" text="Add Car" />
+                <Button onAction="#handleReturnCar" prefWidth="220.0" style="-fx-background-color: #d4c4a8; -fx-text-fill: black; -fx-background-radius: 30; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 15px 25px; -fx-effect: dropshadow(gaussian, #000000, 10, 0.2, 0, 4);" text="Return Car" />
+                <Button onAction="#handleActiveCustomer" prefWidth="220.0" style="-fx-background-color: #d4c4a8; -fx-text-fill: black; -fx-background-radius: 30; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 15px 25px; -fx-effect: dropshadow(gaussian, #000000, 10, 0.2, 0, 4);" text="Active Customers" />
+                <Button onAction="#handleFeedback" prefWidth="220.0" style="-fx-background-color: #d4c4a8; -fx-text-fill: black; -fx-background-radius: 30; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 15px 25px; -fx-effect: dropshadow(gaussian, #000000, 10, 0.2, 0, 4);" text="Feedback" />
+                <Button onAction="#handleLogout" prefWidth="220.0" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-background-radius: 30; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 15px 25px; -fx-effect: dropshadow(gaussian, #000000, 10, 0.2, 0, 4);" text="Logout" />
             </children>
         </VBox>
 
-        <!-- Main Content Area -->
-        <AnchorPane layoutX="250.0" layoutY="0.0" prefHeight="800.0" prefWidth="750.0" style="-fx-background-color: #f4f4f4;">
-            <!-- Additional content can be added here -->
-        </AnchorPane>
+        <!-- Main Content -->
+        <HBox layoutX="250.0" layoutY="0.0" prefHeight="800.0" prefWidth="750.0" style="-fx-background-color: #FAEBD7;">
+            <children>
+                <VBox alignment="CENTER" prefHeight="823.0" prefWidth="735.0" spacing="30.0" style="-fx-padding: 20;">
+                    <children>
+                        <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-font-family: 'Serif'; -fx-text-fill: #2b2b2b;" text="Dashboard Statistics" />
+                        <HBox alignment="CENTER" spacing="50.0">
+                            <!-- Available Cars Section -->
+                            <VBox alignment="CENTER" style="-fx-background-color: #4caf50; -fx-padding: 20px; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, #000000, 10, 0.2, 0, 4);">
+                                <Label style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-font-family: 'Serif'; -fx-text-fill: white;" text="Available Cars" />
+                                <Label style="-fx-font-size: 60px; -fx-font-weight: bold; -fx-font-family: 'Serif'; -fx-text-fill: white;" text="10" />
+                            </VBox>
+
+                            <!-- Total Income Section -->
+                            <VBox alignment="CENTER" style="-fx-background-color: #ff9800; -fx-padding: 20px; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, #000000, 10, 0.2, 0, 4);">
+                                <Label style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-font-family: 'Serif'; -fx-text-fill: white;" text="Total Income" />
+                                <Label style="-fx-font-size: 60px; -fx-font-weight: bold; -fx-font-family: 'Serif'; -fx-text-fill: white;" text="'$12,000'" />
+                            </VBox>
+                        </HBox>
+
+                        <HBox alignment="CENTER" spacing="50.0">
+                            <!-- Total Customers Section -->
+                            <VBox alignment="CENTER" style="-fx-background-color: #2196f3; -fx-padding: 20px; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, #000000, 10, 0.2, 0, 4);">
+                                <Label style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-font-family: 'Serif'; -fx-text-fill: white;" text="Total Customers" />
+                                <Label style="-fx-font-size: 60px; -fx-font-weight: bold; -fx-font-family: 'Serif'; -fx-text-fill: white;" text="15" />
+                            </VBox>
+
+                            <!-- Active Rentals Section -->
+                            <VBox alignment="CENTER" style="-fx-background-color: #9c27b0; -fx-padding: 20px; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, #000000, 10, 0.2, 0, 4);">
+                                <Label style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-font-family: 'Serif'; -fx-text-fill: white;" text="Active Rentals" />
+                                <Label style="-fx-font-size: 60px; -fx-font-weight: bold; -fx-font-family: 'Serif'; -fx-text-fill: white;" text="3" />
+                            </VBox>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
     </children>
 </AnchorPane>

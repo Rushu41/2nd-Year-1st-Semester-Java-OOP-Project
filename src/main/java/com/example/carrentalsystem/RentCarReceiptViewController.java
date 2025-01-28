@@ -41,7 +41,7 @@ public class RentCarReceiptViewController {
     public void handleBackButton() {
         try {
             // Load the previous scene (e.g., main menu or previous screen)
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("userDashboard.fxml")); // Adjust the FXML path as necessary
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("rentCar.fxml")); // Adjust the FXML path as necessary
             Parent root = loader.load();
 
             // Get the current stage

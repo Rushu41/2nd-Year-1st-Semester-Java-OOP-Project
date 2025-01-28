@@ -1,37 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(to bottom, #ff7e5f, #feb47b);"
-            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.carrentalsystem.SignupController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="root-pane" stylesheets="@styles/signup.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.SignupController">
 
-    <VBox alignment="CENTER" layoutX="350.0" layoutY="100.0" prefHeight="500.0" prefWidth="300.0" spacing="15">
-        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ffffff;" text="Sign Up"/>
+    <!-- Background Image -->
+    <ImageView fitHeight="800" fitWidth="1000" preserveRatio="true">
+        <Image url="@images/background3.jpg" />
+    </ImageView>
 
+    <VBox alignment="CENTER" layoutX="350.0" prefHeight="835.0" prefWidth="300.0" spacing="20">
+        <Label styleClass="title-label" text="Create Account" />
         <!-- User Input Fields -->
-        <TextField fx:id="userIdField" promptText="User ID" style="-fx-background-radius: 15; -fx-padding: 10; -fx-pref-width: 300;"/>
-        <TextField fx:id="firstNameField" promptText="First Name" style="-fx-background-radius: 15; -fx-padding: 10; -fx-pref-width: 300;"/>
-        <TextField fx:id="lastNameField" promptText="Last Name" style="-fx-background-radius: 15; -fx-padding: 10; -fx-pref-width: 300;"/>
-        <TextField fx:id="ageField" promptText="Age" style="-fx-background-radius: 15; -fx-padding: 10; -fx-pref-width: 300;"/>
-        <ComboBox fx:id="genderComboBox" promptText="Select Gender"
-                  style="-fx-background-radius: 15; -fx-padding: 10; -fx-pref-width: 300;" />
 
+        <TextField fx:id="firstNameField" promptText="First Name" styleClass="input-field" />
+        <TextField fx:id="lastNameField" promptText="Last Name" styleClass="input-field" />
+        <TextField fx:id="ageField" promptText="Age" styleClass="input-field" />
+        <ComboBox fx:id="genderComboBox" prefHeight="54.0" prefWidth="309.0" promptText="Select Gender" styleClass="combo-box" />
         <!-- Date of Birth Field -->
-        <DatePicker fx:id="dateOfBirthPicker" promptText="Date of Birth" style="-fx-background-radius: 15; -fx-padding: 10; -fx-pref-width: 300;"/>
-
-        <TextField fx:id="usernameField" promptText="Username" style="-fx-background-radius: 15; -fx-padding: 10; -fx-pref-width: 300;"/>
-        <PasswordField fx:id="passwordField" promptText="Enter Password" style="-fx-background-radius: 15; -fx-padding: 10; -fx-pref-width: 300;"/>
-        <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password" style="-fx-background-radius: 15; -fx-padding: 10; -fx-pref-width: 300;"/>
-
+        <DatePicker fx:id="dateOfBirthPicker" prefHeight="54.0" prefWidth="329.0" promptText="Date of Birth" styleClass="date-picker" />
+        <TextField fx:id="usernameField" promptText="Username" styleClass="input-field" />
+        <PasswordField fx:id="passwordField" promptText="Enter Password" styleClass="input-field" />
+        <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password" styleClass="input-field" />
         <!-- Signup Button -->
-        <Button fx:id="signupButton" onAction="#handleSignup" text="Sign Up"
-                style="-fx-background-color: #ff7e5f; -fx-text-fill: #ffffff; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 10 20;"/>
-
+        <Button fx:id="signupButton" onAction="#handleSignup" styleClass="signup-button" text="Sign Up" />
         <!-- Status Message -->
-        <Label fx:id="statusLabel" text="" style="-fx-text-fill: white;"/>
+        <Label fx:id="statusLabel" styleClass="status-label" />
     </VBox>
+
 </AnchorPane>

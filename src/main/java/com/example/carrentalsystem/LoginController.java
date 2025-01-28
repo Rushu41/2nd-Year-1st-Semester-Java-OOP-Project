@@ -27,39 +27,35 @@ import java.sql.SQLException;
 
 public class LoginController {
 
+    @FXML
+    private AnchorPane adminPane, userPane;
 
     @FXML
-    private AnchorPane adminPane, userPane, employeePane;
+    private TextField adminUsernameField, userUsernameField;
 
     @FXML
-    private TextField adminUsernameField, userUsernameField, employeeUsernameField;
+    private PasswordField adminPasswordField, userPasswordField;
 
     @FXML
-    private PasswordField adminPasswordField, userPasswordField, employeePasswordField;
-
-    @FXML
-    private Button adminLoginButton, userLoginButton, employeeLoginButton;
-
+    private Button adminLoginButton, userLoginButton;
 
     @FXML
     public void initialize() {
-        adminPane.setTranslateX(0);
-        userPane.setTranslateX(1000);
+        // Set user login page as the default view
+        adminPane.setTranslateX(-1000); // Hide the admin pane
+        userPane.setTranslateX(0); // Show the user pane
     }
 
     @FXML
     private void switchToAdmin() {
-        switchPane(adminPane, userPane);
+        animatePane(adminPane, 0);
+        animatePane(userPane, 1000);
     }
 
     @FXML
     private void switchToUser() {
-        switchPane(userPane, adminPane);
-    }
-
-    private void switchPane(AnchorPane toShow, AnchorPane toHide) {
-        animatePane(toShow, 0);
-        animatePane(toHide, 1000);
+        animatePane(adminPane, -1000);
+        animatePane(userPane, 0);
     }
 
     private void animatePane(AnchorPane pane, double targetX) {
@@ -67,7 +63,6 @@ public class LoginController {
         transition.setToX(targetX);
         transition.play();
     }
-
 
     @FXML
     private void handleAdminLogin(ActionEvent event) {
@@ -117,21 +112,16 @@ public class LoginController {
         }
     }
 
-
-
     private boolean validateAdminCredentials(String username, String password) {
-        try (InputStream inputStream = getClass().getResourceAsStream("/com/example/carrentalsystem/admin.csv");
+        try (InputStream inputStream = getClass().getResourceAsStream("/com/example/carrentalsystem/local_database/admin.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 
-            // Check if the resource file exists
             if (inputStream == null) {
                 System.err.println("Resource file 'admin.csv' not found in the classpath.");
-                showAlert(Alert.AlertType.ERROR, "Error", "Credentials file not found.");
                 showAlert(Alert.AlertType.ERROR, "Error", "Admin credentials file not found.");
                 return false;
             }
 
-            // Read file line by line and validate credentials
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] credentials = line.split(",");
@@ -139,29 +129,19 @@ public class LoginController {
                     String csvUsername = credentials[0].trim();
                     String csvPassword = credentials[1].trim();
                     if (csvUsername.equals(username) && csvPassword.equals(password)) {
-                        return true; // Valid credentials
+                        return true;
                     }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "Failed to read credentials file.");
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to read admin credentials file.");
         }
         return false;
     }
 
-    @FXML
-    private void handleSignUp(ActionEvent event) {
-        goToPage(event, "/com/example/carrentalsystem/signUp.fxml", "Sign Up");
-    }
-
-    public void handleForgetPassword(Event event) {
-        goToPageMouse(event, "/com/example/carrentalsystem/forgotPassword.fxml", "Forgot Password");
-    }
-
     private boolean validateCredentials(String username, String password, String tableName) {
-        String query = "SELECT * FROM users WHERE USERNAME = ? AND Password = ?";
+        String query = "SELECT * FROM " + tableName + " WHERE USERNAME = ? AND PASSWORD = ?";
         try (Connection connection = DatabaseConnector.connect();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
@@ -177,7 +157,15 @@ public class LoginController {
         return false;
     }
 
+    @FXML
+    private void handleSignUp(ActionEvent event) {
+        goToPage(event, "/com/example/carrentalsystem/signUp.fxml", "Sign Up");
+    }
 
+    @FXML
+    public void handleForgetPassword(Event event) {
+        goToPageMouse(event, "/com/example/carrentalsystem/forgotPassword.fxml", "Forgot Password");
+    }
 
     private void goToPage(ActionEvent event, String fxmlFile, String title) {
         try {

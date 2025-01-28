@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -20,15 +22,15 @@ public class ForgotPasswordController {
     private TextField usernameField;
 
     @FXML
-    private TextField dobField;
+    private DatePicker dobField;  // Changed to DatePicker
 
     @FXML
-    private TextField newPasswordField;
+    private PasswordField newPasswordField;  // Changed to PasswordField for security
 
     @FXML
     private void handleResetPassword(ActionEvent event) {
         String username = usernameField.getText();
-        String dob = dobField.getText();
+        String dob = dobField.getValue() != null ? dobField.getValue().toString() : "";  // Get selected date
         String newPassword = newPasswordField.getText();
 
         if (username.isEmpty() || dob.isEmpty() || newPassword.isEmpty()) {
@@ -111,8 +113,9 @@ public class ForgotPasswordController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
     public void handleBack(ActionEvent event) {
-        navigateToPage(event, "/com/example/carrentalsystem/dashboard.fxml", "Dashboard");
+        navigateToPage(event, "/com/example/carrentalsystem/login.fxml", "Dashboard");
     }
 
     private void navigateToPage(ActionEvent event, String fxmlPath, String title) {
@@ -131,5 +134,4 @@ public class ForgotPasswordController {
             e.printStackTrace();
         }
     }
-
 }

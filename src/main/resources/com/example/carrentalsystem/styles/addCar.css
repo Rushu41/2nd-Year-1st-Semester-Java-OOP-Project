@@ -1,0 +1,209 @@
+/* Base Styles */
+.root {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-base: #2d3436;
+}
+
+/* Form Title */
+.form-title {
+    -fx-font-size: 28px;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 2);
+}
+
+/* Input Container */
+.input-container {
+    -fx-padding: 25px;
+    -fx-background-color: rgba(45, 52, 54, 0.8);
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+}
+
+/* Modern Input Fields */
+.modern-input {
+    -fx-pref-height: 40px;
+    -fx-pref-width: 300px;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-prompt-text-fill: #636e72;
+    -fx-font-size: 14px;
+    -fx-padding: 0 10px 0 35px;
+}
+
+.modern-input:focused {
+    -fx-border-color: #0984e3;
+    -fx-border-width: 2px;
+    -fx-effect: innershadow(gaussian, rgba(9, 132, 227, 0.2), 10, 0, 0, 0);
+}
+
+.input-icon {
+    -fx-fill: #636e72;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 1);
+}
+
+/* Action Buttons - Add Vehicle */
+.gradient-button-add {
+    -fx-background-color: linear-gradient(to right, #00b894, #00cec9);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-pref-height: 45px;
+    -fx-pref-width: 300px;
+    -fx-background-radius: 25px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);
+}
+
+.gradient-button-add:hover {
+    -fx-background-color: linear-gradient(to right, #00cec9, #00b894);
+    -fx-cursor: hand;
+}
+
+/* Back Button Styling - Dark Purple */
+.gradient-button-back {
+    -fx-background-color: linear-gradient(to right, #2A1B3D, #4A235A);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-padding: 10 25;
+    -fx-background-radius: 25px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);
+    -fx-alignment: CENTER_LEFT;
+    -fx-content-display: LEFT;
+}
+
+.gradient-button-back:hover {
+    -fx-background-color: linear-gradient(to right, #4A235A, #2A1B3D);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-cursor: hand;
+}
+
+/* Add icon spacing */
+.gradient-button-back .font-awesome-icon-view {
+    -fx-margin-right: 8px;
+}
+
+/* Upload Button Styling */
+.gradient-button-upload {
+    -fx-background-color: linear-gradient(to right, #6c5ce7, #a66efa);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-height: 45px;
+    -fx-pref-width: 350px;
+    -fx-background-radius: 25px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);
+}
+
+.gradient-button-upload:hover {
+    -fx-background-color: linear-gradient(to right, #a66efa, #6c5ce7);
+    -fx-cursor: hand;
+}
+
+/* Clear Button */
+.gradient-button-clear {
+    -fx-background-color: linear-gradient(to right, #d63031, #e17055);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-height: 45px;
+    -fx-pref-width: 350px;
+    -fx-background-radius: 25px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);
+    -fx-cursor: hand;
+}
+
+.gradient-button-clear:hover {
+    -fx-background-color: linear-gradient(to right, #e17055, #d63031);
+}
+
+/* Image Upload Section */
+.image-upload-container {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-radius: 15px;
+    -fx-border-color: rgba(255, 255, 255, 0.3);
+    -fx-border-radius: 15px;
+    -fx-border-style: dashed;
+    -fx-border-width: 2px;
+    -fx-pref-width: 350px;
+    -fx-pref-height: 250px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 1);
+}
+
+.image-placeholder {
+    -fx-text-fill: rgba(255, 255, 255, 0.5);
+    -fx-font-style: italic;
+    -fx-font-size: 16px;
+}
+
+/* Error Message */
+.error-label {
+    -fx-text-fill: #ff7675;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+/* General Button Hover Effect */
+Button:hover {
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+    -fx-transition: all 0.3s;
+}
+
+/* Fallback Background */
+AnchorPane {
+    -fx-background-color: #2d3436; /* Fallback color */
+}
+
+ImageView {
+    -fx-opacity: 0.9;
+}
+
+/* Update the rectangle overlay */
+Rectangle {
+    -fx-width: 100%;
+    -fx-height: 100%;
+    -fx-fill: linear-gradient(to bottom right, #00000055, #2d343699);
+}
+
+/* Custom Alert Popup */
+.popup-container {
+    -fx-background-color: rgba(0, 0, 0, 0.8);
+    -fx-border-radius: 15px;
+    -fx-padding: 30px;
+    -fx-alignment: center;
+    -fx-max-width: 400px;
+    -fx-max-height: 200px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 0);
+}
+
+.popup-icon {
+    -fx-font-size: 36px;
+    -fx-text-fill: #00b894; /* Green for success */
+    -fx-font-weight: bold;
+}
+
+.popup-message {
+    -fx-font-size: 16px;
+    -fx-text-fill: #ffffff;
+    -fx-wrap-text: true;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-padding: 0 10px;
+}
+
+.popup-button {
+    -fx-background-color: linear-gradient(to right, #00b894, #00cec9);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-height: 40px;
+    -fx-pref-width: 120px;
+    -fx-background-radius: 20px;
+    -fx-cursor: hand;
+}
+
+.popup-button:hover {
+    -fx-background-color: linear-gradient(to right, #00cec9, #00b894);
+}

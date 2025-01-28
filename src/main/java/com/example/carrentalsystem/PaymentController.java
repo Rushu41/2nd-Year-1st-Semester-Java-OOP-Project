@@ -43,6 +43,28 @@ public class PaymentController {
         usernameField.setText(UserSession.getLoggedInUsername());
         usernameField.setEditable(false);
     }
+    @FXML
+    private Button saveButton;
+
+    private RentCarController rentCarController;
+
+    public void setRentCarController(RentCarController rentCarController) {
+        this.rentCarController = rentCarController;
+    }
+
+    @FXML
+    public void handleSave(ActionEvent event) {
+        // Perform payment saving logic here...
+
+        // Enable the Generate Receipt button in the RentCarController
+        if (rentCarController != null) {
+            rentCarController.enableGenerateReceiptButton();
+        }
+
+        // Navigate back to the RentCar FXML
+        navigateToPage(event, "/com/example/carrentalsystem/rentCar.fxml", "Rent Car");
+    }
+
 
     @FXML
     private void handleCreditCardPayment(ActionEvent event) {
@@ -130,8 +152,6 @@ public class PaymentController {
         }
 
         if (insertPaymentDetails(username, email)) {
-            // Reset the payment status in RentCarController
-            RentCarController.resetPaymentStatus();
 
             // Navigate back to RentCar page
             try {
@@ -150,14 +170,7 @@ public class PaymentController {
             showAlert("Error", "Failed to save payment details.");
         }
     }
-    @FXML
-    public void handlePaymentCompletion(ActionEvent event) {
-        // Update SessionData
-        SessionData.setPaymentCompleted(true);
 
-        // Navigate back to RentCarController
-        navigateToPage(event, "/com/example/carrentalsystem/rentcar.fxml", "Rent Car");
-    }
 
     @FXML
     private void handleGenerateReceipt(ActionEvent event) {
@@ -204,9 +217,9 @@ public class PaymentController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-
         }
     }
+
 
     @FXML
     private void handleBackToMain(ActionEvent event) {

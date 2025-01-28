@@ -1,0 +1,53 @@
+.styled-table {
+    -fx-border-color: #d3d3d3;
+    -fx-border-width: 1;
+}
+
+/* Column headers */
+.styled-table .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.styled-table .column-header {
+    -fx-border-color: #d3d3d3;
+    -fx-border-width: 0 1 1 0;
+    -fx-background-color: transparent;
+    -fx-alignment: CENTER;
+    -fx-font-weight: bold;
+}
+
+/* Table rows */
+.styled-table .table-row-cell {
+    -fx-border-color: #d3d3d3;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: white; /* Default row color */
+}
+
+/* Zebra-striping for rows */
+.styled-table .table-row-cell:even {
+    -fx-background-color: #f9f9f9; /* Alternate row color */
+}
+
+/* Table cells */
+.styled-table .table-cell {
+    -fx-border-color: #d3d3d3;
+    -fx-border-width: 0 1 0 0;
+    -fx-alignment: CENTER;
+}
+
+/* Selected row styling */
+.styled-table .table-row-cell:selected {
+    -fx-background-color: #4CAF50; /* Green background for selected row */
+    -fx-text-fill: white; /* White text for better contrast */
+}
+
+/* Selected cell styling */
+.styled-table .table-cell:selected {
+    -fx-background-color: #4CAF50; /* Green background for selected cell */
+    -fx-text-fill: white; /* White text for better contrast */
+}
+
+/* Hover effect */
+.styled-table .table-row-cell:hover {
+    -fx-background-color: #e0f7fa; /* Light blue on hover */
+}
