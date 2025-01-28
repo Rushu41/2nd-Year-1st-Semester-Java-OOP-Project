@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@styles/dashboard.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.DashboardController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@styles/dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.DashboardController">
     <children>
         <!-- Sidebar with curved edge -->
         <VBox alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="822.0" prefWidth="250.0" styleClass="sidebar">
@@ -23,8 +31,8 @@
                 </ImageView>
                 <!-- Modified Profile Section -->
                 <VBox alignment="CENTER" spacing="15" styleClass="profile-section">
-                    <Label styleClass="admin-label" text="Welcome, Admin"/>
-                    <Label styleClass="role-label" text="System Administrator"/>
+                    <Label styleClass="admin-label" text="Welcome, Admin" />
+                    <Label styleClass="role-label" text="System Administrator" />
                 </VBox>
 
                 <!-- Navigation Menu -->
@@ -37,7 +45,10 @@
                     <Button onAction="#handleReturnCar" styleClass="menu-button" text="↩️ Return Car" />
                     <Button onAction="#handleActiveCustomer" styleClass="menu-button" text="👥 Active Customers" />
                     <Button onAction="#handleFeedback" styleClass="menu-button" text="💭 Feedback" />
-                    <Button onAction="#handleLogout" prefHeight="46.0" prefWidth="99.0" styleClass="logout-button" text="🚪 Logout" />
+                    <Button onAction="#handleLogout" prefHeight="46.0" prefWidth="148.0" styleClass="logout-button" text="🚪 Logout">
+                  <font>
+                     <Font size="14.0" />
+                  </font></Button>
                 </VBox>
 
                 <!-- Logout Section -->
@@ -51,11 +62,11 @@
             <HBox alignment="CENTER_LEFT" styleClass="header-section">
                 <Label styleClass="dashboard-title" text="Dashboard Overview" />
                 <Region HBox.hgrow="ALWAYS" />
-                <HBox alignment="CENTER" spacing="15" styleClass="quick-stats">
-                    <Label text="Today's Rentals: 12" />
-                    <Label text="Active Users: 45" />
-                    <Label text="Revenue: $2,450" />
-                </HBox>
+<!--                <HBox alignment="CENTER" spacing="15" styleClass="quick-stats">-->
+<!--                    <Label text="Today's Rentals: 12" />-->
+<!--                    <Label text="Active Users: 45" />-->
+<!--                    <Label text="Revenue: $2,450" />-->
+<!--                </HBox>-->
             </HBox>
 
             <!-- Statistics Cards Grid -->
@@ -98,7 +109,10 @@
                     <HBox alignment="CENTER_LEFT" spacing="15">
                         <Circle radius="30" styleClass="stat-icon" />
                         <VBox>
-                            <Label style="-fx-font-size: 18px;" styleClass="stat-title" text="Active Rentals" />
+                            <Label style="-fx-font-size: 18px;" styleClass="stat-title" text="Active Rentals">
+                        <font>
+                           <Font size="33.0" />
+                        </font></Label>
                             <Label fx:id="activeRentalsLabel" style="-fx-font-size: 24px;" styleClass="stat-value" text="3" />
                         </VBox>
                     </HBox>
