@@ -43,6 +43,10 @@ public class DashboardController {
         navigateToPage(event, "/com/example/carrentalsystem/adminFeedback.fxml", "Admin Feedback");
     }
 
+    public void handleRentalHistory(ActionEvent event) {
+        navigateToPage(event, "/com/example/carrentalsystem/rentalHistory.fxml", "Rental History");
+    }
+
     private void navigateToPage(ActionEvent event, String fxmlPath, String title) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));

@@ -25,14 +25,37 @@ import java.io.IOException;
 import java.sql.*;
 
 public class UserDashboardController {
-
     private List<Image> carImages = new ArrayList<>();
+    private List<String> carNames = new ArrayList<>();
+    private List<String> carFuelTypes = new ArrayList<>();
+    private List<Double> carRentPrices = new ArrayList<>();
+
+    @FXML
     public ImageView rotatingCarImage;
     private int currentImageIndex = 0;
+
     @FXML
     private Circle userPhotoCircle;
 
-    private String loggedInUsername; // Store logged-in user's username
+    @FXML
+    private Label usernameLabel;
+
+    @FXML
+    private FlowPane carFlowPane;
+
+    @FXML
+    private VBox carInfoBox;
+
+    @FXML
+    private Label carNameLabel;
+
+    @FXML
+    private Label carFuelTypeLabel;
+
+    @FXML
+    private Label carRentPriceLabel;
+
+    private String loggedInUsername;
     private String username; // Store the username for the logged-in user
 
     // Getter for the username
@@ -44,12 +67,6 @@ public class UserDashboardController {
     public void setUsername(String username) {
         this.username = username;
     }
-
-    @FXML
-    private Label usernameLabel;
-
-    @FXML
-    private FlowPane carFlowPane;
 
     public void setLoggedInUsername(String username) {
         this.loggedInUsername = username;
@@ -77,7 +94,7 @@ public class UserDashboardController {
                     if (file.exists()) {
                         Image profileImage = new Image(file.toURI().toString());
                         userPhotoCircle.setFill(new ImagePattern(profileImage));
-                        return; // Exit if photo is loaded successfully
+                        return;
                     }
                 }
             }
@@ -85,7 +102,6 @@ public class UserDashboardController {
             e.printStackTrace();
         }
 
-        // Load default image if no photo is available
         try {
             Image defaultImage = new Image(getClass().getResource("/com/example/carrentalsystem/images/default_profile.jpg").toString());
             userPhotoCircle.setFill(new ImagePattern(defaultImage));
@@ -110,6 +126,9 @@ public class UserDashboardController {
                     InputStream inputStream = photoBlob.getBinaryStream();
                     Image carImage = new Image(inputStream);
                     carImages.add(carImage);
+                    carNames.add(name);
+                    carFuelTypes.add(fuelType);
+                    carRentPrices.add(rentPrice);
                 }
             }
 
@@ -127,58 +146,21 @@ public class UserDashboardController {
             if (!carImages.isEmpty()) {
                 currentImageIndex = (currentImageIndex + 1) % carImages.size();
                 rotatingCarImage.setImage(carImages.get(currentImageIndex));
+                updateCarInfo(currentImageIndex);
             }
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
 
-    public VBox createCarCard(String name, String fuelType, double rentPrice, String photoPath) {
-        VBox card = new VBox(10);
-        card.setStyle("-fx-background-color: #f4f4f4; " +
-                "-fx-background-radius: 10; " +
-                "-fx-padding: 10; " +
-                "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);");
-
-        ImageView carImage = new ImageView(loadCarImage(photoPath));
-        carImage.setFitWidth(200);
-        carImage.setFitHeight(150);
-        carImage.setPreserveRatio(true);
-
-        Label nameLabel = new Label(name);
-        nameLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;");
-
-        Label fuelLabel = new Label("Fuel: " + fuelType);
-        fuelLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #666;");
-
-        Label priceLabel = new Label("Price: $" + rentPrice + "/day");
-        priceLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #666;");
-
-        card.getChildren().addAll(carImage, nameLabel, fuelLabel, priceLabel);
-
-        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1.5), card);
-        fadeTransition.setFromValue(0.0);
-        fadeTransition.setToValue(1.0);
-        fadeTransition.setCycleCount(1);
-        fadeTransition.play();
-
-        return card;
-    }
-
-    private Image loadCarImage(String photoPath) {
-        File file = new File(photoPath);
-        if (file.exists()) {
-            return new Image(file.toURI().toString());
+    private void updateCarInfo(int index) {
+        if (index >= 0 && index < carNames.size()) {
+            carNameLabel.setText(carNames.get(index));
+            carFuelTypeLabel.setText("Fuel: " + carFuelTypes.get(index));
+            carRentPriceLabel.setText("Price: $" + carRentPrices.get(index) + "/day");
+            carInfoBox.setVisible(true);
         } else {
-            // Load default image if the specified image does not exist
-            InputStream defaultImageStream = getClass().getResourceAsStream("/com/example/carrentalsystem/images/default_car.jpg");
-            if (defaultImageStream != null) {
-                return new Image(defaultImageStream);
-            } else {
-                System.err.println("Default car image not found.");
-                // Optionally, you can return a placeholder image or throw an exception
-                return null; // or return a placeholder image
-            }
+            carInfoBox.setVisible(false);
         }
     }
 

@@ -24,6 +24,8 @@
                 <Button text="Return Car" onAction="#handleReturnCar" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="220.0" />
                 <Button text="Active Customers" onAction="#handleActiveCustomer" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="220.0" />
                 <Button text="Feedback" onAction="#handleFeedback" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="220.0" />
+                <Button text="Rental History" onAction="#handleRentalHistory" style="-fx-background-color: #4caf50; -fx-text-fill: white;" prefWidth="220.0" />
+
                 <Button layoutX="250.0" layoutY="300.0" text="Logout" onAction="#handleLogout" />
 
             </children>
