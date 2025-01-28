@@ -18,7 +18,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-public class PaymentController {
+public class RentCarPaymentController {
 
     @FXML
     private TextField usernameField;
@@ -31,9 +31,7 @@ public class PaymentController {
     private String expiryDate = "";
     private String cvv = "";
     private String bkashPhone = "";
-    private String bkashPin = "";
     private String nagadPhone = "";
-    private String nagadPin = "";
 
     @FXML
     public void initialize() {
@@ -55,7 +53,7 @@ public class PaymentController {
             Parent creditCardPage = loader.load();
 
             CreditCardDetailsController creditCardController = loader.getController();
-            creditCardController.setPaymentController(this);
+            creditCardController.setRentCarPaymentController(this);
 
             // Pass the username and email to the CreditCardDetailsController
             creditCardController.setUserDetails(usernameField.getText(), emailField.getText());

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.carrentalsystem.RentCarPaymentController"
+            style="-fx-background-color: #f7f7f7;">
+    <VBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+        <Label text="Payment Details" style="-fx-font-size: 24; -fx-font-weight: bold;" />
+
+        <GridPane hgap="10" vgap="10" alignment="CENTER">
+            <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <TextField fx:id="usernameField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+            <Label text="Email:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <TextField fx:id="emailField" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+            <Label text="Payment Method:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+            <HBox spacing="10" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                <Button text="Credit Card" onAction="#handleCreditCardPayment">
+                    <graphic>
+                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                            <Image url="@images/credit_card.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button text="Bkash" onAction="#handleBkashPayment">
+                    <graphic>
+                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                            <Image url="@images/bkash.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button text="Nagad" onAction="#handleNagadPayment">
+                    <graphic>
+                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                            <Image url="@images/nagad.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </HBox>
+
+            <Label text="Total Cost:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+            <Label text="80$" GridPane.rowIndex="3" GridPane.columnIndex="1" style="-fx-font-weight: bold;" />
+        </GridPane>
+
+        <Button text="Generate Receipt" onAction="#handleGenerateReceipt" style="-fx-font-size: 16;" />
+        <Button text="Back" onAction="#handleBackToMain" style="-fx-font-size: 16;" />
+    </VBox>
+</AnchorPane>

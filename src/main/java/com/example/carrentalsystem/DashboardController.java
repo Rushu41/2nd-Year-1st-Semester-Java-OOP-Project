@@ -22,9 +22,6 @@ public class DashboardController {
         navigateToPage(event, "/com/example/carrentalsystem/addCar.fxml", "Add Car");
     }
 
-//    public void handleCustomer(ActionEvent event) {
-//        navigateToPage(event, "/com/example/carrentalsystem/CustomerController.fxml", "Add Car");
-//    }
 
     public void handleActiveCustomer(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/ActiveCustomer.fxml", "Active Customers");

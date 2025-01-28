@@ -40,27 +40,27 @@ public class LoginController {
     @FXML
     private Button adminLoginButton, userLoginButton, employeeLoginButton;
 
+
     @FXML
     public void initialize() {
         adminPane.setTranslateX(0);
         userPane.setTranslateX(1000);
-
     }
 
     @FXML
     private void switchToAdmin() {
-        animatePane(adminPane, 0);
-        animatePane(userPane, 1000);
-
+        switchPane(adminPane, userPane);
     }
 
     @FXML
     private void switchToUser() {
-        animatePane(adminPane, -1000);
-        animatePane(userPane, 0);
-
+        switchPane(userPane, adminPane);
     }
 
+    private void switchPane(AnchorPane toShow, AnchorPane toHide) {
+        animatePane(toShow, 0);
+        animatePane(toHide, 1000);
+    }
 
     private void animatePane(AnchorPane pane, double targetX) {
         TranslateTransition transition = new TranslateTransition(Duration.millis(300), pane);

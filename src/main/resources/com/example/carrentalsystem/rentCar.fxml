@@ -48,8 +48,9 @@
 
     <!-- Actions Section -->
     <HBox styleClass="action-buttons" spacing="20" alignment="CENTER">
-        <Button text="Rent Car" styleClass="secondary-button" onAction="#handleRentCar"/>
-        <Button text="Generate Receipt" styleClass="secondary-button" onAction="#handleGenerateReceipt"/>
+
+        <Button text="Confirm Bill" styleClass="secondary-button" onAction="#handleConfirmBill"/>
+        <!--        <Button text="Generate Receipt" styleClass="secondary-button" onAction="#handleGenerateReceipt"/>-->
     </HBox>
 
     <Separator styleClass="main-separator"/>

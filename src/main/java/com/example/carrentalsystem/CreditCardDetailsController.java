@@ -27,13 +27,24 @@ public class CreditCardDetailsController {
     private TextField cvvField;
 
     private PaymentController paymentController;
+    private RentCarPaymentController rentcarpaymentController;
+    private String username;
+    private String email;
 
     public void setPaymentController(PaymentController paymentController) {
         this.paymentController = paymentController;
     }
+    public void setRentCarPaymentController(RentCarPaymentController rentcarpaymentController) {
+        this.rentcarpaymentController = rentcarpaymentController;
+    }
+
+    public void setUserDetails(String username, String email) {
+        this.username = username;
+        this.email = email;
+    }
 
     @FXML
-    private void handleSubmit() {
+    private void handleSubmit(ActionEvent event) {
         String cardNumber = cardNumberField.getText();
         LocalDate expiryDate = expiryDatePicker.getValue();
         String cvv = cvvField.getText();
@@ -49,9 +60,15 @@ public class CreditCardDetailsController {
         if (paymentController != null) {
             paymentController.setCreditCardDetails(cardNumber, formattedExpiryDate, cvv);
         }
+        if (rentcarpaymentController != null) {
+            rentcarpaymentController.setCreditCardDetails(cardNumber, formattedExpiryDate, cvv);
+        }
 
-        Stage stage = (Stage) cardNumberField.getScene().getWindow();
-        stage.close();
+        // Generate receipt content with username and email
+        String receiptContent = generateReceiptContent(cardNumber, formattedExpiryDate, cvv, username, email);
+
+        // Navigate to the Receipt View
+        navigateToReceiptView(event, receiptContent);
     }
 
     @FXML
@@ -68,6 +85,40 @@ public class CreditCardDetailsController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void navigateToReceiptView(ActionEvent event, String receiptContent) {
+        try {
+            // Load the Receipt View FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/receiptview.fxml"));
+            Parent receiptPage = loader.load();
+
+            // Get the ReceiptViewController and set the receipt content
+            ReceiptViewController receiptViewController = loader.getController();
+            receiptViewController.setReceiptContent(receiptContent);
+
+            // Switch to the Receipt View Scene
+            Scene receiptScene = new Scene(receiptPage);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(receiptScene);
+            stage.setTitle("Rental Receipt");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to load the receipt view.");
+        }
+    }
+
+    private String generateReceiptContent(String cardNumber, String expiryDate, String cvv, String username, String email) {
+        return "Rental Receipt\n\n" +
+                "User Details:\n" +
+                "Username: " + username + "\n" +
+                "Email: " + email + "\n\n" +
+                "Payment Details:\n" +
+                "Card Number: " + cardNumber + "\n" +
+                "Expiry Date: " + expiryDate + "\n" +
+                "CVV: " + cvv + "\n\n" +
+                "Thank you for your rental!";
     }
 
     private void showAlert(String title, String message) {

@@ -368,8 +368,10 @@ public class RentCarController {
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to open the receipt view.");
         }
     }
-
-
+    @FXML
+    public void handleConfirmBill(ActionEvent event) {
+        navigateToPage(event, "/com/example/carrentalsystem/rentcarpayment.fxml", "Confirm Bill");
+    }
     @FXML
     public void handleBack(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/userDashboard.fxml", "Dashboard");
@@ -378,6 +380,7 @@ public class RentCarController {
     public void handleLogout(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/login.fxml", "Login");
     }
+
     private void navigateToPage(ActionEvent event, String fxmlPath, String title) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
@@ -388,6 +391,7 @@ public class RentCarController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to load the page.");
         }
     }
     private void showAlert(Alert.AlertType alertType, String title, String message) {
