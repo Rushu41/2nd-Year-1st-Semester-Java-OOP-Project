@@ -57,11 +57,20 @@ public class RentCarCreditCardDetailsController {
             rentCarPaymentController.setRentCarCreditCardDetails(rentCarCardNumber, formattedRentCarExpiryDate, rentCarCvv);
         }
 
-        // Generate receipt content with username and email
-        String rentCarReceiptContent = generateRentCarReceiptContent(rentCarCardNumber, formattedRentCarExpiryDate, rentCarCvv, rentCarUsername, rentCarEmail);
+        // Navigate back to the Payment FXML view
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/rentCarPayment.fxml"));
+            Parent rentCarPaymentPage = loader.load();
 
-        // Navigate to the Receipt View
-        navigateToRentCarReceiptView(event, rentCarReceiptContent);
+            Scene rentCarPaymentScene = new Scene(rentCarPaymentPage);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(rentCarPaymentScene);
+            stage.setTitle("Rent Car Payment Details");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to load the payment details view.");
+        }
     }
 
     @FXML

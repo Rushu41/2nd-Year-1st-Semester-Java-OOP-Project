@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -118,6 +119,45 @@ public class PaymentController {
 
         dialog.showAndWait();
     }
+    @FXML
+    private void handleSavePayment(ActionEvent event) {
+        String username = usernameField.getText();
+        String email = emailField.getText();
+
+        if (username.isEmpty() || email.isEmpty()) {
+            showAlert("Error", "Please fill in all fields.");
+            return;
+        }
+
+        if (insertPaymentDetails(username, email)) {
+            // Reset the payment status in RentCarController
+            RentCarController.resetPaymentStatus();
+
+            // Navigate back to RentCar page
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/rentcar.fxml"));
+                Parent rentCarPage = loader.load();
+                Scene rentCarScene = new Scene(rentCarPage);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(rentCarScene);
+                stage.setTitle("Rent Car");
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+                showAlert("Error", "Failed to return to rent car page.");
+            }
+        } else {
+            showAlert("Error", "Failed to save payment details.");
+        }
+    }
+    @FXML
+    public void handlePaymentCompletion(ActionEvent event) {
+        // Update SessionData
+        SessionData.setPaymentCompleted(true);
+
+        // Navigate back to RentCarController
+        navigateToPage(event, "/com/example/carrentalsystem/rentcar.fxml", "Rent Car");
+    }
 
     @FXML
     private void handleGenerateReceipt(ActionEvent event) {
@@ -152,6 +192,19 @@ public class PaymentController {
             }
         } else {
             showAlert("Error", "Failed to save payment details.");
+        }
+    }
+    private void navigateToPage(ActionEvent event, String fxmlPath, String title) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle(title);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+
         }
     }
 
@@ -215,4 +268,5 @@ public class PaymentController {
         this.cvv = cvv;
         System.out.println("Credit Card payment processed.");
     }
+
 }

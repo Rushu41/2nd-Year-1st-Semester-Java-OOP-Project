@@ -1,73 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="800.0" prefWidth="1000.0"
-            style="-fx-background-color: linear-gradient(to bottom, #ff7e5f, #feb47b);"
-            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.carrentalsystem.UserDashboardController">
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="root" stylesheets="@userDashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.UserDashboardController">
 
     <children>
-        <!-- User Profile Photo Circle -->
-        <Circle fx:id="userPhotoCircle" radius="40" layoutX="950" layoutY="50"
-                stroke="white" strokeWidth="2" fill="gray" />
+        <!-- Header Bar with integrated profile section -->
+        <HBox alignment="CENTER_LEFT" prefHeight="80.0" styleClass="header-bar" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
 
-        <!-- Header Bar -->
-        <HBox alignment="CENTER" style="-fx-padding: 15; -fx-background-color: linear-gradient(to right, #6a11cb, #2575fc);"
-              prefHeight="60.0" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-            <Label text="User Dashboard" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: white;" />
+            <!-- Logo/Title -->
+            <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                <Label styleClass="header-label" text="Dashboard" />
+            </HBox>
+
+            <!-- Profile Section -->
+            <VBox alignment="CENTER" spacing="10" styleClass="profile-container">
+                <Circle fx:id="userPhotoCircle" radius="30" styleClass="user-photo-circle" />
+                <Label fx:id="usernameLabel" styleClass="username-label" text="Guest User" />
+            </VBox>
         </HBox>
 
-        <!-- Sidebar and Main Content -->
-        <HBox spacing="30" AnchorPane.topAnchor="70" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
-            <!-- Sidebar -->
-            <VBox spacing="30" alignment="CENTER_LEFT" style="-fx-padding: 30;" prefWidth="350.0">
-                <!-- Productive Buttons -->
-                <Button text="Profile" onAction="#handleProfile"
-                        style="-fx-background-color: linear-gradient(to right, #6a11cb, #2575fc); -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 15; -fx-padding: 10 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 2);" />
+        <!-- Main Content Container -->
+        <HBox spacing="30" styleClass="main-container" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="80">
 
-                <Button text="Rent Car" onAction="#handleRentCar"
-                        style="-fx-background-color: linear-gradient(to right, #ff7e5f, #feb47b); -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 15; -fx-padding: 10 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 2);" />
-
-                <Button text="Subscription" onAction="#handleSubscription"
-                        style="-fx-background-color: linear-gradient(to right, #4CAF50, #81C784); -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 15; -fx-padding: 10 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 2);" />
-
-                <Button text="Feedback" onAction="#handleFeedback"
-                        style="-fx-background-color: linear-gradient(to right, #FF9800, #FFB74D); -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 15; -fx-padding: 10 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 2);" />
-
-                <Button text="My Bookings" onAction="#handleMyBookings"
-                        style="-fx-background-color: linear-gradient(to right, #9C27B0, #BA68C8); -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 15; -fx-padding: 10 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 2);" />
-
-                <Button text="Logout" onAction="#handleLogout"
-                        style="-fx-background-color: linear-gradient(to right, #E53935, #EF5350); -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 15; -fx-padding: 10 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 2);" />
+            <!-- Sidebar Navigation -->
+            <VBox spacing="25" styleClass="sidebar">
+                <Button onAction="#handleProfile" styleClass="nav-button" text="👤 Profile" />
+                <Button onAction="#handleRentCar" styleClass="nav-button" text="🚘 Rent Car" />
+                <Button onAction="#handleSubscription" styleClass="nav-button" text="💎 Subscription" />
+                <Button onAction="#handleFeedback" styleClass="nav-button" text="📝 Feedback" />
+                <Button onAction="#handleMyBookings" styleClass="nav-button" text="📅 My Bookings" />
+                <Region VBox.vgrow="ALWAYS" />
+                <Button onAction="#handleLogout" styleClass="nav-button, logout-button" text="🚪 Logout" />
             </VBox>
 
-            <!-- Main Content Area -->
-            <VBox spacing="20" style="-fx-background-color: white; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 5); -fx-padding: 20;" prefWidth="800.0">
-                <Label fx:id="usernameLabel" text="Welcome, User!" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+            <!-- Content Area -->
+            <VBox spacing="25" styleClass="content-area" HBox.hgrow="ALWAYS">
+                <!-- Promotional Banner -->
+                <HBox alignment="CENTER" styleClass="promo-banner">
+                    <Label styleClass="promo-text" text="🌟 Special Offer: Get 20% off your first rental!" />
+                </HBox>
 
-                <!-- Promotional Text -->
-                <Label text="Here are the available cars! Rent now!"
-                       style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2575fc; -fx-alignment: CENTER; -fx-padding: 10 0 20 0;" />
-
-                <!-- Central Rotating Car Image -->
-                <StackPane alignment="CENTER" style="-fx-padding: 20;">
-                    <ImageView fx:id="rotatingCarImage" fitWidth="300" fitHeight="200" preserveRatio="true" />
+                <!-- Car Display Section -->
+                <StackPane styleClass="car-display">
+                    <ImageView fx:id="rotatingCarImage" fitHeight="250" fitWidth="400" preserveRatio="true" />
+                    <HBox alignment="BOTTOM_CENTER" spacing="15" styleClass="car-controls" />
                 </StackPane>
 
-                <!-- Car Information Box -->
-                <VBox fx:id="carInfoBox" alignment="CENTER" spacing="10" style="-fx-background-color: #f4f4f4; -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);" visible="false">
-                    <Label fx:id="carNameLabel" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333;" />
-                    <Label fx:id="carFuelTypeLabel" style="-fx-font-size: 16px; -fx-text-fill: #666;" />
-                    <Label fx:id="carRentPriceLabel" style="-fx-font-size: 16px; -fx-text-fill: #666;" />
-<!--                    <Button text="Rent Now" style="-fx-background-color: #2575fc; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 2);" />-->
+                <!-- Car Details Card -->
+                <VBox fx:id="carInfoBox" spacing="15" styleClass="car-details-card">
+                    <HBox alignment="CENTER_LEFT" spacing="20">
+                        <Label styleClass="car-details-header" text="🚘 Selected Car:" />
+                        <Label fx:id="carNameLabel" styleClass="car-name" />
+                    </HBox>
+                    <GridPane hgap="20" vgap="15">
+                        <Label styleClass="detail-label" text="Fuel Type:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <Label fx:id="carFuelTypeLabel" styleClass="detail-value" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <Label styleClass="detail-label" text="Daily Rate:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <Label fx:id="carRentPriceLabel" styleClass="detail-value" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <columnConstraints>
+                     <ColumnConstraints />
+                     <ColumnConstraints />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints />
+                     <RowConstraints />
+                  </rowConstraints>
+                    </GridPane>
                 </VBox>
 
-                <!-- FlowPane for Car Cards -->
-                <FlowPane fx:id="carFlowPane" hgap="20" vgap="20" prefWrapLength="700" />
+                <!-- Car Cards Grid -->
+                <FlowPane fx:id="carFlowPane" hgap="25" styleClass="car-grid" vgap="25" />
             </VBox>
         </HBox>
     </children>

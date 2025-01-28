@@ -1,53 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/8.0.171"
             fx:controller="com.example.carrentalsystem.RentCarPaymentController"
             style="-fx-background-color: #f7f7f7;">
-    <VBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+    <VBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20"
+          AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
         <Label text="Payment Details" style="-fx-font-size: 24; -fx-font-weight: bold;" />
 
         <GridPane hgap="10" vgap="10" alignment="CENTER">
             <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-            <TextField fx:id="usernameField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+            <TextField fx:id="usernameField" GridPane.rowIndex="0" GridPane.columnIndex="1" editable="false" />
 
             <Label text="Email:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
             <TextField fx:id="emailField" GridPane.rowIndex="1" GridPane.columnIndex="1" />
 
             <Label text="Payment Method:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
             <HBox spacing="10" GridPane.rowIndex="2" GridPane.columnIndex="1">
-                <Button text="Credit Card" onAction="#handleRentCarCreditCardPayment">
+                <Button fx:id="creditCardButton" text="Credit Card" onAction="#handleRentCarCreditCardPayment">
                     <graphic>
-                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
-                            <Image url="@images/credit_card.png" />
+                        <ImageView fx:id="creditCardImageView" fitHeight="100" fitWidth="100" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@images/credit_card.png"/>
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button text="Bkash" onAction="#handleRentCarBkashPayment">
+                <Button fx:id="bkashButton" text="Bkash" onAction="#handleRentCarBkashPayment">
                     <graphic>
-                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                        <ImageView fx:id="bkashImageView" fitHeight="20" fitWidth="20" pickOnBounds="true" preserveRatio="true">
                             <Image url="@images/bkash.png" />
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button text="Nagad" onAction="#handleRentCarNagadPayment">
+                <Button fx:id="nagadButton" text="Nagad" onAction="#handleRentCarNagadPayment">
                     <graphic>
-                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                        <ImageView fx:id="nagadImageView" fitHeight="20" fitWidth="20" pickOnBounds="true" preserveRatio="true">
                             <Image url="@images/nagad.png" />
                         </ImageView>
                     </graphic>
                 </Button>
             </HBox>
-
-            <Label text="Total Cost:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
-            <Label text="80$" GridPane.rowIndex="3" GridPane.columnIndex="1" style="-fx-font-weight: bold;" />
         </GridPane>
 
-        <Button text="Generate Receipt" onAction="#handleRentCarGenerateReceipt" style="-fx-font-size: 16;" />
-        <Button text="Back" onAction="#handleRentCarBackToMain" style="-fx-font-size: 16;" />
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="savePaymentButton"
+                    text="Save Payment"
+                    onAction="#handleRentCarBackToMain"
+                    style="-fx-font-size: 16; -fx-background-color: #4CAF50; -fx-text-fill: white;" />
+        </HBox>
     </VBox>
 </AnchorPane>

@@ -156,8 +156,8 @@ public class UserDashboardController {
     private void updateCarInfo(int index) {
         if (index >= 0 && index < carNames.size()) {
             carNameLabel.setText(carNames.get(index));
-            carFuelTypeLabel.setText("Fuel: " + carFuelTypes.get(index));
-            carRentPriceLabel.setText("Price: $" + carRentPrices.get(index) + "/day");
+            carFuelTypeLabel.setText(carFuelTypes.get(index));
+            carRentPriceLabel.setText(+carRentPrices.get(index) + "/day");
             carInfoBox.setVisible(true);
         } else {
             carInfoBox.setVisible(false);

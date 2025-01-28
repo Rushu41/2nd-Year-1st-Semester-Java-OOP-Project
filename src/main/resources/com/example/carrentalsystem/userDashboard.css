@@ -1,132 +1,211 @@
-/* Root and Global Styles */
+/* Root Styles */
 .root {
-    -fx-background-color: linear-gradient(to bottom, #ff7e5f, #feb47b);
-    -fx-font-family: 'Arial', sans-serif;
+    -fx-background-color: linear-gradient(to bottom right, #1a1a2e, #16213e);
+    -fx-font-family: 'Segoe UI';
 }
 
-/* User Profile Photo */
-.user-photo {
+/* Header Styles */
+.header-bar {
+    -fx-background-color: linear-gradient(to right, #1e3a8a, #3b82f6); /* Indigo to Blue gradient */
+    -fx-padding: 10 30;
+    -fx-spacing: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0, 0, 5);
+}
+
+.header-label {
+    -fx-font-size: 32px;
+    -fx-text-fill: #FF8C00; /* Deep Orange color */
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 0 20;
+}
+/* Profile Section */
+.profile-container {
+    -fx-padding: 5 20 5 10;
+    -fx-spacing: 5;
+    -fx-alignment: CENTER;
+    -fx-min-width: 150;
+}
+
+.user-photo-circle {
+    -fx-fill: #e94560;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0, 0, 0);
     -fx-stroke: white;
     -fx-stroke-width: 2;
-    -fx-fill: gray;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
 }
 
-/* Header Bar */
-.header-bar {
-    -fx-background-color: linear-gradient(to right, #6a11cb, #2575fc);
-    -fx-padding: 15;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
-}
-
-.header-title {
-    -fx-font-size: 28px;
-    -fx-font-weight: bold;
+.username-label {
     -fx-text-fill: white;
-}
-
-/* Sidebar */
-.sidebar {
-    -fx-background-color: rgba(255, 255, 255, 0.9);
-    -fx-background-radius: 20;
-    -fx-padding: 30;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 5);
-}
-
-.sidebar-button {
-    -fx-font-size: 16px;
+    -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-text-fill: white;
-    -fx-background-radius: 15;
-    -fx-padding: 10 20;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
-    -fx-cursor: hand;
 }
 
-.profile-button {
-    -fx-background-color: linear-gradient(to right, #6a11cb, #2575fc);
-}
-
-.rent-car-button {
-    -fx-background-color: linear-gradient(to right, #ff7e5f, #feb47b);
-}
-
-.subscription-button {
-    -fx-background-color: linear-gradient(to right, #4CAF50, #81C784);
-}
-
-.feedback-button {
-    -fx-background-color: linear-gradient(to right, #FF9800, #FFB74D);
-}
-
-.bookings-button {
-    -fx-background-color: linear-gradient(to right, #9C27B0, #BA68C8);
-}
-
-.logout-button {
-    -fx-background-color: linear-gradient(to right, #E53935, #EF5350);
-}
-
-/* Main Content */
+/* Main Container */
 .main-container {
-    -fx-background-color: transparent;
-}
-
-.main-content {
-    -fx-background-color: white;
-    -fx-background-radius: 20;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
     -fx-padding: 20;
 }
 
-.welcome-label {
-    -fx-font-size: 24px;
+/* Sidebar Styles */
+.sidebar {
+    -fx-background-color: rgba(26, 26, 46, 0.95);
+    -fx-background-radius: 20;
+    -fx-padding: 25;
+    -fx-min-width: 300;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0, 0, 5);
+}
+
+/* Navigation Button Styles */
+/* Navigation Button Styles */
+/* Navigation Button Styles */
+.nav-button {
+    -fx-background-color: #1e3a8a; /* Indigo */
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 15 25;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);
+    -fx-cursor: hand;
+    -fx-min-width: 250;
+    -fx-alignment: CENTER_LEFT;
+    -fx-transition: 0.3s; /* Smooth hover effect */
+}
+
+.nav-button:hover {
+    -fx-background-color: linear-gradient(to right, #1e3a8a, #1a1a2e); /* Indigo to Navy Blue */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 3);
+}
+
+.nav-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+/* Logout Button Specific Styles */
+.logout-button {
+    -fx-background-color: #8b0000; /* Dark red */
+    -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-text-fill: #333;
+}
+
+.logout-button:hover {
+    -fx-background-color: #a83232; /* Slightly lighter dark red */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 4);
+}
+
+/* Content Area Styles */
+.content-area {
+    -fx-background-color: rgba(255, 255, 255, 0.95);
+    -fx-background-radius: 20;
+    -fx-padding: 25;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 20, 0, 0, 5);
+}
+/* Promo Banner */
+/* Promo Banner */
+.promo-banner {
+    -fx-background-color: #2f855a; /* Deeper Green */
+    -fx-background-radius: 10;
+    -fx-padding: 15;
 }
 
 .promo-text {
-    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2575fc;
-    -fx-alignment: CENTER;
-    -fx-padding: 10 0 20 0;
 }
 
-.car-image-container {
-    -fx-padding: 20;
-}
-
-/* Car Information Box */
-.car-info-box {
-    -fx-background-color: #f4f4f4;
+/* Car Display */
+.car-display {
+    -fx-background-color: white;
     -fx-background-radius: 15;
     -fx-padding: 20;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.1), 15, 0, 0, 0);
 }
 
-.car-name-label {
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #333;
-}
-
-.car-detail-label {
-    -fx-font-size: 16px;
-    -fx-text-fill: #666;
-}
-
-.rent-now-button {
-    -fx-background-color: #2575fc;
+/* Car Navigation Buttons */
+.car-nav-button {
+    -fx-background-color: #1e3a8a; /* Indigo */
     -fx-text-fill: white;
     -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-background-radius: 10;
     -fx-padding: 10 20;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);
     -fx-cursor: hand;
+    -fx-transition: 0.3s; /* Smooth hover effect */
+}
+
+.car-nav-button:hover {
+    -fx-background-color: linear-gradient(to right, #1e3a8a, #1a1a2e); /* Indigo to Navy Blue */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.car-nav-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+/* Car Details Card */
+.car-details-card {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 0);
+}
+
+.car-details-header {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.car-name {
+    -fx-font-size: 18px;
+    -fx-text-fill: #e94560;
+}
+
+.detail-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.detail-value {
+    -fx-font-size: 16px;
+}
+
+/* Rent Now Button */
+.rent-now-button {
+    -fx-background-color: #1e3a8a; /* Indigo */
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 15 30;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-transition: 0.3s; /* Smooth hover effect */
 }
 
 .rent-now-button:hover {
-    -fx-background-color: #1a5bbf;
+    -fx-background-color: linear-gradient(to right, #1e3a8a, #1a1a2e); /* Indigo to Navy Blue */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.rent-now-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+/* Car Grid */
+.car-grid {
+    -fx-background-color: transparent;
+    -fx-padding: 20;
+}
+
+/* Additional Effects for Interactive Elements */
+.button {
+    -fx-transition-duration: 0.2s;
+}
+
+/* Hover Effect for Interactive Cards */
+.car-details-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0, 0, 5);
 }
