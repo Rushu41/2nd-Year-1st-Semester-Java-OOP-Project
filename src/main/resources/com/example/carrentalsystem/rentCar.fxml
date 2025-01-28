@@ -48,12 +48,9 @@
 
     <!-- Actions Section -->
     <HBox styleClass="action-buttons" spacing="20" alignment="CENTER">
-
         <Button fx:id="rentCarButton" text="Rent Car" styleClass="secondary-button" onAction="#handleRentCar"/>
         <Button fx:id="confirmBillButton" text="Confirm Bill" onAction="#handleConfirmBill" disable="true"/>
         <Button fx:id="generateReceiptButton" text="Generate Receipt" onAction="#handleGenerateReceipt" disable="true"/>
-
-
     </HBox>
 
     <Separator styleClass="main-separator"/>
@@ -61,6 +58,6 @@
     <!-- Navigation Buttons -->
     <HBox styleClass="navigation-buttons" spacing="20" alignment="CENTER">
         <Button fx:id="backButton" text="Back" styleClass="navigation-button" onAction="#handleBack"/>
-        <Button fx:id="logoutButton" text="Logout" styleClass="navigation-button" onAction="#handleLogout" />
+        <Button fx:id="logoutButton" text="Logout" styleClass="navigation-button" onAction="#handleLogout"/>
     </HBox>
 </VBox>

@@ -52,6 +52,17 @@ public class RentCarController {
 
     @FXML
     private Button generateReceiptButton;
+    @FXML
+    private Button logoutButton;
+    private ToggleGroup rentOptionGroup;
+
+    public void disableLogoutButton() {
+        logoutButton.setDisable(true);
+    }
+
+    public void enableConfirmBillButton() {
+        confirmBillButton.setDisable(false);
+    }
 
     public void enableGenerateReceiptButton() {
         generateReceiptButton.setDisable(false);
@@ -67,7 +78,6 @@ public class RentCarController {
     }
 
 
-    private ToggleGroup rentOptionGroup;
 
     @FXML
     public void initialize() {
@@ -79,9 +89,28 @@ public class RentCarController {
         hourlyRadioButton.setSelected(true);
         handleRentalOptionChange();
 
+        // Add this to restore data if coming back from payment
+        restoreRentalData();
+
+        // Check if we're returning from payment
+        if (UserSession.isReturningFromPayment()) {
+            logoutButton.setDisable(true);
+            generateReceiptButton.setDisable(false);
+            UserSession.setReturningFromPayment(false);
+        }
+
         loadCarNames();
     }
 
+    @FXML
+    public void handleRentalOptionChange() {
+        boolean isHourly = hourlyRadioButton.isSelected();
+
+        // Show/hide fields based on the rental option
+        hourlyTextField.setVisible(isHourly);
+        startDatePicker.setVisible(!isHourly);
+        endDatePicker.setVisible(!isHourly);
+    }
 
     private void loadCarNames() {
         String query = "SELECT name FROM cars WHERE available = 1";
@@ -147,18 +176,9 @@ public class RentCarController {
     }
 
     @FXML
-    public void handleRentalOptionChange() {
-        boolean isHourly = hourlyRadioButton.isSelected();
-
-        // Show/hide fields based on the rental option
-        hourlyTextField.setVisible(isHourly);
-        startDatePicker.setVisible(!isHourly);
-        endDatePicker.setVisible(!isHourly);
-    }
-    @FXML
     public void handleRentCar(ActionEvent event) {
         String carName = carNameComboBox.getValue();
-        String customerName = username; // Use logged-in username
+        String customerName = username;
         LocalDate startDate = startDatePicker.getValue();
         LocalDate endDate = endDatePicker.getValue();
 
@@ -202,7 +222,6 @@ public class RentCarController {
                 insertStatement.setObject(7, defaultDate); // Placeholder for end_date
             }
             else if (dailyRadioButton.isSelected()) {
-                // Handle daily rentals
                 rentalType = "Daily";
 
                 if (startDate == null || endDate == null || startDate.isAfter(endDate)) {
@@ -232,20 +251,28 @@ public class RentCarController {
             // Execute the insert statement
             insertStatement.executeUpdate();
 
-            // Remove the rented car from the cars table (mark unavailable)
-            String deleteOrUpdateQuery = "UPDATE cars SET available = 0 WHERE name = ?";
-            PreparedStatement deleteOrUpdateStatement = connection.prepareStatement(deleteOrUpdateQuery);
-            deleteOrUpdateStatement.setString(1, carName);
-            deleteOrUpdateStatement.executeUpdate();
+            // Update car availability
+            String updateQuery = "UPDATE cars SET available = 0 WHERE name = ?";
+            PreparedStatement updateStatement = connection.prepareStatement(updateQuery);
+            updateStatement.setString(1, carName);
+            updateStatement.executeUpdate();
 
             // Show success message
             showAlert(Alert.AlertType.INFORMATION, "Success", "Car rented successfully!");
 
-            // Clear input fields
-            resetFields();
+            // Disable logout button
+            logoutButton.setDisable(true);
 
-            // Refresh car table
+            // Enable confirm bill button
+            confirmBillButton.setDisable(false);
+
+            // Disable generate receipt button until payment is completed
+            generateReceiptButton.setDisable(true);
+
+            // Don't reset fields anymore - remove the resetFields() call
+            // Instead, just refresh available cars
             loadCarNames();
+
         } catch (SQLException e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to rent the car.");
@@ -263,6 +290,32 @@ public class RentCarController {
         totalCostLabel.setText("");
     }
 
+    // Add a method to store the current rental data
+    private void storeRentalData() {
+        // Store the current values
+        UserSession.setCurrentRental(new RentalData(
+                carNameComboBox.getValue(),
+                hourlyRadioButton.isSelected(),
+                hourlyTextField.getText(),
+                startDatePicker.getValue(),
+                endDatePicker.getValue(),
+                totalCostLabel.getText()
+        ));
+    }
+
+    // Add a method to restore rental data
+    private void restoreRentalData() {
+        RentalData rentalData = UserSession.getCurrentRental();
+        if (rentalData != null) {
+            carNameComboBox.setValue(rentalData.getCarName());
+            hourlyRadioButton.setSelected(rentalData.isHourly());
+            dailyRadioButton.setSelected(!rentalData.isHourly());
+            hourlyTextField.setText(rentalData.getHours());
+            startDatePicker.setValue(rentalData.getStartDate());
+            endDatePicker.setValue(rentalData.getEndDate());
+            totalCostLabel.setText(rentalData.getTotalCost());
+        }
+    }
 
 
     private double getRentPricePerDay(String carName) throws SQLException {
@@ -378,9 +431,11 @@ public class RentCarController {
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to open the receipt view.");
         }
     }
-
     @FXML
     public void handleConfirmBill(ActionEvent event) {
+        // Store the current rental data before navigating
+        storeRentalData();
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/payment.fxml"));
             Scene scene = new Scene(loader.load());
@@ -393,6 +448,7 @@ public class RentCarController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to open payment page.");
         }
     }
 

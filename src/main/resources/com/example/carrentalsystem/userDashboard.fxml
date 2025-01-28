@@ -25,11 +25,11 @@
                 <Label styleClass="header-label" text="Dashboard" />
             </HBox>
 
-            <!-- Profile Section -->
-            <VBox alignment="CENTER" spacing="10" styleClass="profile-container">
-                <Circle fx:id="userPhotoCircle" radius="30" styleClass="user-photo-circle" />
-                <Label fx:id="usernameLabel" styleClass="username-label" text="Guest User" />
-            </VBox>
+<!--            &lt;!&ndash; Profile Section &ndash;&gt;-->
+<!--            <VBox alignment="CENTER" spacing="10" styleClass="profile-container">-->
+<!--                <Circle fx:id="userPhotoCircle" radius="30" styleClass="user-photo-circle" />-->
+<!--                <Label fx:id="usernameLabel" styleClass="username-label" text="Guest User" />-->
+<!--            </VBox>-->
         </HBox>
 
         <!-- Main Content Container -->

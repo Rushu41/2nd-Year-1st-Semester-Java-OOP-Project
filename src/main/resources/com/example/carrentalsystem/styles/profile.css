@@ -1,0 +1,67 @@
+/* Root styles */
+.root {
+    -fx-background-color: #f4f4f4;
+    -fx-font-family: "Arial";
+}
+
+/* Profile Picture Section */
+.profile-circle {
+    -fx-fill: #ddd;
+    -fx-stroke: gray;
+    -fx-stroke-width: 1px;
+}
+
+.upload-button {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.upload-button:hover {
+    -fx-background-color: #0056b3;
+}
+
+/* Profile Details Section */
+.profile-details-section {
+    -fx-spacing: 20px;
+    -fx-padding: 30px;
+    -fx-background-color: white;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 0);
+}
+
+.detail-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.detail-field {
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-pref-width: 250px; /* Fixed width for consistency */
+}
+
+.detail-field:disabled {
+    -fx-background-color: #f9f9f9;
+    -fx-text-fill: #666;
+}
+
+.save-button {
+    -fx-background-color: #28a745;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.save-button:hover {
+    -fx-background-color: #218838;
+}

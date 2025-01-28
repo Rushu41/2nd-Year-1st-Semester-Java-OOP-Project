@@ -75,7 +75,7 @@ public class UserDashboardController {
 
     @FXML
     public void initialize() {
-        loadUserProfilePhoto();
+//        loadUserProfilePhoto();
         loadCars();
     }
 

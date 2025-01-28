@@ -46,25 +46,66 @@ public class PaymentController {
     @FXML
     private Button saveButton;
 
+
     private RentCarController rentCarController;
 
     public void setRentCarController(RentCarController rentCarController) {
         this.rentCarController = rentCarController;
     }
 
-    @FXML
-    public void handleSave(ActionEvent event) {
-        // Perform payment saving logic here...
 
-        // Enable the Generate Receipt button in the RentCarController
-        if (rentCarController != null) {
-            rentCarController.enableGenerateReceiptButton();
+    @FXML
+    private void handleSavePayment(ActionEvent event) {
+        String username = usernameField.getText();
+        String email = emailField.getText();
+
+        if (username.isEmpty() || email.isEmpty()) {
+            showAlert("Error", "Please fill in all fields.");
+            return;
         }
 
-        // Navigate back to the RentCar FXML
-        navigateToPage(event, "/com/example/carrentalsystem/rentCar.fxml", "Rent Car");
+        if (insertPaymentDetails(username, email)) {
+            try {
+                // Load the RentCar FXML
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/rentCar.fxml"));
+                Parent rentCarPage = loader.load();
+
+                // Get the controller and set necessary data
+                RentCarController rentCarController = loader.getController();
+
+                // Set the username
+                rentCarController.setUsername(username);
+
+                // Disable logout button and enable generate receipt button
+                rentCarController.disableLogoutButton();
+                rentCarController.enableGenerateReceiptButton();
+
+                // Switch to the RentCar scene
+                Scene rentCarScene = new Scene(rentCarPage);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(rentCarScene);
+                stage.setTitle("Rent Car");
+                stage.show();
+
+                // Show success message
+                showSuccessAlert("Payment Successful", "Your payment has been processed successfully.");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert("Error", "Failed to return to rent car page.");
+            }
+        } else {
+            showAlert("Error", "Failed to save payment details.");
+        }
     }
 
+    private void showSuccessAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
     @FXML
     private void handleCreditCardPayment(ActionEvent event) {
@@ -141,36 +182,6 @@ public class PaymentController {
 
         dialog.showAndWait();
     }
-    @FXML
-    private void handleSavePayment(ActionEvent event) {
-        String username = usernameField.getText();
-        String email = emailField.getText();
-
-        if (username.isEmpty() || email.isEmpty()) {
-            showAlert("Error", "Please fill in all fields.");
-            return;
-        }
-
-        if (insertPaymentDetails(username, email)) {
-
-            // Navigate back to RentCar page
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/rentcar.fxml"));
-                Parent rentCarPage = loader.load();
-                Scene rentCarScene = new Scene(rentCarPage);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(rentCarScene);
-                stage.setTitle("Rent Car");
-                stage.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-                showAlert("Error", "Failed to return to rent car page.");
-            }
-        } else {
-            showAlert("Error", "Failed to save payment details.");
-        }
-    }
-
 
     @FXML
     private void handleGenerateReceipt(ActionEvent event) {
