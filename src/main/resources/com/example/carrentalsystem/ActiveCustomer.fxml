@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.carrentalsystem.ActiveCustomerController"
-      spacing="10" alignment="CENTER" prefWidth="800" >
-    <TableView fx:id="rentalsTable" prefHeight="300" >
+<VBox alignment="CENTER" prefHeight="800" prefWidth="1000" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.ActiveCustomerController">
+    <TableView fx:id="rentalsTable" prefHeight="626.0" prefWidth="1000.0">
         <columns>
-            <TableColumn fx:id="idColumn" text="ID" />
-            <TableColumn fx:id="carNameColumn" text="Car Name" />
-            <TableColumn fx:id="customerNameColumn" text="Customer Name" />
-            <TableColumn fx:id="startDateColumn" text="Start Date" />
-            <TableColumn fx:id="endDateColumn" text="End Date" />
-            <TableColumn fx:id="rentalDaysColumn" text="Rental Days" />
+            <TableColumn fx:id="idColumn" prefWidth="95.0" text="ID" />
+            <TableColumn fx:id="carNameColumn" prefWidth="212.0" text="Car Name" />
+            <TableColumn fx:id="customerNameColumn" prefWidth="189.0" text="Customer Name" />
+            <TableColumn fx:id="startDateColumn" prefWidth="210.0" text="Start Date" />
+            <TableColumn fx:id="endDateColumn" prefWidth="164.0" text="End Date" />
+            <TableColumn fx:id="rentalDaysColumn" prefWidth="129.0" text="Rental Days" />
         </columns>
-        <Button layoutX="150.0" layoutY="300.0" text="Back" onAction="#handleBack" />
-        <Button layoutX="250.0" layoutY="300.0" text="Logout" onAction="#handleLogout" />
     </TableView>
+
+    <!-- Adjusted positions for the buttons -->
+    <HBox alignment="CENTER" spacing="20" />
+     <Button onAction="#handleBack" text="Back" />
 </VBox>

@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -81,7 +83,7 @@ public class AddCarController {
 
         // Insert car into the database
         if (addCarToDatabase(carName, totalSeats, fuelType, rentPrice, carImage)) {
-            carNameLabel.setText("Car's Name: " + carName);
+
             showAlert(Alert.AlertType.INFORMATION, "Success", "Car added successfully.");
             clearFields();
         } else {
@@ -89,36 +91,60 @@ public class AddCarController {
         }
     }
     public void handleImageUpload(ActionEvent event) {
-        if (carNameLabel == null) {
-            System.out.println("carNameLabel is null! Check FXML file and fx:id.");
-            return;
-        }
-
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
         File file = fileChooser.showOpenDialog(uploadImageButton.getScene().getWindow());
 
         if (file != null) {
             try {
-                // Convert the image file to a byte array
-                carImage = new byte[(int) file.length()];
-                FileInputStream fis = new FileInputStream(file);
-                fis.read(carImage);
-                fis.close();
+                // Define the car_image directory in the project root
+                File carImageDir = new File(System.getProperty("user.dir") + "/car_image");
+                if (!carImageDir.exists()) {
+                    carImageDir.mkdirs();  // Create directory if it doesn't exist
+                }
 
-                // Display the image in the ImageView
-                Image image = new Image(file.toURI().toString());
+                // Find the next available image filename
+                int nextImageNumber = getNextImageNumber(carImageDir);
+                String newFileName = nextImageNumber + ".jpg";
+                File destinationFile = new File(carImageDir, newFileName);
+
+                // Copy the selected image to the car_image folder
+                Files.copy(file.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                // Read the saved image into byte array
+                carImage = Files.readAllBytes(destinationFile.toPath());
+
+                // Display the image in ImageView
+                Image image = new Image(destinationFile.toURI().toString());
                 carImageView.setImage(image);
 
-                // Set the car's name in the label
-                carNameLabel.setText("Car's Name: " + carNameField.getText().trim());
 
-                showAlert(Alert.AlertType.INFORMATION, "Success", "Photo uploaded successfully.");
             } catch (IOException e) {
-                showError("Failed to read the image file.");
+                showError("Failed to save the image: " + e.getMessage());
             }
+        } else {
+            showError("No file selected. Please choose an image.");
         }
     }
+
+
+    private int getNextImageNumber(File directory) {
+        File[] files = directory.listFiles((dir, name) -> name.matches("\\d+\\.jpg"));
+        int maxNumber = 0;
+        if (files != null) {
+            for (File file : files) {
+                try {
+                    int num = Integer.parseInt(file.getName().replace(".jpg", ""));
+                    if (num > maxNumber) {
+                        maxNumber = num;
+                    }
+                } catch (NumberFormatException ignored) {}
+            }
+        }
+        return maxNumber + 1;
+    }
+
+
 
 
     private boolean addCarToDatabase(String name, int totalSeats, String fuelType, double rentPrice, byte[] image) {
@@ -151,7 +177,7 @@ public class AddCarController {
         errorLabel.setText("");
         carImage = null;
         carImageView.setImage(null);
-        carNameLabel.setText("");
+
     }
 
     private void showError(String message) {
@@ -173,8 +199,8 @@ public class AddCarController {
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
-            stage.setWidth(800); // Your fixed width
-            stage.setHeight(600); // Your fixed height
+            stage.setWidth(1000); // Your fixed width
+            stage.setHeight(800); // Your fixed height
             stage.setResizable(false); // Disable resizing
 
             stage.setTitle(title);

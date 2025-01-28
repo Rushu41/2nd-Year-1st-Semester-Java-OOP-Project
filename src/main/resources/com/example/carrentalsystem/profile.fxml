@@ -9,15 +9,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="761.0" prefWidth="617.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.ProfileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.ProfileController">
     <children>
-        <VBox alignment="TOP_RIGHT" layoutX="450" layoutY="20" spacing="10">
+        <!-- Profile Picture Section -->
+        <VBox alignment="CENTER" layoutX="450" layoutY="20" spacing="10">
             <StackPane alignment="CENTER">
                 <Circle fx:id="photoCircle" radius="50" stroke="gray" strokeWidth="1" />
             </StackPane>
             <Button onAction="#handlePhotoUpload" text="Upload Photo" />
         </VBox>
-        <VBox layoutX="105.0" layoutY="8.0" prefHeight="747.0" prefWidth="149.0" spacing="15">
+
+        <!-- Profile Details Section -->
+        <VBox layoutX="200.0" layoutY="100.0" prefHeight="600.0" prefWidth="600.0" spacing="15">
             <Label text="User ID:" />
             <TextField fx:id="userIdField" editable="false" />
             <Label text="First Name:" />
@@ -39,10 +42,6 @@
             <Label text="Password:" />
             <PasswordField fx:id="passwordField" />
             <Button onAction="#handleSaveChanges" text="Save Changes" />
-            <Label fx:id="statusLabel" layoutX="105" layoutY="715" style="-fx-text-fill: red;" text="" />
-
         </VBox>
-        <Button layoutX="551.0" layoutY="734.0" onAction="#handleLogout" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Logout" />
-        <Button layoutX="14.0" layoutY="746.0" onAction="#handleBack" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back" />
     </children>
 </AnchorPane>

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.Button?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.FeedbackController">
-    <AnchorPane prefWidth="600" prefHeight="400" style="-fx-background-color: #f4f4f4;">
-        <!-- Chat Display -->
-        <TextArea fx:id="chatArea" editable="false" wrapText="true" layoutX="20" layoutY="20" prefWidth="560" prefHeight="300" />
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-        <!-- User Input -->
-        <TextField fx:id="userInputField" layoutX="20" layoutY="340" prefWidth="460" promptText="Type your feedback or problem here..." />
-        <Button fx:id="sendButton" text="Send" layoutX="490" layoutY="340" prefWidth="90" onAction="#handleSend" />
-    </AnchorPane>
+<AnchorPane prefHeight="801.0" prefWidth="1000" style="-fx-background-color: #f4f4f4;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.carrentalsystem.FeedbackController">
+    <!-- Chat Display -->
+    <TextArea fx:id="chatArea" editable="false" layoutX="30" layoutY="20" prefHeight="600" prefWidth="940" wrapText="true" />
+
+    <!-- User Input -->
+    <TextField fx:id="userInputField" layoutX="30" layoutY="640" prefWidth="820" promptText="Type your feedback or problem here..." />
+
+    <!-- Send Button -->
+    <Button fx:id="sendButton" layoutX="860" layoutY="640" onAction="#handleSend" prefWidth="90" text="Send" />
 </AnchorPane>

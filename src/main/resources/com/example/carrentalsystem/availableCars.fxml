@@ -9,30 +9,29 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.AvailableCarsController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.AvailableCarsController">
     <children>
         <!-- Background Image -->
-        <ImageView fx:id="backgroundImage" fitHeight="600.0" fitWidth="800.0" managed="false">
+        <ImageView fx:id="backgroundImage" fitHeight="800.0" fitWidth="1000.0" managed="false">
             <image>
                 <Image url="@images/addcars.png" />
             </image>
         </ImageView>
 
-        <TableView fx:id="carsTable" layoutX="121.0" layoutY="93.0" prefHeight="322.0" prefWidth="565.0" fixedCellSize="25.0">
+        <TableView fx:id="carsTable" fixedCellSize="25.0" layoutX="152.0" layoutY="58.0" prefHeight="555.0" prefWidth="743.0">
             <columns>
-                <TableColumn fx:id="carNameColumn" prefWidth="200.0" text="Car Name" resizable="false" />
-                <TableColumn fx:id="carTypeColumn" prefWidth="200.0" text="Fuel Type" resizable="false" />
-                <!-- <TableColumn fx:id="carSeatsColumn" text="Seats" prefWidth="200.0" resizable="false" /> -->
-                <TableColumn fx:id="priceColumn" prefWidth="200.0" text="Rent Price" resizable="false" />
+                <TableColumn fx:id="carNameColumn" prefWidth="262.0" resizable="false" text="Car Name" />
+                <TableColumn fx:id="carTypeColumn" prefWidth="242.0" resizable="false" text="Fuel Type" />
+                <TableColumn fx:id="priceColumn" prefWidth="237.0" resizable="false" text="Rent Price" />
             </columns>
         </TableView>
 
-        <HBox layoutX="300.0" layoutY="500.0" spacing="20.0" />
-        <Button layoutX="653.0" layoutY="500.0" onAction="#handleLogout" prefHeight="31.0" prefWidth="66.0" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Logout" />
-        <Button layoutX="55.0" layoutY="500.0" onAction="#handleBack" prefHeight="31.0" prefWidth="66.0" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back">
-            <font>
-                <Font size="15.0" />
-            </font>
-        </Button>
+        <HBox layoutX="200.0" layoutY="600.0" spacing="40.0" />
+         <Button layoutX="23.0" layoutY="736.0" onAction="#handleBack" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back">
+             <font>
+                 <Font size="15.0" />
+             </font>
+         </Button>
+         <Button layoutX="873.0" layoutY="738.0" onAction="#handleLogout" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Logout" />
     </children>
 </AnchorPane>

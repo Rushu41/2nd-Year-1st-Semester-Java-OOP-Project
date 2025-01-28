@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.AddCarController">
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.AddCarController">
     <children>
-        <!-- Background Image -->
-        <ImageView fx:id="backgroundImage" fitHeight="600.0" fitWidth="800.0" managed="false" preserveRatio="false">
-            <image>
-                <Image url="@images/addcars.png" />
-            </image>
-        </ImageView>
+        <!-- Page Title -->
+        <Label alignment="CENTER" layoutX="435.0" layoutY="30.0" prefHeight="49.0" prefWidth="131.0" styleClass="header-label" text="Add Car" />
 
         <!-- Input Fields Section -->
-        <Label alignment="CENTER" layoutX="330.0" layoutY="21.0" prefHeight="49.0" prefWidth="131.0" styleClass="header-label" text="Add Car" />
-        <TextField fx:id="carNameField" layoutX="250.0" layoutY="82.0" prefWidth="300.0" promptText="Car Name" styleClass="input-field" />
-        <TextField fx:id="totalSeatsField" layoutX="250.0" layoutY="150.0" prefWidth="300.0" promptText="Total Seats" styleClass="input-field" />
-        <TextField fx:id="fuelTypeField" layoutX="250.0" layoutY="213.0" prefWidth="300.0" promptText="Fuel Type" styleClass="input-field" />
-        <TextField fx:id="rentPriceField" layoutX="250.0" layoutY="272.0" prefWidth="300.0" promptText="Rent Price per Day" styleClass="input-field" />
+        <TextField fx:id="carNameField" layoutX="50.0" layoutY="100.0" prefWidth="400.0" promptText="Car Name" styleClass="input-field" />
+        <TextField fx:id="totalSeatsField" layoutX="50.0" layoutY="180.0" prefWidth="400.0" promptText="Total Seats" styleClass="input-field" />
+        <TextField fx:id="fuelTypeField" layoutX="50.0" layoutY="260.0" prefWidth="400.0" promptText="Fuel Type" styleClass="input-field" />
+        <TextField fx:id="rentPriceField" layoutX="50.0" layoutY="340.0" prefWidth="400.0" promptText="Rent Price per Day" styleClass="input-field" />
 
         <!-- Upload Image Section -->
-        <Button fx:id="uploadImageButton" layoutX="250.0" layoutY="353.0" onAction="#handleImageUpload" prefWidth="300.0" styleClass="upload-button">
+        <Button fx:id="uploadImageButton" layoutX="50.0" layoutY="440.0" onAction="#handleImageUpload" prefWidth="400.0" styleClass="upload-button">
             <graphic>
                 <FontAwesomeIconView glyphName="UPLOAD" size="16" />
             </graphic>
             Upload Image
         </Button>
-        <Label fx:id="errorLabel" layoutX="20.0" layoutY="290.0" styleClass="error-label" text="" />
 
-        <!-- Preview of Uploaded Image -->
-        <ImageView fx:id="carImageView" fitHeight="200.0" fitWidth="250.0" layoutX="350.0" layoutY="50.0" preserveRatio="true" styleClass="image-preview" />
+        <!-- Error Message Display -->
+        <Label fx:id="errorLabel" layoutX="50.0" layoutY="410.0" styleClass="error-label" text="" />
+
+        <!-- Preview of Uploaded Image (Centered) -->
+        <ImageView fx:id="carImageView" fitHeight="300.0" fitWidth="400.0" layoutX="525.0" layoutY="100.0" preserveRatio="true" styleClass="image-preview" />
 
         <!-- Add Car Button -->
-        <Button layoutX="250.0" layoutY="408.0" onAction="#handleAddCar" prefWidth="300.0" styleClass="add-button">
+        <Button layoutX="50.0" layoutY="500.0" onAction="#handleAddCar" prefWidth="400.0" styleClass="add-button">
             <graphic>
                 <FontAwesomeIconView glyphName="PLUS" size="16" />
             </graphic>
@@ -42,18 +42,19 @@
         </Button>
 
         <!-- Navigation Buttons -->
-        <HBox layoutX="20.0" layoutY="380.0" spacing="20.0" />
-        <Button layoutX="434.0" layoutY="468.0" onAction="#handleLogout" styleClass="nav-button">
-            <graphic>
-                <FontAwesomeIconView glyphName="SIGN_OUT" size="16" />
-            </graphic>
-            Logout
-        </Button>
-        <Button layoutX="297.0" layoutY="468.0" onAction="#handleBack" styleClass="nav-button">
-            <graphic>
-                <FontAwesomeIconView glyphName="ARROW_LEFT" size="16" />
-            </graphic>
-            Back
-        </Button>
+        <HBox layoutX="50.0" layoutY="580.0" spacing="20.0">
+            <Button onAction="#handleBack" styleClass="nav-button">
+                <graphic>
+                    <FontAwesomeIconView glyphName="ARROW_LEFT" size="16" />
+                </graphic>
+                Back
+            </Button>
+            <Button onAction="#handleLogout" styleClass="nav-button">
+                <graphic>
+                    <FontAwesomeIconView glyphName="SIGN_OUT" size="16" />
+                </graphic>
+                Logout
+            </Button>
+        </HBox>
     </children>
 </AnchorPane>

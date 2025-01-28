@@ -142,8 +142,8 @@ public class SignupController {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/carrentalsystem/login.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        stage.setWidth(800); // Your fixed width
-        stage.setHeight(600); // Your fixed height
+        stage.setWidth(1000); // Your fixed width
+        stage.setHeight(800); // Your fixed height
         stage.setResizable(false); // Disable resizing
 
         stage.setScene(scene);

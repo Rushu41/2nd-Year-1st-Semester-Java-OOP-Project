@@ -6,19 +6,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.ReturnCarController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.ReturnCarController">
     <children>
-        <TableView fx:id="rentedCarsTable" layoutX="140.0" layoutY="60.0" prefHeight="392.0" prefWidth="501.0">
+        <!-- TableView for rented cars -->
+        <TableView fx:id="rentedCarsTable" layoutX="32.0" layoutY="27.0" prefHeight="669.0" prefWidth="937.0">
             <columns>
-                <TableColumn fx:id="carNameColumn" prefWidth="200.0" text="Car Name" />
-<!--                <TableColumn fx:id="carTypeColumn" prefWidth="200.0" text="Car Type" />-->
-                <TableColumn fx:id="priceColumn" prefWidth="100.0" text="Price" />
-                <TableColumn fx:id="customerNameColumn" prefWidth="200.0" text="Customer Name" />
+                <TableColumn fx:id="carNameColumn" prefWidth="284.0" text="Car Name" />
+                <!--                <TableColumn fx:id="carTypeColumn" prefWidth="200.0" text="Car Type" />-->
+                <TableColumn fx:id="priceColumn" prefWidth="317.0" text="Price" />
+                <TableColumn fx:id="customerNameColumn" prefWidth="335.0" text="Customer Name" />
             </columns>
         </TableView>
 
-        <HBox layoutX="300.0" layoutY="500.0" spacing="20.0" />
-          <Button layoutX="140.0" layoutY="502.0" onAction="#handleReturnCar" text="Return Car" />
-          <Button layoutX="600.0" layoutY="502.0" onAction="#handleBack" text="Back" />
+        <!-- Buttons: Return Car and Back -->
+        <HBox layoutX="350.0" layoutY="500.0" spacing="20.0" />
+         <Button layoutX="32.0" layoutY="720.0" onAction="#handleReturnCar" text="Return Car" />
+         <Button layoutX="928.0" layoutY="720.0" onAction="#handleBack" text="Back" />
     </children>
 </AnchorPane>

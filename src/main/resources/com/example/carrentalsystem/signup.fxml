@@ -5,10 +5,11 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom, #ff7e5f, #feb47b);"
+            prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(to bottom, #ff7e5f, #feb47b);"
             xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.carrentalsystem.SignupController">
-    <VBox alignment="CENTER" layoutX="313.0" layoutY="50.0" prefHeight="400.0" prefWidth="300.0" spacing="10">
+
+    <VBox alignment="CENTER" layoutX="350.0" layoutY="100.0" prefHeight="500.0" prefWidth="300.0" spacing="15">
         <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ffffff;" text="Sign Up"/>
 
         <!-- User Input Fields -->
@@ -18,7 +19,6 @@
         <TextField fx:id="ageField" promptText="Age" style="-fx-background-radius: 15; -fx-padding: 10; -fx-pref-width: 300;"/>
         <ComboBox fx:id="genderComboBox" promptText="Select Gender"
                   style="-fx-background-radius: 15; -fx-padding: 10; -fx-pref-width: 300;" />
-
 
         <!-- Date of Birth Field -->
         <DatePicker fx:id="dateOfBirthPicker" promptText="Date of Birth" style="-fx-background-radius: 15; -fx-padding: 10; -fx-pref-width: 300;"/>

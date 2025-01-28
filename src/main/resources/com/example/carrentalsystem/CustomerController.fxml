@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom, #ff7e5f, #feb47b);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.CustomerController">
-    <VBox alignment="CENTER" layoutX="313.0" layoutY="50.0" prefHeight="400.0" prefWidth="155.0" spacing="10">
-        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ffffff;" text="Sign Up" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(to bottom, #ff7e5f, #feb47b);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.CustomerController">
+    <VBox alignment="CENTER" layoutX="400.0" layoutY="80.0" prefHeight="400.0" prefWidth="200.0" spacing="15">
+        <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #ffffff;" text="Sign Up" />
         <TextField fx:id="userIdField" promptText="User ID" style="-fx-background-radius: 15; -fx-padding: 10;" />
         <TextField fx:id="firstNameField" promptText="First Name" style="-fx-background-radius: 15; -fx-padding: 10;" />
         <TextField fx:id="lastNameField" promptText="Last Name" style="-fx-background-radius: 15; -fx-padding: 10;" />
@@ -21,8 +21,9 @@
         <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password" style="-fx-background-radius: 15; -fx-padding: 10;" />
         <Label fx:id="statusLabel" style="-fx-text-fill: white;" text="" />
     </VBox>
-    <HBox layoutX="300.0" layoutY="500.0" spacing="20.0" />
-      <Button layoutX="78.0" layoutY="545.0" onAction="#handleBack" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back" />
-      <Button layoutX="706.0" layoutY="545.0" onAction="#handleLogout" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Logout" />
-     <Button fx:id="signupButton" layoutX="358.0" layoutY="488.0" onAction="#handleSignup" style="-fx-background-color: #ff7e5f; -fx-text-fill: #ffffff; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 10 20;" text="Sign Up" />
+
+    <HBox layoutX="200.0" layoutY="580.0" spacing="30.0" />
+     <Button layoutX="67.0" layoutY="726.0" onAction="#handleBack" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back" />
+     <Button fx:id="signupButton" layoutX="470.0" layoutY="576.0" onAction="#handleSignup" style="-fx-background-color: #ff7e5f; -fx-text-fill: #ffffff; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 10 20;" text="Sign Up" />
+     <Button layoutX="919.0" layoutY="726.0" onAction="#handleLogout" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Logout" />
 </AnchorPane>

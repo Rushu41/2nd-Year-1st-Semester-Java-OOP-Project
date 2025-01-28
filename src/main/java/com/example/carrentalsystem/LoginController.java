@@ -43,30 +43,24 @@ public class LoginController {
     @FXML
     public void initialize() {
         adminPane.setTranslateX(0);
-        userPane.setTranslateX(800);
+        userPane.setTranslateX(1000);
 
     }
 
     @FXML
     private void switchToAdmin() {
         animatePane(adminPane, 0);
-        animatePane(userPane, 800);
+        animatePane(userPane, 1000);
 
     }
 
     @FXML
     private void switchToUser() {
-        animatePane(adminPane, -800);
+        animatePane(adminPane, -1000);
         animatePane(userPane, 0);
 
     }
 
-    @FXML
-    private void switchToEmployee() {
-        animatePane(adminPane, -1600);
-        animatePane(userPane, -800);
-
-    }
 
     private void animatePane(AnchorPane pane, double targetX) {
         TranslateTransition transition = new TranslateTransition(Duration.millis(300), pane);
@@ -107,8 +101,8 @@ public class LoginController {
 
                 // Pass the username to the UserDashboardController
                 userDashboardController.setUsername(username);
-                stage.setWidth(800); // Your fixed width
-                stage.setHeight(600); // Your fixed height
+                stage.setWidth(1000); // Your fixed width
+                stage.setHeight(800); // Your fixed height
                 stage.setResizable(false); // Disable resizing
 
                 stage.setScene(scene);

@@ -11,13 +11,14 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.text.Font?>
+
 <StackPane styleClass="root-pane" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.LoginController">
    <stylesheets>
       <URL value="@login.css" />
    </stylesheets>
    <children>
       <!-- Background Image with Overlay -->
-      <ImageView fx:id="backgroundImage" fitHeight="600.0" fitWidth="800.0" preserveRatio="true">
+      <ImageView fx:id="backgroundImage" fitHeight="800.0" fitWidth="1000.0" preserveRatio="true">
          <image>
             <Image url="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=formatfit=cropw=800q=80" />
          </image>
@@ -25,56 +26,48 @@
       <AnchorPane style="-fx-background-color: rgba(0, 0, 0, 0.3);" />
 
       <!-- User Login Pane -->
-      <AnchorPane fx:id="userPane" prefHeight="600.0" prefWidth="400.0" styleClass="login-pane user-pane" translateX="800.0">
+      <AnchorPane fx:id="userPane" prefHeight="800.0" prefWidth="500.0" styleClass="login-pane user-pane" translateX="1000.0">
          <children>
-            <Label layoutX="120.0" layoutY="50.0" styleClass="title" text="USER LOGIN">
+            <Label layoutX="150.0" layoutY="60.0" styleClass="title" text="USER LOGIN">
                <font>
                   <Font name="Arial Rounded MT Bold" size="28" />
                </font>
             </Label>
-            <TextField fx:id="userUsernameField" layoutX="50.0" layoutY="150.0" prefWidth="300.0" styleClass="input" promptText="Username">
-
-            </TextField>
-            <PasswordField fx:id="userPasswordField" layoutX="50.0" layoutY="210.0" prefWidth="300.0" styleClass="input" promptText="Password">
-
-            </PasswordField>
-            <CheckBox fx:id="rememberMeCheckBox" layoutX="50.0" layoutY="260.0" styleClass="remember-check" text="Remember Me" />
-            <Button fx:id="userLoginButton" layoutX="50.0" layoutY="310.0" onAction="#handleUserLogin" prefWidth="300.0" styleClass="btn-login" text="SIGN IN">
+            <TextField fx:id="userUsernameField" layoutX="75.0" layoutY="200.0" prefWidth="350.0" styleClass="input" promptText="Username" />
+            <PasswordField fx:id="userPasswordField" layoutX="75.0" layoutY="280.0" prefWidth="350.0" styleClass="input" promptText="Password" />
+            <CheckBox fx:id="rememberMeCheckBox" layoutX="75.0" layoutY="340.0" styleClass="remember-check" text="Remember Me" />
+            <Button fx:id="userLoginButton" layoutX="75.0" layoutY="400.0" onAction="#handleUserLogin" prefWidth="350.0" styleClass="btn-login" text="SIGN IN">
                <graphic>
                   <FontAwesomeIconView glyphName="SIGN_IN" />
                </graphic>
             </Button>
-            <Button fx:id="signUpButton" layoutX="50.0" layoutY="370.0" onAction="#handleSignUp" prefWidth="300.0" styleClass="btn-secondary" text="CREATE ACCOUNT">
+            <Button fx:id="signUpButton" layoutX="75.0" layoutY="470.0" onAction="#handleSignUp" prefWidth="350.0" styleClass="btn-secondary" text="CREATE ACCOUNT">
                <graphic>
                   <FontAwesomeIconView glyphName="USER_PLUS" />
                </graphic>
             </Button>
-            <Label layoutX="130.0" layoutY="440.0" onMouseClicked="#handleForgetPassword" styleClass="link-text" text="Forgot Password?">
+            <Label layoutX="180.0" layoutY="550.0" onMouseClicked="#handleForgetPassword" styleClass="link-text" text="Forgot Password?">
                <graphic>
                   <FontAwesomeIconView glyphName="QUESTION_CIRCLE" />
                </graphic>
             </Label>
-            <Button layoutX="270.0" layoutY="20.0" onAction="#switchToAdmin" styleClass="btn-switch" text="ADMIN →" />
-            <ProgressIndicator fx:id="loadingSpinner" layoutX="180.0" layoutY="320.0" visible="false" />
+            <Button layoutX="350.0" layoutY="30.0" onAction="#switchToAdmin" styleClass="btn-switch" text="ADMIN →" />
+            <ProgressIndicator fx:id="loadingSpinner" layoutX="230.0" layoutY="430.0" visible="false" />
          </children>
       </AnchorPane>
 
       <!-- Admin Login Pane -->
-      <AnchorPane fx:id="adminPane" prefHeight="600.0" prefWidth="400.0" styleClass="login-pane admin-pane">
+      <AnchorPane fx:id="adminPane" prefHeight="800.0" prefWidth="500.0" styleClass="login-pane admin-pane">
          <children>
-            <Label layoutX="110.0" layoutY="50.0" styleClass="title" text="ADMIN LOGIN">
+            <Label layoutX="140.0" layoutY="60.0" styleClass="title" text="ADMIN LOGIN">
                <font>
                   <Font name="Arial Rounded MT Bold" size="28" />
                </font>
             </Label>
-            <TextField fx:id="adminUsernameField" layoutX="50.0" layoutY="150.0" prefWidth="300.0" styleClass="input" promptText="Admin ID">
-
-            </TextField>
-            <PasswordField fx:id="adminPasswordField" layoutX="50.0" layoutY="210.0" prefWidth="300.0" styleClass="input" promptText="Password">
-
-            </PasswordField>
-            <Button fx:id="adminLoginButton" layoutX="50.0" layoutY="270.0" onAction="#handleAdminLogin" prefWidth="300.0" styleClass="btn-login" text="ACCESS PANEL" />
-            <Button layoutX="50.0" layoutY="330.0" onAction="#switchToUser" prefWidth="300.0" styleClass="btn-secondary" text="← USER LOGIN" />
+            <TextField fx:id="adminUsernameField" layoutX="75.0" layoutY="200.0" prefWidth="350.0" styleClass="input" promptText="Admin ID" />
+            <PasswordField fx:id="adminPasswordField" layoutX="75.0" layoutY="280.0" prefWidth="350.0" styleClass="input" promptText="Password" />
+            <Button fx:id="adminLoginButton" layoutX="75.0" layoutY="360.0" onAction="#handleAdminLogin" prefWidth="350.0" styleClass="btn-login" text="ACCESS PANEL" />
+            <Button layoutX="75.0" layoutY="430.0" onAction="#switchToUser" prefWidth="350.0" styleClass="btn-secondary" text="← USER LOGIN" />
          </children>
       </AnchorPane>
    </children>
