@@ -4,7 +4,7 @@
 <?import javafx.scene.shape.*?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="900.0" prefWidth="1000.0"
+            prefHeight="800.0" prefWidth="1000.0"
             style="-fx-background-color: linear-gradient(to bottom, #ff7e5f, #feb47b);"
             xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.carrentalsystem.UserDashboardController">

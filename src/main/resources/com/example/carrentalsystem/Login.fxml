@@ -1,72 +1,81 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-
+<?import javafx.scene.layout.StackPane?>
+<?import java.net.URL?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Button?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.text.Font?>
 <StackPane styleClass="root-pane" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.LoginController">
+   <stylesheets>
+      <URL value="@login.css" />
+   </stylesheets>
    <children>
-      <!-- Background Image -->
+      <!-- Background Image with Overlay -->
       <ImageView fx:id="backgroundImage" fitHeight="600.0" fitWidth="800.0" preserveRatio="true">
          <image>
-            <Image url="@images/logincars.jpg" />
+            <Image url="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=formatfit=cropw=800q=80" />
          </image>
       </ImageView>
+      <AnchorPane style="-fx-background-color: rgba(0, 0, 0, 0.3);" />
 
       <!-- User Login Pane -->
-      <AnchorPane fx:id="userPane" prefHeight="600.0" prefWidth="800.0" styleClass="login-pane" translateX="800.0">
+      <AnchorPane fx:id="userPane" prefHeight="600.0" prefWidth="400.0" styleClass="login-pane user-pane" translateX="800.0">
          <children>
-            <Label layoutX="300.0" layoutY="50.0" styleClass="title" text="User Login" />
-            <Label layoutX="200.0" layoutY="150.0" styleClass="label" text="Username" />
-            <TextField fx:id="userUsernameField" layoutX="300.0" layoutY="150.0" prefWidth="250.0" style="-fx-background-color: #f0f0f0; -fx-text-fill: black; -fx-font-size: 14px; -fx-padding: 10px; -fx-background-radius: 5px;" />
-            <Label layoutX="200.0" layoutY="200.0" styleClass="label" text="Password" />
-            <PasswordField fx:id="userPasswordField" layoutX="300.0" layoutY="200.0" prefWidth="250.0" styleClass="input" />
-            <Button fx:id="userLoginButton" layoutX="300.0" layoutY="270.0" onAction="#handleUserLogin" opacity="0.8" styleClass="btn" text="Login" />
-            <Button fx:id="signUpButton" layoutX="300.0" layoutY="320.0" onAction="#handleSignUp" opacity="0.8" styleClass="btn" text="Sign Up" />
-            <Label layoutX="153.0" layoutY="472.0" onMouseClicked="#handleForgetPassword" style="-fx-text-fill: blue;" text="Forgot Password?" underline="true" />
-            <Button layoutX="500.0" layoutY="10.0" onAction="#switchToAdmin" opacity="0.8" styleClass="switch-btn" text="Switch to Admin" />
-            <Button layoutX="500.0" layoutY="50.0" onAction="#switchToEmployee" opacity="0.8" styleClass="switch-btn" text="Switch to Employee" />
-         </children>
-      </AnchorPane>
+            <Label layoutX="120.0" layoutY="50.0" styleClass="title" text="USER LOGIN">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="28" />
+               </font>
+            </Label>
+            <TextField fx:id="userUsernameField" layoutX="50.0" layoutY="150.0" prefWidth="300.0" styleClass="input" promptText="Username">
 
-      <!-- Employee Login Pane -->
-      <AnchorPane fx:id="employeePane" prefHeight="600.0" prefWidth="800.0" styleClass="login-pane" translateX="1600.0">
-         <children>
-            <Label layoutX="300.0" layoutY="50.0" styleClass="title" text="Employee Login" />
-            <Label layoutX="200.0" layoutY="150.0" styleClass="label" text="Username" />
-            <TextField fx:id="employeeUsernameField" layoutX="300.0" layoutY="150.0" prefWidth="250.0" style="-fx-background-color: #f0f0f0; -fx-text-fill: black; -fx-font-size: 14px; -fx-padding: 10px; -fx-background-radius: 5px;" />
-            <Label layoutX="200.0" layoutY="200.0" styleClass="label" text="Password" />
-            <PasswordField fx:id="employeePasswordField" layoutX="300.0" layoutY="200.0" prefWidth="250.0" styleClass="input" />
-            <Button fx:id="employeeLoginButton" layoutX="300.0" layoutY="270.0" onAction="#handleEmployeeLogin" opacity="0.8" styleClass="btn" text="Login" />
-            <Button layoutX="500.0" layoutY="10.0" onAction="#switchToAdmin" opacity="0.8" styleClass="switch-btn" text="Switch to Admin" />
-            <Button layoutX="500.0" layoutY="50.0" onAction="#switchToUser" opacity="0.8" styleClass="switch-btn" text="Switch to User" />
+            </TextField>
+            <PasswordField fx:id="userPasswordField" layoutX="50.0" layoutY="210.0" prefWidth="300.0" styleClass="input" promptText="Password">
+
+            </PasswordField>
+            <CheckBox fx:id="rememberMeCheckBox" layoutX="50.0" layoutY="260.0" styleClass="remember-check" text="Remember Me" />
+            <Button fx:id="userLoginButton" layoutX="50.0" layoutY="310.0" onAction="#handleUserLogin" prefWidth="300.0" styleClass="btn-login" text="SIGN IN">
+               <graphic>
+                  <FontAwesomeIconView glyphName="SIGN_IN" />
+               </graphic>
+            </Button>
+            <Button fx:id="signUpButton" layoutX="50.0" layoutY="370.0" onAction="#handleSignUp" prefWidth="300.0" styleClass="btn-secondary" text="CREATE ACCOUNT">
+               <graphic>
+                  <FontAwesomeIconView glyphName="USER_PLUS" />
+               </graphic>
+            </Button>
+            <Label layoutX="130.0" layoutY="440.0" onMouseClicked="#handleForgetPassword" styleClass="link-text" text="Forgot Password?">
+               <graphic>
+                  <FontAwesomeIconView glyphName="QUESTION_CIRCLE" />
+               </graphic>
+            </Label>
+            <Button layoutX="270.0" layoutY="20.0" onAction="#switchToAdmin" styleClass="btn-switch" text="ADMIN →" />
+            <ProgressIndicator fx:id="loadingSpinner" layoutX="180.0" layoutY="320.0" visible="false" />
          </children>
       </AnchorPane>
 
       <!-- Admin Login Pane -->
-      <AnchorPane fx:id="adminPane" prefHeight="600.0" prefWidth="800.0" styleClass="login-pane">
+      <AnchorPane fx:id="adminPane" prefHeight="600.0" prefWidth="400.0" styleClass="login-pane admin-pane">
          <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="38.0" prefHeight="72.0" prefWidth="210.0" styleClass="title" text="Admin Login" textFill="WHITE">
+            <Label layoutX="110.0" layoutY="50.0" styleClass="title" text="ADMIN LOGIN">
                <font>
-                  <Font name="System Bold" size="22.0" />
+                  <Font name="Arial Rounded MT Bold" size="28" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="141.0" layoutY="137.0" prefHeight="40.0" prefWidth="120.0" styleClass="label" text="Username" textFill="#fffdfd">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font></Label>
-            <TextField fx:id="adminUsernameField" layoutX="68.0" layoutY="197.0" prefHeight="17.0" prefWidth="250.0" style="-fx-background-color: #f0f0f0; -fx-text-fill: black; -fx-font-size: 14px; -fx-padding: 10px; -fx-background-radius: 5px;" />
-            <Label alignment="CENTER" layoutX="155.0" layoutY="260.0" prefHeight="40.0" prefWidth="92.0" styleClass="label" text="Password" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font></Label>
-            <PasswordField fx:id="adminPasswordField" layoutX="68.0" layoutY="315.0" prefWidth="250.0" styleClass="input" />
-            <Button fx:id="adminLoginButton" layoutX="178.0" layoutY="367.0" onAction="#handleAdminLogin" opacity="0.8" styleClass="btn" text="Login" />
-            <Button layoutX="73.0" layoutY="446.0" onAction="#switchToUser" prefHeight="25.0" prefWidth="113.0" styleClass="switch-btn" text="Switch to User" />
-            <Button layoutX="73.0" layoutY="486.0" onAction="#switchToEmployee" opacity="0.8" prefHeight="17.0" prefWidth="120.0" styleClass="switch-btn" text="Switch to Employee" />
+            <TextField fx:id="adminUsernameField" layoutX="50.0" layoutY="150.0" prefWidth="300.0" styleClass="input" promptText="Admin ID">
+
+            </TextField>
+            <PasswordField fx:id="adminPasswordField" layoutX="50.0" layoutY="210.0" prefWidth="300.0" styleClass="input" promptText="Password">
+
+            </PasswordField>
+            <Button fx:id="adminLoginButton" layoutX="50.0" layoutY="270.0" onAction="#handleAdminLogin" prefWidth="300.0" styleClass="btn-login" text="ACCESS PANEL" />
+            <Button layoutX="50.0" layoutY="330.0" onAction="#switchToUser" prefWidth="300.0" styleClass="btn-secondary" text="← USER LOGIN" />
          </children>
       </AnchorPane>
-
    </children>
 </StackPane>

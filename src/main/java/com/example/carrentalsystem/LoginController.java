@@ -44,28 +44,28 @@ public class LoginController {
     public void initialize() {
         adminPane.setTranslateX(0);
         userPane.setTranslateX(800);
-        employeePane.setTranslateX(1600);
+
     }
 
     @FXML
     private void switchToAdmin() {
         animatePane(adminPane, 0);
         animatePane(userPane, 800);
-        animatePane(employeePane, 1600);
+
     }
 
     @FXML
     private void switchToUser() {
         animatePane(adminPane, -800);
         animatePane(userPane, 0);
-        animatePane(employeePane, 800);
+
     }
 
     @FXML
     private void switchToEmployee() {
         animatePane(adminPane, -1600);
         animatePane(userPane, -800);
-        animatePane(employeePane, 0);
+
     }
 
     private void animatePane(AnchorPane pane, double targetX) {
@@ -125,17 +125,6 @@ public class LoginController {
 
 
 
-    @FXML
-    private void handleEmployeeLogin(ActionEvent event) {
-        String username = employeeUsernameField.getText();
-        String password = employeePasswordField.getText();
-
-        if (validateCredentials(username, password, "employees")) {
-            goToPage(event, "/com/example/carrentalsystem/employeeDashboard.fxml", "Employee Dashboard");
-        } else {
-            showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid employee username or password.");
-        }
-    }
     private boolean validateAdminCredentials(String username, String password) {
         try (InputStream inputStream = getClass().getResourceAsStream("/com/example/carrentalsystem/admin.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {

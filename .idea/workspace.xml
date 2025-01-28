@@ -5,28 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d7cb55a-3cf9-4f4d-920c-9cb559efbf18" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/login.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/ActiveCustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/ActiveCustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/AddCarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/AddCarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/AdminFeedbackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/AdminFeedbackController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/AvailableCarsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/AvailableCarsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/DashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/FeedbackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/FeedbackController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/ForgotPasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/ForgotPasswordController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/MyBookingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/MyBookingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/RentCarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/RentCarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/ReturnCarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/ReturnCarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/SignupController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/UserDashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/UserDashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/ActiveCustomer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/ActiveCustomer.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/addCar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/addCar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/availableCars.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/availableCars.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/forgotPassword.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/forgotPassword.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,9 +21,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="Class" />
         <option value="FxmlFile" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -69,14 +54,14 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/USER/IdeaProjects/CarRentalSystem/src/main/resources/com/example/carrentalsystem/images",
+    "last_opened_file_path": "C:/Users/USER/Downloads/fontawesomefx-8.9.jar",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.editor",
@@ -107,7 +92,8 @@
       <option name="presentableId" value="Default" />
       <updated>1737234754873</updated>
       <workItem from="1737907336717" duration="19921000" />
-      <workItem from="1737956538973" duration="56325000" />
+      <workItem from="1737956538973" duration="56693000" />
+      <workItem from="1738045452476" duration="3105000" />
     </task>
     <servers />
   </component>
