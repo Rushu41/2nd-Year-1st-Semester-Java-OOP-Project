@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Button?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.carrentalsystem.RentCarCreditCardDetailsController"
+            style="-fx-background-color: #f7f7f7;">
+    <VBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+        <Label text="Credit Card Details" style="-fx-font-size: 24; -fx-font-weight: bold;" />
+
+        <GridPane hgap="10" vgap="10" alignment="CENTER">
+            <Label text="Card Number:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <TextField fx:id="rentCarCardNumberField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+            <Label text="Expiry Date:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <DatePicker fx:id="rentCarExpiryDatePicker" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+            <Label text="CVV:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+            <TextField fx:id="rentCarCvvField" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+        </GridPane>
+
+        <Button text="Submit" onAction="#handleRentCarSubmit" style="-fx-font-size: 16;" />
+        <Button text="Back" onAction="#handleRentCarBackToPayment" style="-fx-font-size: 16;" />
+    </VBox>
+</AnchorPane>

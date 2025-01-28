@@ -27,16 +27,13 @@ public class CreditCardDetailsController {
     private TextField cvvField;
 
     private PaymentController paymentController;
-    private RentCarPaymentController rentcarpaymentController;
     private String username;
     private String email;
 
     public void setPaymentController(PaymentController paymentController) {
         this.paymentController = paymentController;
     }
-    public void setRentCarPaymentController(RentCarPaymentController rentcarpaymentController) {
-        this.rentcarpaymentController = rentcarpaymentController;
-    }
+
 
     public void setUserDetails(String username, String email) {
         this.username = username;
@@ -59,9 +56,6 @@ public class CreditCardDetailsController {
 
         if (paymentController != null) {
             paymentController.setCreditCardDetails(cardNumber, formattedExpiryDate, cvv);
-        }
-        if (rentcarpaymentController != null) {
-            rentcarpaymentController.setCreditCardDetails(cardNumber, formattedExpiryDate, cvv);
         }
 
         // Generate receipt content with username and email

@@ -14,6 +14,8 @@ import javafx.scene.Node;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
+import java.io.FileNotFoundException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -26,42 +28,43 @@ public class RentCarPaymentController {
     @FXML
     private TextField emailField;
 
-    private String paymentMethod = "";
-    private String cardNumber = "";
-    private String expiryDate = "";
-    private String cvv = "";
-    private String bkashPhone = "";
-    private String nagadPhone = "";
+    private String rentCarPaymentMethod = "";
+    private String rentCarCardNumber = "";
+    private String rentCarExpiryDate = "";
+    private String rentCarCvv = "";
+    private String rentCarBkashPhone = "";
+    private String rentCarBkashPin = "";
+    private String rentCarNagadPhone = "";
+    private String rentCarNagadPin = "";
 
     @FXML
     public void initialize() {
         // Set the username from UserSession and make the field non-editable
-
         usernameField.setText(UserSession.getLoggedInUsername());
         usernameField.setEditable(false);
     }
 
     @FXML
-    private void handleCreditCardPayment(ActionEvent event) {
+    private void handleRentCarCreditCardPayment(ActionEvent event) {
         if (usernameField.getText().isEmpty() || emailField.getText().isEmpty()) {
             showAlert("Error", "Please fill in all fields before proceeding.");
             return;
         }
-        paymentMethod = "Credit Card";
+        rentCarPaymentMethod = "Credit Card";
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/CreditCardDetails.fxml"));
-            Parent creditCardPage = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/rentCarCreditCardDetails.fxml"));
+            Parent rentCarCreditCardPage = loader.load();
 
-            CreditCardDetailsController creditCardController = loader.getController();
-            creditCardController.setRentCarPaymentController(this);
+            RentCarCreditCardDetailsController rentCarCreditCardController = loader.getController();
+            rentCarCreditCardController.setRentCarPaymentController(this);
 
-            // Pass the username and email to the CreditCardDetailsController
-            creditCardController.setUserDetails(usernameField.getText(), emailField.getText());
+            // Pass the username and email to the RentCarCreditCardDetailsController
+            rentCarCreditCardController.setRentCarUserDetails(usernameField.getText(), emailField.getText());
 
-            Scene creditCardScene = new Scene(creditCardPage);
+            Scene rentCarCreditCardScene = new Scene(rentCarCreditCardPage);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(creditCardScene);
-            stage.setTitle("Credit Card Details");
+            stage.setScene(rentCarCreditCardScene);
+            stage.setTitle("Rent Car Credit Card Details");
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,26 +72,26 @@ public class RentCarPaymentController {
     }
 
     @FXML
-    private void handleBkashPayment(ActionEvent event) {
+    private void handleRentCarBkashPayment(ActionEvent event) {
         if (usernameField.getText().isEmpty() || emailField.getText().isEmpty()) {
             showAlert("Error", "Please fill in all fields before proceeding.");
             return;
         }
-        paymentMethod = "Bkash";
-        showQRCodePopup("Bkash QR Code", "/com/example/carrentalsystem/images/bkash_qr.jpg");
+        rentCarPaymentMethod = "Bkash";
+        showRentCarQRCodePopup("Bkash QR Code", "/com/example/carrentalsystem/images/bkash_qr.jpg");
     }
 
     @FXML
-    private void handleNagadPayment(ActionEvent event) {
+    private void handleRentCarNagadPayment(ActionEvent event) {
         if (usernameField.getText().isEmpty() || emailField.getText().isEmpty()) {
             showAlert("Error", "Please fill in all fields before proceeding.");
             return;
         }
-        paymentMethod = "Nagad";
-        showQRCodePopup("Nagad QR Code", "/com/example/carrentalsystem/images/nagad_qr.png");
+        rentCarPaymentMethod = "Nagad";
+        showRentCarQRCodePopup("Nagad QR Code", "/com/example/carrentalsystem/images/nagad_qr.png");
     }
 
-    private void showQRCodePopup(String title, String qrCodeImagePath) {
+    private void showRentCarQRCodePopup(String title, String qrCodeImagePath) {
         Dialog<Void> dialog = new Dialog<>();
         dialog.setTitle(title);
         dialog.setHeaderText("Scan the QR code to complete your payment.");
@@ -109,41 +112,45 @@ public class RentCarPaymentController {
 
         dialog.setResultConverter(buttonType -> {
             if (buttonType == okButton) {
-                System.out.println("Payment successful via " + paymentMethod);
+                System.out.println("Payment successful via " + rentCarPaymentMethod);
             }
             return null;
         });
 
         dialog.showAndWait();
     }
-
     @FXML
-    private void handleGenerateReceipt(ActionEvent event) {
-        String username = usernameField.getText();
-        String email = emailField.getText();
+    private void handleRentCarGenerateReceipt(ActionEvent event) {
+        String rentCarUsername = usernameField.getText();
+        String rentCarEmail = emailField.getText();
 
-        if (username.isEmpty() || email.isEmpty()) {
+        if (rentCarUsername.isEmpty() || rentCarEmail.isEmpty()) {
             showAlert("Error", "Please fill in all fields.");
             return;
         }
 
-        if (insertPaymentDetails(username, email)) {
-            String receiptContent = String.format(
+        if (insertRentCarPaymentDetails(rentCarUsername, rentCarEmail)) {
+            String rentCarReceiptContent = String.format(
                     "Receipt:\nUsername: %s\nEmail: %s\nPayment Method: %s\nTotal Cost: $80\nPayment Successful!",
-                    username, email, paymentMethod
+                    rentCarUsername, rentCarEmail, rentCarPaymentMethod
             );
 
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/ReceiptView.fxml"));
-                Parent receiptPage = loader.load();
+                URL fxmlLocation = getClass().getResource("/com/example/carrentalsystem/rentCarReceiptView.fxml");
+                if (fxmlLocation == null) {
+                    throw new FileNotFoundException("FXML file not found");
+                }
+                System.out.println("FXML Location: " + fxmlLocation);
+                FXMLLoader loader = new FXMLLoader(fxmlLocation);
+                Parent rentCarReceiptPage = loader.load();
 
-                ReceiptViewController receiptController = loader.getController();
-                receiptController.setReceiptContent(receiptContent);
+                RentCarReceiptViewController rentCarReceiptController = loader.getController();
+                rentCarReceiptController.setRentCarReceiptContent(rentCarReceiptContent);
 
-                Scene receiptScene = new Scene(receiptPage);
+                Scene rentCarReceiptScene = new Scene(rentCarReceiptPage);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(receiptScene);
-                stage.setTitle("Receipt");
+                stage.setScene(rentCarReceiptScene);
+                stage.setTitle("Rent Car Receipt");
                 stage.show();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -152,44 +159,41 @@ public class RentCarPaymentController {
             showAlert("Error", "Failed to save payment details.");
         }
     }
-
     @FXML
-    private void handleBackToMain(ActionEvent event) {
+    private void handleRentCarBackToMain(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/subscription.fxml")); // Replace with your main screen FXML
-            Parent mainScreen = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/rentCar.fxml")); // Replace with your main screen FXML
+            Parent rentCarMainScreen = loader.load();
 
-            Scene mainScene = new Scene(mainScreen);
+            Scene rentCarMainScene = new Scene(rentCarMainScreen);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(mainScene);
-            stage.setTitle("Main Screen");
+            stage.setScene(rentCarMainScene);
+            stage.setTitle("Rent Car Main Screen");
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private boolean insertPaymentDetails(String username, String email) {
+    private boolean insertRentCarPaymentDetails(String rentCarUsername, String rentCarEmail) {
         String url = "jdbc:mysql://localhost:3306/car_rental_system";
         String user = "root";
         String password = "12212108";
 
-        String query = "INSERT INTO payments (username, email, payment_method, card_number, expiry_date, cvv, bkash_phone,nagad_phone) " +
+        String query = "INSERT INTO payments (username, email, payment_method, card_number, expiry_date, cvv, bkash_phone, nagad_phone) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection(url, user, password);
              PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setString(1, username);
-            statement.setString(2, email);
-            statement.setString(3, paymentMethod);
-            statement.setString(4, cardNumber);
-            statement.setString(5, expiryDate);
-            statement.setString(6, cvv);
-            statement.setString(7, bkashPhone);
-
-            statement.setString(8, nagadPhone);
-
+            statement.setString(1, rentCarUsername);
+            statement.setString(2, rentCarEmail);
+            statement.setString(3, rentCarPaymentMethod);
+            statement.setString(4, rentCarCardNumber);
+            statement.setString(5, rentCarExpiryDate);
+            statement.setString(6, rentCarCvv);
+            statement.setString(7, rentCarBkashPhone);
+            statement.setString(8, rentCarNagadPhone);
 
             int rowsInserted = statement.executeUpdate();
             return rowsInserted > 0;
@@ -207,10 +211,10 @@ public class RentCarPaymentController {
         alert.showAndWait();
     }
 
-    public void setCreditCardDetails(String cardNumber, String expiryDate, String cvv) {
-        this.cardNumber = cardNumber;
-        this.expiryDate = expiryDate;
-        this.cvv = cvv;
-        System.out.println("Credit Card payment processed.");
+    public void setRentCarCreditCardDetails(String rentCarCardNumber, String rentCarExpiryDate, String rentCarCvv) {
+        this.rentCarCardNumber = rentCarCardNumber;
+        this.rentCarExpiryDate = rentCarExpiryDate;
+        this.rentCarCvv = rentCarCvv;
+        System.out.println("Rent Car Credit Card payment processed.");
     }
 }

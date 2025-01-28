@@ -5,7 +5,7 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.carrentalsystem.RentCarController"
-      stylesheets="freestyles.css"
+      stylesheets="@freestyles.css"
       prefWidth="1000.0" prefHeight="800.0"
       styleClass="main-container" spacing="20" style="-fx-padding: 40;">
 
@@ -58,6 +58,6 @@
     <!-- Navigation Buttons -->
     <HBox styleClass="navigation-buttons" spacing="20" alignment="CENTER">
         <Button text="Back" styleClass="navigation-button" onAction="#handleBack"/>
-        <Button text="Logout" styleClass="navigation-button" onAction="#handleLogout"/>
+        <Button text="Logout" styleClass="navigation-button" onAction="#handleLogout" />
     </HBox>
 </VBox>

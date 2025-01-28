@@ -20,21 +20,21 @@
 
             <Label text="Payment Method:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
             <HBox spacing="10" GridPane.rowIndex="2" GridPane.columnIndex="1">
-                <Button text="Credit Card" onAction="#handleCreditCardPayment">
+                <Button text="Credit Card" onAction="#handleRentCarCreditCardPayment">
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <Image url="@images/credit_card.png" />
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button text="Bkash" onAction="#handleBkashPayment">
+                <Button text="Bkash" onAction="#handleRentCarBkashPayment">
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <Image url="@images/bkash.png" />
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button text="Nagad" onAction="#handleNagadPayment">
+                <Button text="Nagad" onAction="#handleRentCarNagadPayment">
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <Image url="@images/nagad.png" />
@@ -47,7 +47,7 @@
             <Label text="80$" GridPane.rowIndex="3" GridPane.columnIndex="1" style="-fx-font-weight: bold;" />
         </GridPane>
 
-        <Button text="Generate Receipt" onAction="#handleGenerateReceipt" style="-fx-font-size: 16;" />
-        <Button text="Back" onAction="#handleBackToMain" style="-fx-font-size: 16;" />
+        <Button text="Generate Receipt" onAction="#handleRentCarGenerateReceipt" style="-fx-font-size: 16;" />
+        <Button text="Back" onAction="#handleRentCarBackToMain" style="-fx-font-size: 16;" />
     </VBox>
 </AnchorPane>
