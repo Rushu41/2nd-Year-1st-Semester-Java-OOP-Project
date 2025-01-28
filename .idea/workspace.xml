@@ -5,24 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d7cb55a-3cf9-4f4d-920c-9cb559efbf18" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/CreditCardDetailsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/PaymentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/RentalHistory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/RentalHistoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/CreditCardDetails.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/payment.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/rentalHistory.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car_image/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/car_image/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/car_image/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/DashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/UserDashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/UserDashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/CustomerController.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/CustomerController.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/cars.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/dashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/userDashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/userDashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/userDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/userDashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/SubscriptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/carrentalsystem/SubscriptionController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +88,7 @@
       <updated>1737234754873</updated>
       <workItem from="1737907336717" duration="19921000" />
       <workItem from="1737956538973" duration="56693000" />
-      <workItem from="1738045452476" duration="22324000" />
+      <workItem from="1738045452476" duration="23079000" />
     </task>
     <servers />
   </component>
