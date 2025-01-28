@@ -2,26 +2,82 @@ package com.example.carrentalsystem;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class DashboardController {
+public class DashboardController implements Initializable {
+
+    public Label availableCarsLabel;
+    public Label activeRentalsLabel;
+    public Label totalCustomersLabel;
+    public Label totalIncomeLabel;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        loadDashboardData();
+    }
+
+    private void loadDashboardData() {
+        try (Connection connection = DatabaseConnector.connect()) {
+            availableCarsLabel.setText(String.valueOf(getAvailableCars(connection)));
+            activeRentalsLabel.setText(String.valueOf(getActiveRentals(connection)));
+            totalCustomersLabel.setText(String.valueOf(getTotalCustomers(connection)));
+            totalIncomeLabel.setText("$" + getTotalIncome(connection));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private int getAvailableCars(Connection connection) throws SQLException {
+        String query = "SELECT COUNT(name) FROM cars";
+        try (PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            return resultSet.next() ? resultSet.getInt(1) : 0;
+        }
+    }
+
+    private int getActiveRentals(Connection connection) throws SQLException {
+        String query = "SELECT COUNT(car_name) FROM rentals";
+        try (PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            return resultSet.next() ? resultSet.getInt(1) : 0;
+        }
+    }
+
+    private int getTotalCustomers(Connection connection) throws SQLException {
+        String query = "SELECT COUNT(car_name) FROM return_car";
+        try (PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            return resultSet.next() ? resultSet.getInt(1) : 0;
+        }
+    }
+
+    private double getTotalIncome(Connection connection) throws SQLException {
+        String query = "SELECT SUM(price) FROM return_car";
+        try (PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            return resultSet.next() ? resultSet.getDouble(1) : 0.0;
+        }
+    }
 
     public void handleAvailableCars(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/availableCars.fxml", "Available Cars");
     }
 
-//    public void handleRentCar(ActionEvent event) {
-//        navigateToPage(event, "/com/example/carrentalsystem/rentCar.fxml", "Rent Car");
-//    }
-
     public void handleAddCar(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/addCar.fxml", "Add Car");
     }
-
 
     public void handleActiveCustomer(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/ActiveCustomer.fxml", "Active Customers");
@@ -34,7 +90,6 @@ public class DashboardController {
     public void handleReturnCar(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/returnCar.fxml", "Return Car");
     }
-
 
     public void handleFeedback(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/adminFeedback.fxml", "Admin Feedback");
@@ -51,10 +106,9 @@ public class DashboardController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(newScene);
             stage.setTitle(title);
-            stage.setWidth(1000); // Your fixed width
-            stage.setHeight(800); // Your fixed height
-            stage.setResizable(false); // Disable resizing
-
+            stage.setWidth(1000);
+            stage.setHeight(800);
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

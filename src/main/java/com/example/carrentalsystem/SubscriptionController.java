@@ -66,7 +66,7 @@ public class SubscriptionController {
     }
 
     public void handleBack(ActionEvent event) {
-        navigateToPage(event, "/com/example/carrentalsystem/dashboard.fxml", "Dashboard");
+        navigateToPage(event, "/com/example/carrentalsystem/userDashboard.fxml", "Dashboard");
     }
 
     /**

@@ -1,0 +1,229 @@
+/* Root Styles */
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #1a1a2e, #16213e);
+    -fx-font-family: 'Segoe UI';
+}
+
+/* Sidebar Styles */
+.sidebar {
+    -fx-background-color: linear-gradient(to bottom, #1e3a8a, #1e2a5a);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0, 0, 5);
+    -fx-padding: 20;
+}
+
+/* Profile Section Styles */
+.profile-section {
+    -fx-alignment: center;
+    -fx-spacing: 15;
+}
+
+/* Admin Icon Image */
+#adminIcon {
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
+    -fx-border-width: 2;
+    -fx-border-color: #ffffff; /* White border around the icon */
+    -fx-padding: 5;
+}
+
+/* Admin Label Styling */
+.admin-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff; /* White text */
+    -fx-padding: 5;
+}
+
+/* Role Label Styling */
+.role-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff; /* White text */
+    -fx-opacity: 0.7; /* Slightly faded text */
+}
+
+.menu-button {
+    -fx-background-color: linear-gradient(to bottom, #e8dac8, #d9c8ab); /* Beige gradient */
+    -fx-text-fill: #1a1a2e; /* Deep navy text to contrast */
+    -fx-font-size: 16px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 15 25;
+    -fx-background-radius: 10;
+    -fx-border-color: #c9ad7f; /* Subtle border matching the beige tones */
+    -fx-border-width: 1px;
+    -fx-transition: 0.3s ease-in-out;
+}
+
+.menu-button:hover {
+    -fx-background-color: linear-gradient(to bottom right, #6b5fbc, #24216c); /* Indigo to Navy Blue gradient */
+    -fx-text-fill: #ffffff; /* White text for better contrast */
+    -fx-border-color: #4f47a3; /* Deep indigo border */
+    -fx-translate-x: 5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 4);
+}
+/* Main Content Area */
+.main-content {
+    -fx-background-color: #f8fafc;
+    -fx-padding: 30;
+    -fx-spacing: 30;
+}
+
+/* Header Section */
+.header-section {
+    -fx-padding: 0 0 20 0;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 0 0 1 0;
+}
+
+.dashboard-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e293b;
+}
+
+.quick-stats Label {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 14px;
+}
+
+/* Statistics Cards */
+.stats-grid {
+    -fx-padding: 20 0;
+}
+
+.statistics-card {
+    -fx-background-radius: 15;
+    -fx-padding: 25;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 4);
+    -fx-transition-duration: 0.2s;
+}
+
+.statistics-card:hover {
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0, 0, 6);
+}
+
+.stat-icon {
+    -fx-fill: rgba(255, 255, 255, 0.2);
+}
+
+.stat-title {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+}
+
+.stat-value {
+    -fx-text-fill: white;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+}
+
+.stat-trend {
+    -fx-text-fill: rgba(255, 255, 255, 0.9);
+    -fx-font-size: 16px;
+}
+
+/* Enhanced Card Colors with more vibrant gradients */
+#availableCars {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #00b09b 0%, #96c93d 100%);
+}
+
+#totalIncome {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ff9966 0%, #ff5e62 100%);
+}
+
+#totalCustomers {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #4facfe 0%, #00f2fe 100%);
+}
+
+#activeRentals {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #da4453 0%, #89216b 100%);
+}
+
+/* Hover effects for cards */
+#availableCars:hover {
+    -fx-effect: dropshadow(gaussian, #96c93d, 10, 0, 0, 0);
+}
+
+#totalIncome:hover {
+    -fx-effect: dropshadow(gaussian, #ff5e62, 10, 0, 0, 0);
+}
+
+#totalCustomers:hover {
+    -fx-effect: dropshadow(gaussian, #00f2fe, 10, 0, 0, 0);
+}
+
+#activeRentals:hover {
+    -fx-effect: dropshadow(gaussian, #89216b, 10, 0, 0, 0);
+}
+
+/* Alternative gradients if you want to try different color combinations */
+.alternative-gradients {
+    /* Fresh Mint */
+    .mint {
+        -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #00cdac 0%, #8dda7b 100%);
+    }
+
+    /* Royal Purple */
+    .royal {
+        -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #834d9b 0%, #d04ed6 100%);
+    }
+
+    /* Ocean Blue */
+    .ocean {
+        -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #1cb5e0 0%, #000851 100%);
+    }
+
+    /* Sunset Orange */
+    .sunset {
+        -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ff512f 0%, #f09819 100%);
+    }
+}
+
+/* Recent Activity Section */
+.recent-activity {
+    -fx-padding: 20 0;
+}
+
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e293b;
+}
+
+.activity-list {
+    -fx-background-radius: 10;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 2);
+}
+
+/* Quick Actions */
+.quick-actions {
+    -fx-padding: 20 0;
+}
+
+.action-button {
+    -fx-background-color: white;
+    -fx-text-fill: #1e293b;
+    -fx-font-weight: bold;
+    -fx-padding: 15 25;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 2);
+}
+
+.action-button:hover {
+    -fx-background-color: #f1f5f9;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0, 0, 3);
+}
+
+/* Logout Button */
+.logout-button {
+    -fx-background-color: #8B0000; /* Deep red color */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 15 25;
+    -fx-background-radius: 10;
+}
+.logout-button:hover {
+    -fx-background-color: #B22222; /* Slightly lighter deep red on hover */
+}
