@@ -1,30 +1,155 @@
-/* styles.css */
-.table-view {
-    -fx-background-color: white;
-    -fx-border-color: #ddd;
-    -fx-border-radius: 5px;
+.main-container {
+    -fx-background-color: linear-gradient(to bottom right, #1E1E2E, #2D2D44);
+    -fx-padding: 30px;
 }
 
-.table-row-cell:filled:selected {
-    -fx-background-color: #4caf50;
+/* Glassmorphism Title */
+.page-title {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
     -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.3), 10, 0, 0, 0);
+    -fx-padding: 0 0 30px 0;
 }
 
-.table-row-cell:filled:hover {
-    -fx-background-color: #e0f7fa;
+/* Premium Table Styling */
+.dealer-table {
+    -fx-background-color: rgba(255, 255, 255, 0.95);
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0, 0, 10);
+    -fx-padding: 5px;
 }
 
-.table-row-cell:filled {
-    -fx-background-color: white;
-    -fx-border-color: #ddd;
+/* Table Header Styling */
+.dealer-table .column-header-background {
+    -fx-background-color: linear-gradient(to right, #2C3E50, #3498DB);
+    -fx-background-radius: 15px 15px 0 0;
+    -fx-padding: 5px;
+}
+
+.dealer-table .column-header {
+    -fx-background-color: transparent;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-padding: 15px;
+    -fx-border-color: transparent;
+    -fx-alignment: CENTER_LEFT;
+}
+
+/* Table Content Styling */
+.dealer-table .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.05) transparent;
     -fx-border-width: 0 0 1 0;
+    -fx-padding: 10px 5px;
+    -fx-cell-size: 50px;
 }
 
-.button {
-    -fx-background-color: #4caf50;
+/* Alternating Row Colors with Gradient */
+.dealer-table .table-row-cell:odd {
+    -fx-background-color: rgba(52, 152, 219, 0.05);
+}
+
+/* Hover Effect */
+.dealer-table .table-row-cell:hover {
+    -fx-background-color: linear-gradient(to right, rgba(52, 152, 219, 0.1), rgba(52, 152, 219, 0.2));
+    -fx-transition: background-color 0.3s ease;
+    -fx-cursor: hand;
+}
+
+/* Selected Row */
+.dealer-table .table-row-cell:selected {
+    -fx-background-color: linear-gradient(to right, rgba(52, 152, 219, 0.2), rgba(52, 152, 219, 0.3));
+    -fx-text-fill: #2C3E50;
+    -fx-font-weight: bold;
+}
+
+/* Table Cell Styling */
+.dealer-table .table-cell {
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10px 15px;
+    -fx-text-fill: #2C3E50;
+    -fx-font-size: 13px;
+    -fx-border-color: transparent;
+}
+
+/* Custom Scrollbar */
+.dealer-table .scroll-bar:vertical,
+.dealer-table .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-pref-width: 12;
+    -fx-pref-height: 12;
+    -fx-padding: 2;
+}
+
+.dealer-table .scroll-bar .thumb {
+    -fx-background-color: #3498DB;
+    -fx-background-radius: 6px;
+    -fx-opacity: 0.6;
+}
+
+.dealer-table .scroll-bar .thumb:hover {
+    -fx-opacity: 0.8;
+}
+
+/* Premium Back Button */
+.back-btn {
+    -fx-background-color: linear-gradient(to right, #2C3E50, #3498DB);
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-padding: 10px 20px;
-    -fx-border-radius: 5px;
+    -fx-padding: 12px 30px;
+    -fx-background-radius: 25px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+    -fx-min-width: 120px;
+}
+
+.back-btn:hover {
+    -fx-background-color: linear-gradient(to right, #34495E, #2980B9);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 15, 0, 0, 7);
+    -fx-translate-y: -1px;
+}
+
+.back-btn:pressed {
+    -fx-translate-y: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);
+}
+
+/* Empty Table Placeholder */
+.dealer-table .placeholder {
+    -fx-background-color: transparent;
+}
+
+.dealer-table .placeholder .label {
+    -fx-text-fill: #95A5A6;
+    -fx-font-size: 14px;
+}
+
+/* Animation for rows */
+@keyframes fadeIn {
+    0% { -fx-opacity: 0; -fx-translate-y: 10px; }
+    100% { -fx-opacity: 1; -fx-translate-y: 0; }
+}
+
+.dealer-table .table-row-cell {
+    -fx-opacity: 0;
+    -fx-animation: fadeIn 0.5s ease forwards;
+}
+
+/* Cell text selection */
+.dealer-table .table-cell:selected {
+    -fx-text-fill: #2C3E50;
+}
+
+/* Table column resize */
+.dealer-table .column-header .label {
+    -fx-alignment: CENTER_LEFT;
+}
+
+.dealer-table .column-drag-header {
+    -fx-background-color: #3498DB;
+    -fx-opacity: 0.7;
+    -fx-background-radius: 8px;
 }

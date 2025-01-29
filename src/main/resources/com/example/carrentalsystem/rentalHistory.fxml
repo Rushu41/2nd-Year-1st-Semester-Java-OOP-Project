@@ -5,8 +5,16 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.carrentalsystem.RentalHistoryController">
-    <TableView fx:id="rentalHistoryTable" layoutX="14.0" layoutY="20.0" prefHeight="604.0" prefWidth="960.0">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0"
+            xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            fx:controller="com.example.carrentalsystem.RentalHistoryController"
+            stylesheets="@styles/rentalHistory.css">
+
+    <!-- Rental History Table -->
+    <TableView fx:id="rentalHistoryTable" layoutX="14.0" layoutY="20.0"
+               prefHeight="604.0" prefWidth="960.0"
+               styleClass="dealer-table">
         <columns>
             <TableColumn fx:id="carNameColumn" prefWidth="240.0" text="Car Name" />
             <TableColumn fx:id="carTypeColumn" prefWidth="240.0" text="Car Type" />
@@ -14,5 +22,9 @@
             <TableColumn fx:id="returnDateColumn" prefWidth="240.0" text="Return Date" />
         </columns>
     </TableView>
-    <Button fx:id="backButton" layoutX="14.0" layoutY="651.0" onAction="#handleBack" prefHeight="25.0" prefWidth="75.0" text="Back" />
+
+    <!-- Back Button -->
+    <Button fx:id="backButton" layoutX="14.0" layoutY="651.0"
+            onAction="#handleBack" prefHeight="40.0" prefWidth="120.0"
+            text="Back" styleClass="back-btn"/>
 </AnchorPane>

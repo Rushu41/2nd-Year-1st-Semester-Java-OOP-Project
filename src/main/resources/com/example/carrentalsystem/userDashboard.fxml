@@ -50,7 +50,7 @@
             <VBox spacing="25" styleClass="content-area" HBox.hgrow="ALWAYS">
                 <!-- Promotional Banner -->
                 <HBox alignment="CENTER" styleClass="promo-banner">
-                    <Label styleClass="promo-text" text="🌟 Special Offer: Get 20% off your first rental!" />
+                    <Label styleClass="promo-text" text="🌟 Special Offer: Get 10% off for one month" />
                 </HBox>
 
                 <!-- Car Display Section -->

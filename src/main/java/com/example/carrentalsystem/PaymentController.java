@@ -192,7 +192,7 @@ public class PaymentController {
     private boolean insertPaymentDetails(String username, String email) {
         String url = "jdbc:mysql://localhost:3306/car_rental_system";
         String user = "root";
-        String password = "rty#234545045#@";
+        String password = "12212108";
 
         String query = "INSERT INTO payments (username, email, payment_method, card_number, expiry_date, cvv) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
@@ -217,7 +217,7 @@ public class PaymentController {
 
     private boolean updateSubscriptionStatus(String username, int isSubscribed) {
         String query = "UPDATE users SET is_subscribed = ? WHERE username = ?";
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/car_rental_system", "root", "rty#234545045#@");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/car_rental_system", "root", "12212108");
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, isSubscribed);

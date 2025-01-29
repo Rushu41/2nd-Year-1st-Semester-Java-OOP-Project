@@ -4,36 +4,47 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Label?>
 
-<VBox alignment="CENTER" fillWidth="false" spacing="20" style="-fx-padding: 20; -fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" stylesheets="styles/mybookings.css" fx:controller="com.example.carrentalsystem.MyBookingsController">
-    <!-- Table to display rental information -->
-    <TableView fx:id="rentalTable" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: white; -fx-border-color: #ddd; -fx-border-radius: 5px;">
+<VBox alignment="CENTER"
+      spacing="20"
+      styleClass="main-container"
+      stylesheets="@styles/mybookings.css"
+      xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.carrentalsystem.MyBookingsController">
+
+    <Label text="My Bookings"
+           styleClass="page-title"/>
+
+    <TableView fx:id="rentalTable"
+               prefHeight="600.0"
+               prefWidth="1000.0"
+               styleClass="dealer-table">
         <columns>
-            <TableColumn fx:id="carNameColumn" prefWidth="226.0" text="Car Name" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
-            <TableColumn fx:id="customerNameColumn" prefWidth="224.0" text="Customer Name" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
-            <TableColumn fx:id="startDateColumn" prefWidth="179.0" text="Start Date" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
-            <TableColumn fx:id="endDateColumn" prefWidth="210.0" text="End Date" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
-            <TableColumn fx:id="rentalDaysColumn" prefWidth="160.0" text="Rental Days" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
+            <TableColumn fx:id="carNameColumn"
+                         prefWidth="200.0"
+                         text="Vehicle"/>
+            <TableColumn fx:id="customerNameColumn"
+                         prefWidth="200.0"
+                         text="Customer"/>
+            <TableColumn fx:id="startDateColumn"
+                         prefWidth="200.0"
+                         text="Start Date"/>
+            <TableColumn fx:id="endDateColumn"
+                         prefWidth="200.0"
+                         text="End Date"/>
+            <TableColumn fx:id="rentalDaysColumn"
+                         prefWidth="200.0"
+                         text="Duration"/>
         </columns>
-        <style>
-            <![CDATA[
-                .table-row-cell:filled:selected {
-                    -fx-background-color: #4caf50;
-                    -fx-text-fill: white;
-                }
-                .table-row-cell:filled:hover {
-                    -fx-background-color: #e0f7fa;
-                }
-                .table-row-cell:filled {
-                    -fx-background-color: white;
-                    -fx-border-color: #ddd;
-                    -fx-border-width: 0 0 1 0;
-                }
-            ]]>
-        </style>
+        <placeholder>
+            <Label text="No bookings available"/>
+        </placeholder>
     </TableView>
 
-    <!-- Back Button -->
-    <Button onAction="#handleBack" prefWidth="150.0" style="-fx-background-color: #4caf50; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10px 20px; -fx-border-radius: 5px;" text="Back" />
+    <Button onAction="#handleBack"
+            text="Back"
+            styleClass="back-btn"/>
+
 </VBox>
