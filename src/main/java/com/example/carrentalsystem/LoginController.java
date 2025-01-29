@@ -37,9 +37,6 @@ public class LoginController {
     private PasswordField adminPasswordField, userPasswordField;
 
     @FXML
-    private Button adminLoginButton, userLoginButton;
-
-    @FXML
     public void initialize() {
         // Set user login page as the default view
         adminPane.setTranslateX(-1000); // Hide the admin pane

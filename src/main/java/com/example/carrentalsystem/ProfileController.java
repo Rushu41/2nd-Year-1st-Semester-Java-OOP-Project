@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.nio.file.Files;
 import java.sql.*;
-import java.nio.file.StandardCopyOption;
+
 
 public class ProfileController {
 
@@ -24,7 +24,7 @@ public class ProfileController {
         @FXML
         private Circle photoCircle;
         @FXML
-        private TextField userIdField, firstNameField, lastNameField, ageField, genderField, dateOfBirthField, usernameField;
+        private TextField  firstNameField, lastNameField, ageField, genderField, dateOfBirthField, usernameField;
         @FXML
         private TextField emailField, phoneField;
         @FXML

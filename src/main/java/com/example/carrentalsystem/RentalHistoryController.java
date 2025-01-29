@@ -37,8 +37,7 @@ public class RentalHistoryController {
     @FXML
     private TableColumn<RentalHistory, String> returnDateColumn;
 
-    @FXML
-    private Button backButton;
+
 
     private ObservableList<RentalHistory> rentalHistoryList = FXCollections.observableArrayList();
 
@@ -75,20 +74,7 @@ public class RentalHistoryController {
         }
     }
 
-    @FXML
-    private void handleBack(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/dashboard.fxml"));
-            Scene scene = new Scene(loader.load());
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Dashboard");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert("Navigation Error", "Could not return to the dashboard.");
-        }
-    }
+
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

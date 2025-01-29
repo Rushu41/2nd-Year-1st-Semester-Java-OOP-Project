@@ -26,9 +26,6 @@ public class AvailableCarsController {
     private TableColumn<Car, String> carNameColumn;
 
     @FXML
-    private TableColumn<Car, Integer> carSeatsColumn;
-
-    @FXML
     private TableColumn<Car, String> carTypeColumn;
 
     @FXML

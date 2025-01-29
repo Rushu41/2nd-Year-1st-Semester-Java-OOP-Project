@@ -12,12 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class SignupController {
@@ -95,7 +90,6 @@ public class SignupController {
             return false;
         }
     }
-
     @FXML
     public void handleSignup(ActionEvent event) {
         String firstName = this.firstNameField.getText();
@@ -106,6 +100,36 @@ public class SignupController {
         String username = this.usernameField.getText();
         String password = this.passwordField.getText();
         String confirmPassword = this.confirmPasswordField.getText();
+
+        if (dob != null) {
+            // Calculate age based on DatePicker input
+            LocalDate today = LocalDate.now();
+            int yearsBetween = today.getYear() - dob.getYear();
+            int monthsBetween = today.getMonthValue() - dob.getMonthValue();
+            int daysBetween = today.getDayOfMonth() - dob.getDayOfMonth();
+
+            // Adjust for incomplete years
+            if (monthsBetween < 0 || (monthsBetween == 0 && daysBetween < 0)) {
+                yearsBetween--;
+            }
+
+            if (yearsBetween < 18) {
+                // Show alert if user is not eligible
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Age Restriction");
+                alert.setHeaderText("You are not eligible to sign up.");
+                alert.setContentText("You must be at least 18 years old.");
+                alert.showAndWait();
+                return; // Exit early if the user is under 18
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Invalid Date");
+            alert.setHeaderText("Missing Date of Birth");
+            alert.setContentText("Please select a valid date of birth.");
+            alert.showAndWait();
+            return;
+        }
 
         if (this.areInputsValid(firstName, lastName, age, gender, dob, username, password, confirmPassword)) {
             try {
@@ -120,14 +144,15 @@ public class SignupController {
             } catch (SQLException e) {
                 this.statusLabel.setText("Error saving data: " + e.getMessage());
                 this.statusLabel.setStyle("-fx-text-fill: red;");
-                e.printStackTrace(); // Print the full stack trace for debugging
+                e.printStackTrace();
             } catch (IOException e) {
                 this.statusLabel.setText("Error loading login page.");
                 this.statusLabel.setStyle("-fx-text-fill: red;");
-                e.printStackTrace(); // Print the full stack trace for debugging
+                e.printStackTrace();
             }
         }
     }
+
 
     public void handleBack(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/login.fxml", "Login");

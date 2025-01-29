@@ -208,18 +208,7 @@ public class PaymentController {
             showAlert("Error", "Failed to save payment details.");
         }
     }
-    private void navigateToPage(ActionEvent event, String fxmlPath, String title) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Scene scene = new Scene(fxmlLoader.load());
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle(title);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
 
     @FXML
