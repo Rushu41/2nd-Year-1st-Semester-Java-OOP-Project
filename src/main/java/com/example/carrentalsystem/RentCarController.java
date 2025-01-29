@@ -50,8 +50,8 @@ public class RentCarController {
     @FXML
     private Button confirmBillButton;
 
-    @FXML
-    private Button generateReceiptButton;
+//    @FXML
+////    private Button generateReceiptButton;
     @FXML
     private Button logoutButton;
     private ToggleGroup rentOptionGroup;
@@ -64,9 +64,9 @@ public class RentCarController {
         confirmBillButton.setDisable(false);
     }
 
-    public void enableGenerateReceiptButton() {
-        generateReceiptButton.setDisable(false);
-    }
+//    public void enableGenerateReceiptButton() {
+//        generateReceiptButton.setDisable(false);
+//    }
     // Getter for the username
     public String getUsername() {
         return username;
@@ -95,7 +95,7 @@ public class RentCarController {
         // Check if we're returning from payment
         if (UserSession.isReturningFromPayment()) {
             logoutButton.setDisable(true);
-            generateReceiptButton.setDisable(false);
+//            generateReceiptButton.setDisable(false);
             UserSession.setReturningFromPayment(false);
         }
 
@@ -125,6 +125,20 @@ public class RentCarController {
             showAlert(Alert.AlertType.ERROR, "Database Error", "Unable to load car names.");
         }
     }
+    private boolean isUserSubscribed(String username) {
+        String query = "SELECT is_subscribed FROM users WHERE username = ?";
+        try (Connection connection = DatabaseConnector.connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("is_subscribed") == 1;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     @FXML
     public void handleCalculateCost() {
         String carName = carNameComboBox.getValue();
@@ -151,7 +165,7 @@ public class RentCarController {
                         return;
                     }
                     int hours = Integer.parseInt(hoursText);
-                    totalCost = hours * (0.4 * rentPricePerDay ); // Hourly cost
+                    totalCost = hours * (0.4 * rentPricePerDay); // Hourly cost
                 } else if (dailyRadioButton.isSelected()) {
                     LocalDate startDate = startDatePicker.getValue();
                     LocalDate endDate = endDatePicker.getValue();
@@ -163,6 +177,11 @@ public class RentCarController {
 
                     long rentalDays = ChronoUnit.DAYS.between(startDate, endDate) + 1;
                     totalCost = rentalDays * rentPricePerDay; // Daily cost
+                }
+
+                // Check if the user is subscribed and apply a 10% discount if true
+                if (isUserSubscribed(username)) {
+                    totalCost *= 0.9; // Apply 10% discount
                 }
 
                 totalCostLabel.setText(String.format("Total Cost: $%.2f", totalCost));
@@ -207,11 +226,16 @@ public class RentCarController {
                 double hourlyRate = 0.4 * getRentPricePerDay(carName); // Calculate hourly rate
                 totalCost = hours * hourlyRate;
 
+                // Apply discount if user is subscribed
+                if (isUserSubscribed(username)) {
+                    totalCost *= 0.9;
+                }
+
                 // Use the current date as a default for start_date and end_date
                 LocalDate defaultDate = LocalDate.now();
 
                 // Insert into database with placeholder values for start_date and end_date
-                insertQuery = "INSERT INTO rentals (car_name, customer_name, hour, rental_type, total_cost, start_date, end_date,rental_days) VALUES (?, ?, ?, ?, ?, ?, ?,0)";
+                insertQuery = "INSERT INTO rentals (car_name, customer_name, hour, rental_type, total_cost, start_date, end_date, rental_days) VALUES (?, ?, ?, ?, ?, ?, ?, 0)";
                 insertStatement = connection.prepareStatement(insertQuery);
                 insertStatement.setString(1, carName);
                 insertStatement.setString(2, customerName);
@@ -220,8 +244,7 @@ public class RentCarController {
                 insertStatement.setDouble(5, totalCost);
                 insertStatement.setObject(6, defaultDate); // Placeholder for start_date
                 insertStatement.setObject(7, defaultDate); // Placeholder for end_date
-            }
-            else if (dailyRadioButton.isSelected()) {
+            } else if (dailyRadioButton.isSelected()) {
                 rentalType = "Daily";
 
                 if (startDate == null || endDate == null || startDate.isAfter(endDate)) {
@@ -232,6 +255,11 @@ public class RentCarController {
                 long rentalDays = ChronoUnit.DAYS.between(startDate, endDate) + 1;
                 double dailyRate = getRentPricePerDay(carName);
                 totalCost = rentalDays * dailyRate;
+
+                // Apply discount if user is subscribed
+                if (isUserSubscribed(username)) {
+                    totalCost *= 0.9;
+                }
 
                 // Insert into database with start and end dates and rental_days
                 insertQuery = "INSERT INTO rentals (car_name, customer_name, start_date, end_date, rental_type, total_cost, rental_days) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -266,8 +294,8 @@ public class RentCarController {
             // Enable confirm bill button
             confirmBillButton.setDisable(false);
 
-            // Disable generate receipt button until payment is completed
-            generateReceiptButton.setDisable(true);
+//            // Disable generate receipt button until payment is completed
+//            generateReceiptButton.setDisable(true);
 
             // Don't reset fields anymore - remove the resetFields() call
             // Instead, just refresh available cars
@@ -437,7 +465,7 @@ public class RentCarController {
         storeRentalData();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/payment.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/rentcarpayment.fxml"));
             Scene scene = new Scene(loader.load());
             PaymentController paymentController = loader.getController();
             paymentController.setRentCarController(this);
@@ -454,11 +482,41 @@ public class RentCarController {
 
     @FXML
     public void handleBack(ActionEvent event) {
-        // Cancel the rental order and remove the row from the rentals table
-        cancelRentalOrder();
+        // Create a custom confirmation dialog
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm Cancel");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to cancel the rental process? This will remove your current rental order.");
 
-        // Navigate back to the user dashboard
-        navigateToPage(event, "/com/example/carrentalsystem/userDashboard.fxml", "Dashboard");
+        // Style the alert dialog
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+                getClass().getResource("/com/example/carrentalsystem/styles/alerts.css").toExternalForm()
+        );
+        dialogPane.getStyleClass().add("custom-alert");
+
+        // Customize the buttons
+        ButtonType yesButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+        ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+        alert.getButtonTypes().setAll(yesButton, noButton);
+
+        // Get the buttons from the dialog pane and style them
+        Button yesBtn = (Button) alert.getDialogPane().lookupButton(yesButton);
+        Button noBtn = (Button) alert.getDialogPane().lookupButton(noButton);
+
+        yesBtn.getStyleClass().add("yes-button");
+        noBtn.getStyleClass().add("no-button");
+
+        // Show the dialog and wait for response
+        alert.showAndWait().ifPresent(response -> {
+            if (response == yesButton) {
+                // User clicked Yes, cancel the rental order
+                cancelRentalOrder();
+                // Navigate back to the user dashboard
+                navigateToPage(event, "/com/example/carrentalsystem/userDashboard.fxml", "Dashboard");
+            }
+            // If user clicked No, do nothing and stay on current page
+        });
     }
 
     private void cancelRentalOrder() {

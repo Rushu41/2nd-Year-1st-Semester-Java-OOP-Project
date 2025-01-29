@@ -24,8 +24,8 @@
     <!-- Profile Details Section -->
     <VBox layoutX="24.0" layoutY="43.0" prefHeight="731.0" prefWidth="720.0" spacing="20.0" styleClass="profile-details-section">
         <!-- User ID -->
-        <Label styleClass="detail-label" text="User ID:" />
-        <TextField fx:id="userIdField" editable="false" prefHeight="38.0" prefWidth="483.0" styleClass="detail-field" />
+<!--        <Label styleClass="detail-label" text="User ID:" />-->
+<!--        <TextField fx:id="userIdField" editable="false" prefHeight="38.0" prefWidth="483.0" styleClass="detail-field" />-->
 
         <!-- First Name and Last Name -->
         <HBox spacing="20.0">

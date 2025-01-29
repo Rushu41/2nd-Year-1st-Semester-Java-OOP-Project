@@ -119,46 +119,47 @@ public class RentCarPaymentController {
 
         dialog.showAndWait();
     }
-//    @FXML
-//    private void handleRentCarGenerateReceipt(ActionEvent event) {
-//        String rentCarUsername = usernameField.getText();
-//        String rentCarEmail = emailField.getText();
-//
-//        if (rentCarUsername.isEmpty() || rentCarEmail.isEmpty()) {
-//            showAlert("Error", "Please fill in all fields.");
-//            return;
-//        }
-//
-//        if (insertRentCarPaymentDetails(rentCarUsername, rentCarEmail)) {
-//            String rentCarReceiptContent = String.format(
-//                    "Receipt:\nUsername: %s\nEmail: %s\nPayment Method: %s\nTotal Cost: $80\nPayment Successful!",
-//                    rentCarUsername, rentCarEmail, rentCarPaymentMethod
-//            );
-//
-//            try {
-//                URL fxmlLocation = getClass().getResource("/com/example/carrentalsystem/rentCarReceiptView.fxml");
-//                if (fxmlLocation == null) {
-//                    throw new FileNotFoundException("FXML file not found");
-//                }
-//                System.out.println("FXML Location: " + fxmlLocation);
-//                FXMLLoader loader = new FXMLLoader(fxmlLocation);
-//                Parent rentCarReceiptPage = loader.load();
-//
-//                RentCarReceiptViewController rentCarReceiptController = loader.getController();
-//                rentCarReceiptController.setRentCarReceiptContent(rentCarReceiptContent);
-//
-//                Scene rentCarReceiptScene = new Scene(rentCarReceiptPage);
-//                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//                stage.setScene(rentCarReceiptScene);
-//                stage.setTitle("Rent Car Receipt");
-//                stage.show();
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        } else {
-//            showAlert("Error", "Failed to save payment details.");
-//        }
-//    }
+    @FXML
+    private void handleRentCarGenerateReceipt(ActionEvent event) {
+        String rentCarUsername = usernameField.getText();
+        String rentCarEmail = emailField.getText();
+
+        if (rentCarUsername.isEmpty() || rentCarEmail.isEmpty()) {
+            showAlert("Error", "Please fill in all fields.");
+            return;
+        }
+
+        if (insertRentCarPaymentDetails(rentCarUsername, rentCarEmail)) {
+            String rentCarReceiptContent = String.format(
+                    "Receipt:\nUsername: %s\nEmail: %s\nPayment Method: %s\nTotal Cost: $80\nPayment Successful!",
+                    rentCarUsername, rentCarEmail, rentCarPaymentMethod
+            );
+
+            try {
+                URL fxmlLocation = getClass().getResource("/com/example/carrentalsystem/rentCarReceiptView.fxml");
+                if (fxmlLocation == null) {
+                    throw new FileNotFoundException("FXML file not found");
+                }
+                System.out.println("FXML Location: " + fxmlLocation);
+                FXMLLoader loader = new FXMLLoader(fxmlLocation);
+                Parent rentCarReceiptPage = loader.load();
+
+                RentCarReceiptViewController rentCarReceiptController = loader.getController();
+                rentCarReceiptController.setRentCarReceiptContent(rentCarReceiptContent);
+
+                Scene rentCarReceiptScene = new Scene(rentCarReceiptPage);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(rentCarReceiptScene);
+                stage.setTitle("Rent Car Receipt");
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            showAlert("Error", "Failed to save payment details.");
+        }
+    }
+
     @FXML
     private void handleRentCarBackToMain(ActionEvent event) {
         try {

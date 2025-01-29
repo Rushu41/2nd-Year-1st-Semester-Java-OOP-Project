@@ -78,7 +78,7 @@ public class PaymentController {
 
                 // Disable logout button and enable generate receipt button
                 rentCarController.disableLogoutButton();
-                rentCarController.enableGenerateReceiptButton();
+//                rentCarController.enableGenerateReceiptButton();
 
                 // Switch to the RentCar scene
                 Scene rentCarScene = new Scene(rentCarPage);

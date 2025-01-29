@@ -19,6 +19,12 @@ public class SubscriptionController {
             // Get the logged-in username from the UserSession
             String username = UserSession.getLoggedInUsername();
 
+            // Check if the user is already subscribed
+            if (isAlreadySubscribed(username)) {
+                showAlert("Subscription Info", "You have already subscribed.");
+                return;
+            }
+
             // Update the subscription status in the database
             if (updateSubscriptionStatus(username, 1)) {
                 // Load the payment.fxml file
@@ -33,12 +39,28 @@ public class SubscriptionController {
                 stage.setTitle("Payment");
                 stage.show();
             } else {
-                // Show an error message if the update fails
                 showAlert("Subscription Error", "Failed to update subscription status.");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean isAlreadySubscribed(String username) {
+        String query = "SELECT is_subscribed FROM users WHERE username = ?";
+        try (Connection connection = DatabaseConnector.connect();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, username);
+            var resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getInt("is_subscribed") == 1;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     private boolean updateSubscriptionStatus(String username, int isSubscribed) {

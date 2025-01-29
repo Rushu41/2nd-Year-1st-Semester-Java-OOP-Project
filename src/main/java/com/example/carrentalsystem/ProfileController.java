@@ -84,7 +84,7 @@ public class ProfileController {
         }
 
         private void populateFields(ResultSet resultSet) throws SQLException {
-            userIdField.setText(resultSet.getString("user_id"));
+
             firstNameField.setText(resultSet.getString("First_Name"));
             lastNameField.setText(resultSet.getString("Last_Name"));
             ageField.setText(resultSet.getString("Age"));

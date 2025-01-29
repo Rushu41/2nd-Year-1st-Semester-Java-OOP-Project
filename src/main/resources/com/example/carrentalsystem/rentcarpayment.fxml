@@ -46,9 +46,16 @@
 
         <HBox spacing="10" alignment="CENTER">
             <Button fx:id="savePaymentButton"
-                    text="Save Payment"
+                    text="Generate Receipt"
                     onAction="#handleRentCarBackToMain"
                     style="-fx-font-size: 16; -fx-background-color: #4CAF50; -fx-text-fill: white;" />
+            <Button
+                    text="Save Payment"
+                    onAction="#handleRentCarGenerateReceipt"
+                    style="-fx-font-size: 16; -fx-background-color: #4CAF50; -fx-text-fill: white;" />
+
+
+
         </HBox>
     </VBox>
 </AnchorPane>
