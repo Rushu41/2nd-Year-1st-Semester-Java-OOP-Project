@@ -26,6 +26,8 @@
         <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password" styleClass="input-field" />
         <!-- Signup Button -->
         <Button fx:id="signupButton" onAction="#handleSignup" styleClass="signup-button" text="Sign Up" />
+        <Button  onAction="#handleBack" styleClass="signup-button" text="Back" />
+
         <!-- Status Message -->
         <Label fx:id="statusLabel" styleClass="status-label" />
     </VBox>

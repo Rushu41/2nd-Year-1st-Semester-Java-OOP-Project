@@ -53,34 +53,30 @@ public class SignupController {
         this.genderComboBox.setPromptText("Select Gender");
     }
 
-    @FXML
-    public void handleSignup(ActionEvent event) {
-        String firstName = this.firstNameField.getText();
-        String lastName = this.lastNameField.getText();
-        String age = this.ageField.getText();
-        String gender = (String)this.genderComboBox.getValue();
-        LocalDate dob = (LocalDate)this.dateOfBirthPicker.getValue();
-        String username = this.usernameField.getText();
-        String password = this.passwordField.getText();
-        String confirmPassword = this.confirmPasswordField.getText();
-        if (this.areInputsValid(firstName, lastName, age, gender, dob, username, password, confirmPassword)) {
-            try {
-                int ageInt = Integer.parseInt(age);
-                this.insertUser(firstName, lastName, ageInt, gender, dob.toString(), username, password);
-                this.statusLabel.setText("Signup successful! Redirecting to login...");
-                this.statusLabel.setStyle("-fx-text-fill: green;");
-                this.redirectToLoginPage(event);
-            } catch (NumberFormatException var11) {
-                this.statusLabel.setText("Age must be a number.");
-                this.statusLabel.setStyle("-fx-text-fill: red;");
-            } catch (SQLException e) {
-                this.statusLabel.setText("Error saving data: " + e.getMessage());
-                this.statusLabel.setStyle("-fx-text-fill: red;");
-            } catch (IOException var13) {
-                this.statusLabel.setText("Error loading login page.");
-                this.statusLabel.setStyle("-fx-text-fill: red;");
-            }
+    private void insertUser(String firstName, String lastName, int age, String gender, String dob, String username, String password) throws SQLException {
+        String query = "INSERT INTO users (First_Name, Last_Name, Age, Gender, Date_Of_Birth, USERNAME, Password) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
+        try (
+                Connection connection = DatabaseConnector.connect();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setInt(3, age);
+            preparedStatement.setString(4, gender);
+            preparedStatement.setString(5, dob);
+            preparedStatement.setString(6, username);
+            preparedStatement.setString(7, password);
+
+            // Debugging: Print the query and parameters
+            System.out.println("Executing query: " + query);
+            System.out.println("Parameters: " + firstName + ", " + lastName + ", " + age + ", " + gender + ", " + dob + ", " + username + ", " + password);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println(rowsAffected + " row(s) inserted."); // Check if rows are being inserted
+        } catch (SQLException e) {
+            System.err.println("SQL Error: " + e.getMessage()); // Print SQL errors
+            throw e; // Re-throw the exception to handle it in the calling method
         }
     }
 
@@ -100,25 +96,54 @@ public class SignupController {
         }
     }
 
-    private void insertUser(String firstName, String lastName, int age, String gender, String dob, String username, String password) throws SQLException {
-        String query = "INSERT INTO users (First_Name, Last_Name, Age, Gender, Date_Of_Birth, USERNAME, Password) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    @FXML
+    public void handleSignup(ActionEvent event) {
+        String firstName = this.firstNameField.getText();
+        String lastName = this.lastNameField.getText();
+        String age = this.ageField.getText();
+        String gender = this.genderComboBox.getValue();
+        LocalDate dob = this.dateOfBirthPicker.getValue();
+        String username = this.usernameField.getText();
+        String password = this.passwordField.getText();
+        String confirmPassword = this.confirmPasswordField.getText();
 
-        try (
-                Connection connection = DatabaseConnector.connect();
-                PreparedStatement preparedStatement = connection.prepareStatement(query);
-        ) {
-            preparedStatement.setString(1, firstName);
-            preparedStatement.setString(2, lastName);
-            preparedStatement.setInt(3, age);
-            preparedStatement.setString(4, gender);
-            preparedStatement.setString(5, dob);
-            preparedStatement.setString(6, username);
-            preparedStatement.setString(7, password);
-            preparedStatement.executeUpdate();
+        if (this.areInputsValid(firstName, lastName, age, gender, dob, username, password, confirmPassword)) {
+            try {
+                int ageInt = Integer.parseInt(age);
+                this.insertUser(firstName, lastName, ageInt, gender, dob.toString(), username, password);
+                this.statusLabel.setText("Signup successful! Redirecting to login...");
+                this.statusLabel.setStyle("-fx-text-fill: green;");
+                this.redirectToLoginPage(event);
+            } catch (NumberFormatException e) {
+                this.statusLabel.setText("Age must be a number.");
+                this.statusLabel.setStyle("-fx-text-fill: red;");
+            } catch (SQLException e) {
+                this.statusLabel.setText("Error saving data: " + e.getMessage());
+                this.statusLabel.setStyle("-fx-text-fill: red;");
+                e.printStackTrace(); // Print the full stack trace for debugging
+            } catch (IOException e) {
+                this.statusLabel.setText("Error loading login page.");
+                this.statusLabel.setStyle("-fx-text-fill: red;");
+                e.printStackTrace(); // Print the full stack trace for debugging
+            }
         }
-
     }
 
+    public void handleBack(ActionEvent event) {
+        navigateToPage(event, "/com/example/carrentalsystem/login.fxml", "Login");
+    }
+    private void navigateToPage(ActionEvent event, String fxmlPath, String title) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle(title);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private void redirectToLoginPage(ActionEvent event) throws IOException {
         Parent root = (Parent)FXMLLoader.load(this.getClass().getResource("/com/example/carrentalsystem/login.fxml"));
         this.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
