@@ -1,53 +1,93 @@
-.styled-table {
-    -fx-border-color: #d3d3d3;
+/* ===== Root Container ===== */
+.anchor-pane {
+    -fx-background-color: linear-gradient(to bottom right, #1d2b64, #f8cdda);
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 30, 0, 0, 10);
+    -fx-padding: 30;
+}
+
+/* ===== Content Container ===== */
+.content-box {
+    -fx-background-color: rgba(255, 255, 255, 0.95);
+    -fx-background-radius: 20;
+    -fx-padding: 30;
+    -fx-spacing: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0, 0, 5);
+    -fx-border-color: rgba(255, 255, 255, 0.8);
+    -fx-border-radius: 20;
     -fx-border-width: 1;
 }
 
-/* Column headers */
-.styled-table .column-header-background {
-    -fx-background-color: transparent;
+/* ===== Header Label ===== */
+.header-label {
+    -fx-font-size: 32px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1565C0;
+    -fx-font-family: 'System', sans-serif;
+    -fx-effect: dropshadow(gaussian, rgba(25, 118, 210, 0.2), 10, 0.5, 0, 2);
+    -fx-padding: 0 0 20 0;
 }
 
-.styled-table .column-header {
-    -fx-border-color: #d3d3d3;
-    -fx-border-width: 0 1 1 0;
-    -fx-background-color: transparent;
+/* ===== Table Styling ===== */
+.styled-table {
+    -fx-background-color: linear-gradient(to right, #ffffff, #f0f0f0);
+    -fx-border-color: #ccc;
+    -fx-border-radius: 15;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 2, 2);
+    -fx-table-cell-alignment: CENTER;
+}
+
+/* ===== Table Headers ===== */
+.column-header {
     -fx-alignment: CENTER;
     -fx-font-weight: bold;
+    -fx-text-fill: #333;
+    -fx-background-color: #eeeeee;
+    -fx-border-color: #ddd;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
 }
 
-/* Table rows */
+/* ===== Table Rows ===== */
 .styled-table .table-row-cell {
-    -fx-border-color: #d3d3d3;
-    -fx-border-width: 0 0 1 0;
-    -fx-background-color: white; /* Default row color */
+    -fx-background-color: #ffffff;
+    -fx-border-color: transparent;
+    -fx-padding: 5px;
+    -fx-font-size: 13px;
 }
 
-/* Zebra-striping for rows */
-.styled-table .table-row-cell:even {
-    -fx-background-color: #f9f9f9; /* Alternate row color */
+.styled-table .table-row-cell:odd {
+    -fx-background-color: #f9f9f9;
 }
 
-/* Table cells */
-.styled-table .table-cell {
-    -fx-border-color: #d3d3d3;
-    -fx-border-width: 0 1 0 0;
-    -fx-alignment: CENTER;
-}
-
-/* Selected row styling */
 .styled-table .table-row-cell:selected {
-    -fx-background-color: #4CAF50; /* Green background for selected row */
-    -fx-text-fill: white; /* White text for better contrast */
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
 }
 
-/* Selected cell styling */
-.styled-table .table-cell:selected {
-    -fx-background-color: #4CAF50; /* Green background for selected cell */
-    -fx-text-fill: white; /* White text for better contrast */
+/* ===== Back Button ===== */
+.back-btn {
+    -fx-background-color: linear-gradient(to right, #78909C, #546E7A);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-font-family: 'System', sans-serif;
+    -fx-padding: 12 30;
+    -fx-background-radius: 25;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 2);
+    -fx-transition: all 0.2s ease-in-out;
 }
 
-/* Hover effect */
-.styled-table .table-row-cell:hover {
-    -fx-background-color: #e0f7fa; /* Light blue on hover */
+.back-btn:hover {
+    -fx-background-color: linear-gradient(to right, #546E7A, #455A64);
+    -fx-effect: dropshadow(gaussian, rgba(84, 110, 122, 0.3), 10, 0, 0, 3);
+}
+
+.back-btn:pressed {
+    -fx-background-color: #455A64;
+    -fx-translate-y: 1;
+    -fx-effect: dropshadow(gaussian, rgba(84, 110, 122, 0.2), 5, 0, 0, 1);
 }

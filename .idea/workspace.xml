@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d7cb55a-3cf9-4f4d-920c-9cb559efbf18" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/styles/availableCars.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/styles/mybookings.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/styles/returnCar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/ActiveCustomer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/ActiveCustomer.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/availableCars.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/availableCars.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/myBookings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/myBookings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/returnCar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/returnCar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/styles/ActiveCustomer.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/carrentalsystem/styles/ActiveCustomer.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +100,7 @@
       <workItem from="1738045452476" duration="52415000" />
       <workItem from="1738098604731" duration="9644000" />
       <workItem from="1738138789147" duration="8278000" />
-      <workItem from="1738152880923" duration="22971000" />
+      <workItem from="1738152880923" duration="25226000" />
     </task>
     <servers />
   </component>

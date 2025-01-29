@@ -1,0 +1,30 @@
+/* styles.css */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+}
+
+.table-row-cell:filled:selected {
+    -fx-background-color: #4caf50;
+    -fx-text-fill: white;
+}
+
+.table-row-cell:filled:hover {
+    -fx-background-color: #e0f7fa;
+}
+
+.table-row-cell:filled {
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-width: 0 0 1 0;
+}
+
+.button {
+    -fx-background-color: #4caf50;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+}

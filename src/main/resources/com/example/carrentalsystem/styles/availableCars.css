@@ -1,0 +1,142 @@
+/* Root Styling */
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #F5E0D9, #C7796E); /* Cream White and Burgundy gradient */
+    -fx-background-size: cover;
+    -fx-background-blend-mode: multiply;
+    -fx-text-fill: #23190C; /* Dark Brown text color */
+}
+
+/* Table Styling */
+.dealer-table {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #C7796E;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(three-pass-box, rgba(210, 210, 210, 0.4), 20, 0, 0, 5);
+}
+
+.dealer-table .column-header-background {
+    -fx-background-color: linear-gradient(to bottom, #C7796E, #9C4C40);
+    -fx-background-radius: 10 10 0 0;
+    -fx-border-color: #C7796E;
+    -fx-border-width: 0 0 2px 0;
+}
+
+.dealer-table .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 50px;
+    -fx-text-fill: #23190C;
+    -fx-font-family: 'Arial';
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+}
+
+/* Table cell styling */
+.dealer-table .table-row-cell {
+    -fx-background-color: rgba(0, 0, 0, 0.05);
+    -fx-text-fill: #23190C;
+    -fx-border-color: #C7796E;
+    -fx-border-width: 0 0 1px 0;
+    -fx-font-family: 'Arial';
+    -fx-font-size: 14px;
+    -fx-padding: 6px 12px;
+    -fx-alignment: center;
+}
+
+.dealer-table .table-row-cell:odd {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dealer-table .table-row-cell:selected {
+    -fx-background-color: #C7796E;
+    -fx-text-fill: #F5E0D9; /* Cream White text on selected cell */
+}
+
+.dealer-table .table-row-cell:hover {
+    -fx-background-color: rgba(210, 210, 210, 0.3);
+    -fx-cursor: hand;
+}
+
+/* Button Styling */
+.dealer-btn {
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px;
+    -fx-padding: 12px 36px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #23190C; /* Button text color */
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 3);
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s;
+    -fx-font-family: 'Arial';
+}
+
+.dealer-btn:hover {
+    -fx-effect: dropshadow(gaussian, rgba(210, 210, 210, 0.5), 15, 0, 0, 5);
+    -fx-scale-x: 1.08;
+    -fx-scale-y: 1.08;
+    -fx-text-fill: #F5E0D9; /* Cream White text on hover */
+}
+
+.dealer-btn:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+/* Confirm Button */
+.confirm-btn {
+    -fx-background-color: linear-gradient(to bottom right, #C7796E, #9C4C40);
+    -fx-border-color: #F5E0D9;
+    -fx-text-fill: #23190C;
+}
+
+/* Confirm Button Hover */
+.confirm-btn:hover {
+    -fx-background-color: linear-gradient(to bottom right, #9C4C40, #C7796E);
+    -fx-border-color: #FFFFFF;
+}
+
+/* Back Button */
+.back-btn {
+    -fx-background-color: linear-gradient(to bottom right, #C7796E, #F5E0D9);
+    -fx-border-color: #607D8B;
+    -fx-text-fill: #23190C;
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 36px;
+}
+
+.back-btn:hover {
+    -fx-background-color: linear-gradient(to bottom right, #607D8B, #C7796E);
+    -fx-border-color: #FF6F61;
+    -fx-text-fill: #F5E0D9;
+}
+
+/* Return Car Button */
+.return-car-btn {
+    -fx-background-color: linear-gradient(to bottom right, #C7796E, #9C4C40);
+    -fx-border-color: #F5E0D9;
+    -fx-text-fill: #23190C;
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 36px;
+}
+
+.return-car-btn:hover {
+    -fx-background-color: linear-gradient(to bottom right, #9C4C40, #C7796E);
+    -fx-border-color: #FFFFFF;
+    -fx-text-fill: #F5E0D9;
+}
+
+/* Animated pulse effect for confirm button */
+@keyframes pulse {
+    0% { -fx-effect: dropshadow(gaussian, rgba(210, 210, 210, 0.4), 10, 0, 0, 0); }
+    50% { -fx-effect: dropshadow(gaussian, rgba(210, 210, 210, 0.8), 20, 0, 0, 5); }
+    100% { -fx-effect: dropshadow(gaussian, rgba(210, 210, 210, 0.4), 10, 0, 0, 0); }
+}
+

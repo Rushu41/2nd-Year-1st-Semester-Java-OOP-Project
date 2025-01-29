@@ -1,37 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.AvailableCarsController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.AvailableCarsController">
+
+    <stylesheets>
+        <URL value="@styles/availableCars.css" />
+    </stylesheets>
+
     <children>
-        <!-- Background Image -->
-        <ImageView fx:id="backgroundImage" fitHeight="800.0" fitWidth="1000.0" managed="false">
-            <image>
-                <Image url="@images/addcars.png" />
-            </image>
-        </ImageView>
 
-        <TableView fx:id="carsTable" fixedCellSize="25.0" layoutX="129.0" layoutY="33.0" prefHeight="555.0" prefWidth="743.0">
+        <TableView fx:id="carsTable" fixedCellSize="25.0" layoutX="129.0" layoutY="33.0" prefHeight="720.0" prefWidth="752.0" styleClass="dealer-table">
             <columns>
-                <TableColumn fx:id="carNameColumn" prefWidth="262.0" resizable="false" text="Car Name" />
-                <TableColumn fx:id="carTypeColumn" prefWidth="242.0" resizable="false" text="Fuel Type" />
-                <TableColumn fx:id="priceColumn" prefWidth="237.0" resizable="false" text="Rent Price" />
+                <TableColumn fx:id="carNameColumn" prefWidth="262.0" resizable="false" styleClass="column-header" text="Car Name" />
+                <TableColumn fx:id="carTypeColumn" prefWidth="242.0" resizable="false" styleClass="column-header" text="Fuel Type" />
+                <TableColumn fx:id="priceColumn" prefWidth="237.0" resizable="false" styleClass="column-header" text="Rent Price" />
             </columns>
         </TableView>
 
-        <HBox layoutX="200.0" layoutY="600.0" spacing="40.0" />
-         <Button layoutX="29.0" layoutY="686.0" onAction="#handleBack" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back">
-             <font>
-                 <Font size="15.0" />
-             </font>
-         </Button>
-         <Button layoutX="872.0" layoutY="686.0" onAction="#handleLogout" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Logout" />
+        <HBox alignment="CENTER" spacing="40.0" styleClass="button-container">
+            <Button fx:id="backBtn" onAction="#handleBack" prefHeight="49.0" prefWidth="124.0" styleClass="back-btn" text="Back" />
+        </HBox>
     </children>
 </AnchorPane>
