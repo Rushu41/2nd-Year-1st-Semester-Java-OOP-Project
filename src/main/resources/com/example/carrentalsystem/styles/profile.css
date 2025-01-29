@@ -1,67 +1,112 @@
-/* Root styles */
-.root {
-    -fx-background-color: #f4f4f4;
-    -fx-font-family: "Arial";
+/* 🚀 Background Styling */
+#mainPane {
+    -fx-background-color: linear-gradient(to bottom right, #141E30, #243B55);
+    -fx-padding: 20;
 }
 
-/* Profile Picture Section */
-.profile-circle {
-    -fx-fill: #ddd;
-    -fx-stroke: gray;
-    -fx-stroke-width: 1px;
-}
-
-.upload-button {
-    -fx-background-color: #007bff;
+/* 🔥 Profile Title */
+.profile-title {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
     -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 2);
+}
+
+/* 📋 Labels */
+.label-field {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* 🖼️ Profile Picture */
+.profile-circle {
+    -fx-fill: navy; /* Circle color */
+    -fx-stroke: white;
+    -fx-stroke-width: 3;
+}
+
+/* Upload button styling */
+.upload-overlay-button {
+    -fx-background-color: #B2B2B2; /* Ash color */
+    -fx-text-fill: white;
+    -fx-font-size: 12px; /* Slightly smaller font size */
+    -fx-font-weight: bold;
+    -fx-padding: 8 16; /* Smaller padding */
+    -fx-border-radius: 20px; /* Rounded corners */
+    -fx-opacity: 1; /* Make it visible */
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect for the Upload button */
+.upload-overlay-button:hover {
+    -fx-background-color: #A1A1A1; /* Slightly darker ash color */
+}
+
+/* Profile photo container hover effect */
+.profile-photo-container:hover .upload-overlay-button {
+    -fx-opacity: 1;
+}
+
+
+
+/* ✨ Input Fields (Inspired by Your Style) */
+.input-field {
+    -fx-background-color: #2c3e50;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-width: 2;
+    -fx-border-color: #34495e;
+    -fx-padding: 12;
     -fx-font-size: 14px;
-    -fx-padding: 10px 20px;
-    -fx-border-radius: 5px;
-    -fx-cursor: hand;
+    -fx-text-fill: #ecf0f1;
+    -fx-prompt-text-fill: #7f8c8d;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 5);
 }
 
-.upload-button:hover {
-    -fx-background-color: #0056b3;
+.input-field:hover {
+    -fx-border-color: #e74c3c;
+    -fx-effect: dropshadow(gaussian, rgba(231, 76, 60, 0.3), 10, 0, 0, 5);
 }
 
-/* Profile Details Section */
-.profile-details-section {
-    -fx-spacing: 20px;
-    -fx-padding: 30px;
-    -fx-background-color: white;
-    -fx-border-radius: 10px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 0);
+/* 📝 Input Field Focused State */
+.input-field:focused {
+    -fx-border-color: white; /* Red border on focus */
+    -fx-background-color: black; /* White background when focused */
 }
 
-.detail-label {
+
+/* 🎭 Buttons */
+.save-button {
+    -fx-background-color: linear-gradient(to right, #2ECC71, #27AE60); /* Gradient */
+    -fx-text-fill: white; /* Text color */
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-text-fill: #333;
-}
-
-.detail-field {
-    -fx-font-size: 14px;
-    -fx-padding: 10px;
-    -fx-background-color: #f9f9f9;
-    -fx-border-color: #ccc;
-    -fx-border-radius: 5px;
-    -fx-pref-width: 250px; /* Fixed width for consistency */
-}
-
-.detail-field:disabled {
-    -fx-background-color: #f9f9f9;
-    -fx-text-fill: #666;
-}
-
-.save-button {
-    -fx-background-color: #28a745;
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-padding: 10px 20px;
-    -fx-border-radius: 5px;
-    -fx-cursor: hand;
+    -fx-border-radius: 20px;
+    -fx-padding: 10 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0.5, 0, 4); /* Shadow effect */
+    -fx-transition: all 0.3s ease-in-out;
 }
 
 .save-button:hover {
-    -fx-background-color: #218838;
+    -fx-background-color: linear-gradient(to right, #27AE60, #2ECC71); /* Hover gradient */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 12, 0.8, 0, 6); /* Stronger shadow on hover */
 }
+
+/* Back Button */
+.back-button {
+    -fx-background-color: linear-gradient(to right, #E74C3C, #C0392B); /* Gradient */
+    -fx-text-fill: white; /* Text color */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 20px;
+    -fx-padding: 10 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0.5, 0, 4); /* Shadow effect */
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+.back-button:hover {
+    -fx-background-color: linear-gradient(to right, #C0392B, #E74C3C); /* Hover gradient */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 12, 0.8, 0, 6); /* Stronger shadow on hover */
+}
+

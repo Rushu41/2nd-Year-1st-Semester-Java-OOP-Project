@@ -49,9 +49,8 @@
     <!-- Actions Section -->
     <HBox styleClass="action-buttons" spacing="20" alignment="CENTER">
         <Button fx:id="rentCarButton" text="Rent Car" styleClass="secondary-button" onAction="#handleRentCar"/>
-        <Button fx:id="confirmBillButton" text="Confirm Bill" onAction="#handleConfirmBill" disable="true"/>
-<!--        <Button fx:id="generateReceiptButton" text="Generate Receipt" onAction="#handleGenerateReceipt" disable="true"/>-->
-    </HBox>
+<!--        <Button fx:id="confirmBillButton" text="Confirm Bill" onAction="#handleConfirmBill" disable="true"/>-->
+           </HBox>
 
     <Separator styleClass="main-separator"/>
 

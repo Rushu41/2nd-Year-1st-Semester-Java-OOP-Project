@@ -43,15 +43,7 @@ public class PaymentController {
         usernameField.setText(UserSession.getLoggedInUsername());
         usernameField.setEditable(false);
     }
-    @FXML
-    private Button saveButton;
 
-
-    private RentCarController rentCarController;
-
-    public void setRentCarController(RentCarController rentCarController) {
-        this.rentCarController = rentCarController;
-    }
 
 
     @FXML
@@ -67,7 +59,7 @@ public class PaymentController {
         if (insertPaymentDetails(username, email)) {
             try {
                 // Load the RentCar FXML
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/rentCar.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/carrentalsystem/userDashboard.fxml"));
                 Parent rentCarPage = loader.load();
 
                 // Get the controller and set necessary data
@@ -76,9 +68,7 @@ public class PaymentController {
                 // Set the username
                 rentCarController.setUsername(username);
 
-                // Disable logout button and enable generate receipt button
-                rentCarController.disableLogoutButton();
-//                rentCarController.enableGenerateReceiptButton();
+
 
                 // Switch to the RentCar scene
                 Scene rentCarScene = new Scene(rentCarPage);

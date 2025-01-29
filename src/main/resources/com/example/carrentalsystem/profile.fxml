@@ -1,93 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.ProfileController">
+<AnchorPane id="mainPane" prefHeight="880.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.ProfileController">
     <stylesheets>
         <URL value="@styles/profile.css" />
     </stylesheets>
 
-    <!-- Profile Picture Section -->
-    <VBox alignment="CENTER" layoutX="450.0" layoutY="20.0" spacing="10.0">
-        <StackPane alignment="CENTER" />
+    <ImageView fitHeight="800" fitWidth="1000" preserveRatio="true">
+        <Image url="@images/background5.jpg" />
+    </ImageView>
+
+    <!-- Main Container -->
+    <VBox spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+
+        <!-- Header Section with Title and Profile Photo -->
+        <HBox alignment="CENTER_LEFT" minHeight="120.0" spacing="20.0">
+            <!-- Profile Title -->
+            <Label prefHeight="50.0" prefWidth="311.0" styleClass="profile-title" text="User Profile" />
+
+            <!-- Spacer -->
+            <Region prefHeight="120.0" prefWidth="598.0" HBox.hgrow="ALWAYS" />
+
+            <!-- Profile Picture Section -->
+            <StackPane styleClass="profile-photo-container">
+                <!-- Profile Circle -->
+                <Circle fx:id="photoCircle" radius="50.0" styleClass="profile-circle" />
+
+                <!-- Profile Image (if any) -->
+                <ImageView fx:id="profileImage" fitHeight="100" fitWidth="100" styleClass="profile-image" />
+
+                <!-- VBox to position the button under the circle -->
+                <VBox alignment="CENTER" spacing="5">
+                    <Button fx:id="uploadPhotoButton" onAction="#handlePhotoUpload" styleClass="upload-overlay-button" text="📷 Upload" />
+                </VBox>
+            </StackPane>
+        </HBox>
+
+        <!-- Form Container -->
+        <GridPane hgap="20" prefHeight="800.0" prefWidth="1000.0" styleClass="form-container" vgap="15">
+            <!-- Column Constraints -->
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50" />
+                <ColumnConstraints percentWidth="50" />
+            </columnConstraints>
+
+            <!-- First & Last Name -->
+            <Label styleClass="label-field" text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="firstNameField" styleClass="input-field" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Label styleClass="label-field" text="Last Name:" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <TextField fx:id="lastNameField" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <!-- Age & Gender -->
+            <Label styleClass="label-field" text="Age:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="ageField" styleClass="input-field" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <Label styleClass="label-field" text="Gender:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="genderField" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+            <!-- Date of Birth & Username -->
+            <Label styleClass="label-field" text="Date of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <TextField fx:id="dateOfBirthField" styleClass="input-field" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+            <Label styleClass="label-field" text="Username:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="usernameField" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+            <!-- Email & Phone -->
+            <Label styleClass="label-field" text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+            <TextField fx:id="emailField" styleClass="input-field" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+            <Label styleClass="label-field" text="Phone:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="phoneField" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+            <!-- Password Fields -->
+            <Label styleClass="label-field" text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+            <PasswordField fx:id="passwordField" styleClass="input-field" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+            <Label styleClass="label-field" text="Confirm Password:" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <PasswordField fx:id="confirmPasswordField" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+
+            <!-- Buttons -->
+            <HBox alignment="CENTER" spacing="10" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+                <Button fx:id="backButton" onAction="#handleBack" styleClass="back-button" text="Back" />
+                <Button onAction="#handleSaveChanges" styleClass="save-button" text="Save Changes" />
+            </HBox>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
     </VBox>
-
-    <!-- Profile Details Section -->
-    <VBox layoutX="24.0" layoutY="43.0" prefHeight="731.0" prefWidth="720.0" spacing="20.0" styleClass="profile-details-section">
-        <!-- User ID -->
-<!--        <Label styleClass="detail-label" text="User ID:" />-->
-<!--        <TextField fx:id="userIdField" editable="false" prefHeight="38.0" prefWidth="483.0" styleClass="detail-field" />-->
-
-        <!-- First Name and Last Name -->
-        <HBox spacing="20.0">
-            <VBox spacing="5.0">
-                <Label styleClass="detail-label" text="First Name:" />
-                <TextField fx:id="firstNameField" editable="false" styleClass="detail-field" />
-            </VBox>
-            <VBox spacing="5.0">
-                <Label styleClass="detail-label" text="Last Name:" />
-                <TextField fx:id="lastNameField" editable="false" styleClass="detail-field" />
-            </VBox>
-        </HBox>
-
-        <!-- Age and Gender -->
-        <HBox spacing="20.0">
-            <VBox spacing="5.0">
-                <Label styleClass="detail-label" text="Age:" />
-                <TextField fx:id="ageField" editable="false" styleClass="detail-field" />
-            </VBox>
-            <VBox spacing="5.0">
-                <Label styleClass="detail-label" text="Gender:" />
-                <TextField fx:id="genderField" editable="false" styleClass="detail-field" />
-            </VBox>
-        </HBox>
-
-        <!-- Date of Birth -->
-        <Label styleClass="detail-label" text="Date of Birth:" />
-        <TextField fx:id="dateOfBirthField" editable="false" styleClass="detail-field" />
-
-        <!-- Username -->
-        <Label styleClass="detail-label" text="Username:" />
-        <TextField fx:id="usernameField" editable="false" styleClass="detail-field" />
-
-        <!-- Email and Phone -->
-        <HBox spacing="20.0">
-            <VBox spacing="5.0">
-                <Label styleClass="detail-label" text="Email:" />
-                <TextField fx:id="emailField" styleClass="detail-field" />
-            </VBox>
-            <VBox spacing="5.0">
-                <Label styleClass="detail-label" text="Phone:" />
-                <TextField fx:id="phoneField" styleClass="detail-field" />
-            </VBox>
-        </HBox>
-
-        <!-- Password and Confirm Password -->
-        <HBox spacing="20.0">
-            <VBox spacing="5.0">
-                <Label styleClass="detail-label" text="Password:" />
-                <PasswordField fx:id="passwordField" styleClass="detail-field" />
-            </VBox>
-            <VBox spacing="5.0">
-                <Label styleClass="detail-label" text="Confirm Password:" />
-                <PasswordField fx:id="confirmPasswordField" styleClass="detail-field" />
-            </VBox>
-        </HBox>
-
-        <!-- Save Changes Button -->
-        <Button fx:id="backButton" text="Back" styleClass="navigation-button" onAction="#handleBack"/>
-
-        <Button onAction="#handleSaveChanges" styleClass="save-button" text="Save Changes" />
-    </VBox>
-      <Circle fx:id="photoCircle" layoutX="878.0" layoutY="109.0" radius="66.0" styleClass="profile-circle" />
-     <Button layoutX="816.0" layoutY="206.0" onAction="#handlePhotoUpload" styleClass="upload-button" text="Upload Photo" />
 </AnchorPane>

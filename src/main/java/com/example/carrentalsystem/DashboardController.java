@@ -40,7 +40,7 @@ public class DashboardController implements Initializable {
     }
 
     private int getAvailableCars(Connection connection) throws SQLException {
-        String query = "SELECT COUNT(name) FROM cars";
+        String query = "SELECT COUNT(name) FROM cars WHERE available = 1";
         try (PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
             return resultSet.next() ? resultSet.getInt(1) : 0;

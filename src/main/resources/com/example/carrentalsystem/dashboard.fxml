@@ -45,6 +45,8 @@
                     <Button onAction="#handleReturnCar" styleClass="menu-button" text="↩️ Return Car" />
                     <Button onAction="#handleActiveCustomer" styleClass="menu-button" text="👥 Active Customers" />
                     <Button onAction="#handleFeedback" styleClass="menu-button" text="💭 Feedback" />
+                    <Button onAction="#handleRentalHistory" styleClass="menu-button" text="💭 Rental History" />
+
                     <Button onAction="#handleLogout" prefHeight="46.0" prefWidth="148.0" styleClass="logout-button" text="🚪 Logout">
                   <font>
                      <Font size="14.0" />
