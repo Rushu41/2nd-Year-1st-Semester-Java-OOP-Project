@@ -64,10 +64,14 @@ public class DashboardController implements Initializable {
     }
 
     private double getTotalIncome(Connection connection) throws SQLException {
-        String query = "SELECT SUM(price) FROM return_car";
+        String query = "SELECT " +
+                "(SELECT COALESCE(SUM(price), 0) FROM return_car) + " +  // Income from car returns
+                "(SELECT COALESCE(COUNT(*), 0) * 80 FROM users WHERE is_subscribed = 1) " +  // Subscription income
+                "AS total_income";  // Combined total alias
+
         try (PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
-            return resultSet.next() ? resultSet.getDouble(1) : 0.0;
+            return resultSet.next() ? resultSet.getDouble("total_income") : 0.0;
         }
     }
 

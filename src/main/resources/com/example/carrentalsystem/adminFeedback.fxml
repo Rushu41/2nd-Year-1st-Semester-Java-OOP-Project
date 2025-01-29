@@ -9,7 +9,20 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
+<?import java.net.URL?>
+<?import javafx.scene.image.Image?>
 <AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.AdminFeedbackController">
+    <stylesheets>
+        <URL value="@styles/feedback.css" />
+    </stylesheets>
+
+    <ImageView fx:id="backgroundImage" fitHeight="900.0" fitWidth="1100.0" preserveRatio="true">
+        <image>
+            <Image url="@images/feedback_admin.png" /> <!-- Replace with your image path -->
+        </image>
+    </ImageView>
+
     <children>
         <VBox alignment="CENTER" prefHeight="800.0" prefWidth="1000.0" spacing="15.0" style="-fx-padding: 20;">
             <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Feedback Management" />

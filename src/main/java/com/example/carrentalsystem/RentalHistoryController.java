@@ -74,7 +74,21 @@ public class RentalHistoryController {
         }
     }
 
-
+    public void handleBack(ActionEvent event) {
+        navigateToPage(event, "/com/example/carrentalsystem/dashboard.fxml", "Dashboard");
+    }
+    private void navigateToPage(ActionEvent event, String fxmlPath, String title) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle(title);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

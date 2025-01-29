@@ -269,9 +269,6 @@ public class RentCarController {
         startDatePicker.setValue(null);
         endDatePicker.setValue(null);
         totalCostLabel.setText("");
-
-        // Reload available car names
-        loadCarNames();
     }
 
 

@@ -1,0 +1,165 @@
+/* Enhanced Main Pane with Dynamic Gradient */
+.main-pane {
+    -fx-background-color: linear-gradient(to bottom right,
+    #80b3f2,  /* Very light blue */
+    #4d94e6,  /* Light blue */
+    #2196F3,  /* Main blue */
+    #1976D2   /* Dark blue */
+    );
+    -fx-padding: 30;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 30, 0, 0, 10);
+}
+
+/* Content Box with Glass Effect */
+.content-box {
+    -fx-background-color: rgba(255, 255, 255, 0.95);
+    -fx-background-radius: 20;
+    -fx-padding: 30;
+    -fx-spacing: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0, 0, 5);
+    -fx-border-color: rgba(255, 255, 255, 0.8);
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+}
+
+/* Modern Header Container */
+.header-container {
+    -fx-padding: 0 0 20 0;
+    -fx-border-color: transparent transparent rgba(33, 150, 243, 0.2) transparent;
+    -fx-border-width: 0 0 2 0;
+}
+
+/* Enhanced Header Text */
+.header-text {
+    -fx-font-size: 32px;
+    -fx-font-weight: 800;
+    -fx-fill: #1565C0;
+    -fx-font-family: 'System', sans-serif;
+    -fx-text-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(25, 118, 210, 0.2), 10, 0.5, 0, 2);
+}
+
+.subheader-text {
+    -fx-font-size: 16px;
+    -fx-fill: #546E7A;
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-opacity: 0.9;
+}
+
+/* Enhanced Chat Area */
+.chat-area {
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: rgba(33, 150, 243, 0.2);
+    -fx-border-width: 2;
+    -fx-font-size: 14px;
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(25, 118, 210, 0.15), 10, 0, 0, 5);
+}
+
+.chat-area .content {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+}
+
+/* Modern Input Container */
+.input-container {
+    -fx-background-color: rgba(255, 255, 255, 0.9);
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+    -fx-spacing: 15;
+    -fx-effect: dropshadow(gaussian, rgba(25, 118, 210, 0.1), 10, 0, 0, 3);
+    -fx-border-color: rgba(33, 150, 243, 0.1);
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+}
+
+/* Enhanced Input Field */
+.input-field {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-color: rgba(33, 150, 243, 0.3);
+    -fx-border-width: 1.5;
+    -fx-padding: 15 25;
+    -fx-font-size: 14px;
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-effect: dropshadow(gaussian, rgba(25, 118, 210, 0.1), 5, 0, 0, 2);
+}
+
+.input-field:focused {
+    -fx-border-color: #2196F3;
+    -fx-border-width: 2;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(33, 150, 243, 0.2), 8, 0, 0, 0);
+}
+
+/* Enhanced Button Styles */
+.send-button, .back-button {
+    -fx-background-radius: 25;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-font-family: 'System', sans-serif;
+    -fx-cursor: hand;
+    -fx-padding: 12 30;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 2);
+}
+
+.send-button {
+    -fx-background-color: linear-gradient(to right, #2196F3, #1976D2);
+}
+
+.send-button:hover {
+    -fx-background-color: linear-gradient(to right, #1976D2, #1565C0);
+    -fx-effect: dropshadow(gaussian, rgba(25, 118, 210, 0.3), 10, 0, 0, 3);
+}
+
+.send-button:pressed {
+    -fx-background-color: #1565C0;
+    -fx-translate-y: 1;
+    -fx-effect: dropshadow(gaussian, rgba(25, 118, 210, 0.2), 5, 0, 0, 1);
+}
+
+.back-button {
+    -fx-background-color: linear-gradient(to right, #78909C, #546E7A);
+}
+
+.back-button:hover {
+    -fx-background-color: linear-gradient(to right, #546E7A, #455A64);
+    -fx-effect: dropshadow(gaussian, rgba(84, 110, 122, 0.3), 10, 0, 0, 3);
+}
+
+.back-button:pressed {
+    -fx-background-color: #455A64;
+    -fx-translate-y: 1;
+    -fx-effect: dropshadow(gaussian, rgba(84, 110, 122, 0.2), 5, 0, 0, 1);
+}
+
+/* Enhanced Message Bubbles */
+.user-message {
+    -fx-background-color: linear-gradient(to right, #2196F3, #1976D2);
+    -fx-text-fill: white;
+    -fx-background-radius: 15 15 0 15;
+    -fx-padding: 12 20;
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+
+.system-message {
+    -fx-background-color: linear-gradient(to right, #ECEFF1, #CFD8DC);
+    -fx-text-fill: #37474F;
+    -fx-background-radius: 15 15 15 0;
+    -fx-padding: 12 20;
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 2);
+}
+
+/* Smooth Transitions */
+.send-button, .back-button, .input-field {
+    -fx-transition: all 0.2s ease-in-out;
+}

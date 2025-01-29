@@ -14,6 +14,10 @@ import javafx.event.ActionEvent;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class CreditCardDetailsController {
 
@@ -33,7 +37,6 @@ public class CreditCardDetailsController {
     public void setPaymentController(PaymentController paymentController) {
         this.paymentController = paymentController;
     }
-
 
     public void setUserDetails(String username, String email) {
         this.username = username;
@@ -58,11 +61,16 @@ public class CreditCardDetailsController {
             paymentController.setCreditCardDetails(cardNumber, formattedExpiryDate, cvv);
         }
 
-        // Generate receipt content with username and email
-        String receiptContent = generateReceiptContent(cardNumber, formattedExpiryDate, cvv, username, email);
+        // Update the subscription status to 1 (subscribed)
+        if (updateSubscriptionStatus(username, 1)) {
+            // Generate receipt content with username and email
+            String receiptContent = generateReceiptContent(cardNumber, formattedExpiryDate, cvv, username, email);
 
-        // Navigate to the Receipt View
-        navigateToReceiptView(event, receiptContent);
+            // Navigate to the Receipt View
+            navigateToReceiptView(event, receiptContent);
+        } else {
+            showAlert("Error", "Failed to update subscription status.");
+        }
     }
 
     @FXML
@@ -113,6 +121,22 @@ public class CreditCardDetailsController {
                 "Expiry Date: " + expiryDate + "\n" +
                 "CVV: " + cvv + "\n\n" +
                 "Thank you for your rental!";
+    }
+
+    private boolean updateSubscriptionStatus(String username, int isSubscribed) {
+        String query = "UPDATE users SET is_subscribed = ? WHERE username = ?";
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/car_rental_system", "root", "12212108");
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, isSubscribed);
+            statement.setString(2, username);
+
+            int rowsUpdated = statement.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     private void showAlert(String title, String message) {

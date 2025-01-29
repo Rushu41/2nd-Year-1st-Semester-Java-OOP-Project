@@ -1,22 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="801.0" prefWidth="1000" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.FeedbackController">
-    <!-- Chat Display -->
-    <TextArea fx:id="chatArea" editable="false" layoutX="30.0" layoutY="20.0" prefHeight="544.0" prefWidth="940" wrapText="true" />
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane prefHeight="850.0" prefWidth="1000" styleClass="main-pane" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.FeedbackController">
+    <stylesheets>
+        <URL value="@styles/feedback.css" />
+    </stylesheets>
 
-    <!-- User Input -->
-    <TextField fx:id="userInputField" layoutX="30.0" layoutY="578.0" prefHeight="44.0" prefWidth="820" promptText="Type your feedback or problem here..." />
+    <ImageView fx:id="backgroundImage" fitHeight="900.0" fitWidth="1100.0" preserveRatio="true">
+        <image>
+            <Image url="@images/feedback_admin.png" /> <!-- Replace with your image path -->
+        </image>
+    </ImageView>
 
-    <!-- Send Button -->
-    <Button fx:id="sendButton" layoutX="863.0" layoutY="578.0" onAction="#handleSend" prefHeight="44.0" prefWidth="107.0" text="Send" />
+    <!-- Main Content Container -->
+    <VBox styleClass="content-box" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="20">
+        <!-- Header Container -->
+        <VBox alignment="CENTER" styleClass="header-container">
+            <Text styleClass="header-text" text="Feedback &amp; Support" />
+            <Text styleClass="subheader-text" text="We value your thoughts" />
+        </VBox>
 
-    <!-- Buttons at the bottom -->
-    <HBox layoutX="200.0" layoutY="600.0" spacing="40.0" />
-     <Button layoutX="30.0" layoutY="638.0" onAction="#handleBack" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back" />
+        <!-- Chat Display -->
+        <TextArea fx:id="chatArea" editable="false" prefHeight="312.0" prefWidth="818.0" styleClass="chat-area" wrapText="true" />
+
+        <!-- Input Container -->
+        <VBox prefHeight="118.0" prefWidth="818.0" spacing="15" styleClass="input-container">
+            <!-- Message Input -->
+            <TextField fx:id="userInputField" prefHeight="44.0" promptText="Type your feedback or problem here..." styleClass="input-field" />
+
+            <!-- Buttons Container -->
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Button fx:id="sendButton" onAction="#handleSend" prefHeight="44.0" prefWidth="120.0" styleClass="send-button" text="🚀 Send" />
+
+                <Button onAction="#handleBack" prefHeight="44.0" prefWidth="120.0" styleClass="back-button" text="🔙 Back" />
+            </HBox>
+        </VBox>
+    </VBox>
 </AnchorPane>
