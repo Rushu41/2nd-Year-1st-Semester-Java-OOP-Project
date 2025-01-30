@@ -103,9 +103,28 @@ public class ReturnCarController {
 
             String customerName = selectedCar.getCustomerName();
 
-            String deleteRentalQuery = "DELETE FROM rentals WHERE car_name = ?";
+            // Get the end_date from the rentals table for the selected car
+            String endDate = null;
+            String getRentalEndDateQuery = "SELECT end_date FROM rentals WHERE car_name = ? AND customer_name = ?";
+            try (PreparedStatement endDateStmt = connection.prepareStatement(getRentalEndDateQuery)) {
+                endDateStmt.setString(1, selectedCar.getName());
+                endDateStmt.setString(2, customerName);
+                try (ResultSet resultSet = endDateStmt.executeQuery()) {
+                    if (resultSet.next()) {
+                        endDate = resultSet.getString("end_date");
+                    }
+                }
+            }
+
+            if (endDate == null) {
+                showAlert(Alert.AlertType.ERROR, "Error", "Could not find rental information for the selected car.");
+                return;
+            }
+
+            String deleteRentalQuery = "DELETE FROM rentals WHERE car_name = ? AND customer_name = ?";
             try (PreparedStatement deleteRentalStmt = connection.prepareStatement(deleteRentalQuery)) {
                 deleteRentalStmt.setString(1, selectedCar.getName());
+                deleteRentalStmt.setString(2, customerName);
                 deleteRentalStmt.executeUpdate();
             }
 
@@ -115,12 +134,13 @@ public class ReturnCarController {
                 updateCarStmt.executeUpdate();
             }
 
-            String insertReturnCarQuery = "INSERT INTO return_car (car_name, car_type, price, customer_name, return_date) VALUES (?, ?, ?, ?, CURRENT_DATE)";
+            String insertReturnCarQuery = "INSERT INTO return_car (car_name, car_type, price, customer_name, return_date) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement insertReturnCarStmt = connection.prepareStatement(insertReturnCarQuery)) {
                 insertReturnCarStmt.setString(1, selectedCar.getName());
                 insertReturnCarStmt.setString(2, selectedCar.getFuelType());
                 insertReturnCarStmt.setDouble(3, selectedCar.getRentPricePerDay());
                 insertReturnCarStmt.setString(4, customerName);
+                insertReturnCarStmt.setString(5, endDate);  // Use fetched end_date as return_date
                 insertReturnCarStmt.executeUpdate();
             }
 
@@ -133,6 +153,7 @@ public class ReturnCarController {
             showAlert(Alert.AlertType.ERROR, "Database Error", "Failed to return the car. Please try again.");
         }
     }
+
 
     @FXML
     public void handleBack(ActionEvent event) {
