@@ -1,52 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <?import javafx.scene.image.ImageView?>
-<?import java.net.URL?>
 <?import javafx.scene.image.Image?>
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.AdminFeedbackController">
+
+<AnchorPane prefHeight="600.0" prefWidth="850.0" styleClass="main-pane"
+            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.carrentalsystem.AdminFeedbackController">
+
     <stylesheets>
         <URL value="@styles/feedback.css" />
     </stylesheets>
 
-    <ImageView fx:id="backgroundImage" fitHeight="900.0" fitWidth="1100.0" preserveRatio="true">
+    <!-- Background Image -->
+    <ImageView fx:id="backgroundImage" fitHeight="620.0" fitWidth="870.0" preserveRatio="true">
         <image>
-            <Image url="@images/feedback_admin.png" /> <!-- Replace with your image path -->
+            <Image url="@images/feedback_admin.png" />
         </image>
     </ImageView>
 
-    <children>
-        <VBox alignment="CENTER" prefHeight="800.0" prefWidth="1000.0" spacing="15.0" style="-fx-padding: 20;">
-            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Feedback Management" />
+    <!-- Main Content Container -->
+    <VBox styleClass="content-box" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="15" AnchorPane.topAnchor="10">
+        <!-- Header -->
+        <VBox alignment="CENTER" styleClass="header-container" spacing="5">
+            <Text styleClass="header-text" text="Feedback Management" />
+            <Text styleClass="subheader-text" text="Manage and respond to user feedback" />
+        </VBox>
 
-            <!-- Table for displaying feedback -->
-            <TableView fx:id="feedbackTable" prefHeight="519.0" prefWidth="960.0">
-                <columns>
-                    <TableColumn fx:id="usernameColumn" prefWidth="250.0" text="Username" />
-                    <TableColumn fx:id="feedbackColumn" prefWidth="400.0" text="Feedback" />
-                    <TableColumn fx:id="replyColumn" prefWidth="250.0" text="Admin Reply" />
-                </columns>
-            </TableView>
+        <!-- Feedback Table -->
+        <TableView fx:id="feedbackTable" prefHeight="350.0" prefWidth="820.0" styleClass="table-view">
+            <columns>
+                <TableColumn fx:id="usernameColumn" prefWidth="180.0" text="Username" />
+                <TableColumn fx:id="feedbackColumn" prefWidth="340.0" text="Feedback" />
+                <TableColumn fx:id="replyColumn" prefWidth="180.0" text="Admin Reply" />
+            </columns>
+        </TableView>
 
-            <!-- Reply Section -->
-            <HBox alignment="CENTER" spacing="15.0">
-                <Label text="Reply:" />
-                <TextField fx:id="replyField" prefWidth="500.0" promptText="Enter your reply" />
-                <Button onAction="#handleReply" text="Send Reply" />
-            </HBox>
-
-            <!-- Buttons at the bottom -->
-            <HBox layoutX="200.0" layoutY="600.0" spacing="40.0">
-                <Button onAction="#handleBack" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #4caf50; -fx-text-fill: white;" text="Back" />
+        <!-- Reply Input -->
+        <VBox spacing="8" styleClass="input-container">
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Label text="Reply:" styleClass="input-label" />
+                <TextField fx:id="replyField" prefWidth="350.0" promptText="Enter your reply" styleClass="input-field" />
+                <Button fx:id="sendReplyButton" onAction="#handleReply" styleClass="send-button" text="🚀 Send" />
             </HBox>
         </VBox>
-    </children>
+
+        <!-- Bottom Buttons -->
+        <HBox alignment="CENTER" spacing="20">
+            <Button fx:id="backButton" onAction="#handleBack" styleClass="back-button" text="🔙 Back" />
+        </HBox>
+    </VBox>
 </AnchorPane>

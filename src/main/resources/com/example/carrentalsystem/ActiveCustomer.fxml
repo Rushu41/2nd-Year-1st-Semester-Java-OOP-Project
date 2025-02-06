@@ -19,11 +19,11 @@
             <TableView fx:id="rentalsTable" styleClass="styled-table">
                 <columns>
                     <TableColumn fx:id="idColumn" styleClass="column-header" text="ID" />
-                    <TableColumn fx:id="carNameColumn" prefWidth="186.0" styleClass="column-header" text="Car Name" />
-                    <TableColumn fx:id="customerNameColumn" prefWidth="167.0" styleClass="column-header" text="Customer Name" />
-                    <TableColumn fx:id="startDateColumn" prefWidth="173.0" styleClass="column-header" text="Start Date" />
-                    <TableColumn fx:id="endDateColumn" prefWidth="178.0" styleClass="column-header" text="End Date" />
-                    <TableColumn fx:id="rentalDaysColumn" prefWidth="209.0" styleClass="column-header" text="Rental Days" />
+                    <TableColumn fx:id="carNameColumn" prefWidth="170.0" styleClass="column-header" text="Car Name" />
+                    <TableColumn fx:id="customerNameColumn" prefWidth="160.0" styleClass="column-header" text="Customer Name" />
+                    <TableColumn fx:id="startDateColumn" prefWidth="165.0" styleClass="column-header" text="Start Date" />
+                    <TableColumn fx:id="endDateColumn" prefWidth="170.0" styleClass="column-header" text="End Date" />
+                    <TableColumn fx:id="rentalDaysColumn" prefWidth="200.0" styleClass="column-header" text="Rental Days" />
                 </columns>
             </TableView>
 

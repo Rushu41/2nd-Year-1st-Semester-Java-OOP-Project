@@ -154,7 +154,6 @@ public class ReturnCarController {
         }
     }
 
-
     @FXML
     public void handleBack(ActionEvent event) {
         navigateToPage(event, "/com/example/carrentalsystem/dashboard.fxml", "Dashboard");

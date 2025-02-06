@@ -9,7 +9,7 @@
 <?import javafx.scene.image.Image?>
 <AnchorPane prefHeight="850.0" prefWidth="1000" styleClass="main-pane" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.FeedbackController">
     <stylesheets>
-        <URL value="@feedback.css" />
+        <URL value="@styles/feedback.css" />
     </stylesheets>
 
     <ImageView fx:id="backgroundImage" fitHeight="900.0" fitWidth="1100.0" preserveRatio="true">

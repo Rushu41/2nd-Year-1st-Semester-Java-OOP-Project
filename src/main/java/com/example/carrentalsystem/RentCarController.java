@@ -164,7 +164,7 @@ public class RentCarController {
     @FXML
     public void handleRentCar(ActionEvent event) {
         String carName = carNameComboBox.getValue();
-        String customerName = username; // Use logged-in username
+        String customerName = UserSession.getLoggedInUsername(); // Use logged-in username
         LocalDate startDate = startDatePicker.getValue();
         LocalDate endDate = endDatePicker.getValue();
 

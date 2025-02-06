@@ -60,6 +60,27 @@ public class CreditCardDetailsController {
         if (paymentController != null) {
             paymentController.setCreditCardDetails(cardNumber, formattedExpiryDate, cvv);
         }
+        String url = "jdbc:mysql://localhost:3306/car_rental_system";
+        String user = "root";
+        String password = "12212108";
+
+        String query = "INSERT INTO payments (username, email, payment_method) " +
+                "VALUES (?, ?, ?)";
+        String paymentMethod="Credit Card";
+
+        try (Connection connection = DriverManager.getConnection(url, user, password);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, UserSession.getLoggedInUsername());
+            statement.setString(2, email);
+            statement.setString(3, paymentMethod);
+
+            int rowsInserted = statement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
 
         // Update the subscription status to 1 (subscribed)
         if (updateSubscriptionStatus(username, 1)) {
@@ -116,10 +137,8 @@ public class CreditCardDetailsController {
                 "User Details:\n" +
                 "Username: " + username + "\n" +
                 "Email: " + email + "\n\n" +
-                "Payment Details:\n" +
-                "Card Number: " + cardNumber + "\n" +
-                "Expiry Date: " + expiryDate + "\n" +
-                "CVV: " + cvv + "\n\n" +
+                "Payment Method: Credit card\n" +
+
                 "Thank you for your rental!";
     }
 

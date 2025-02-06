@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@styles/dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.DashboardController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@styles/dashboard.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsystem.DashboardController">
     <children>
         <!-- Sidebar with curved edge -->
         <VBox alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="822.0" prefWidth="250.0" styleClass="sidebar">
@@ -40,14 +32,14 @@
                     <padding>
                         <Insets bottom="30" top="30" />
                     </padding>
-                    <Button onAction="#handleAvailableCars" styleClass="menu-button" text="🚗 Available Cars" />
-                    <Button onAction="#handleAddCar" styleClass="menu-button" text="➕ Add Car" />
-                    <Button onAction="#handleReturnCar" styleClass="menu-button" text="↩️ Return Car" />
-                    <Button onAction="#handleActiveCustomer" styleClass="menu-button" text="👥 Active Customers" />
-                    <Button onAction="#handleFeedback" styleClass="menu-button" text="💭 Feedback" />
-                    <Button onAction="#handleRentalHistory" styleClass="menu-button" text="💭 Rental History" />
+                    <Button onAction="#handleAvailableCars" prefHeight="51.0" prefWidth="200.0" styleClass="menu-button" text="🚗 Available Cars" />
+                    <Button onAction="#handleAddCar" prefHeight="51.0" prefWidth="200.0" styleClass="menu-button" text="➕ Add Car" />
+                    <Button onAction="#handleReturnCar" prefHeight="51.0" prefWidth="199.0" styleClass="menu-button" text="↩️ Return Car" />
+                    <Button onAction="#handleActiveCustomer" prefHeight="51.0" prefWidth="200.0" styleClass="menu-button" text="👥 Active Customers" />
+                    <Button onAction="#handleFeedback" prefHeight="51.0" prefWidth="199.0" styleClass="menu-button" text="💭 Feedback" />
+                    <Button onAction="#handleRentalHistory" prefHeight="51.0" prefWidth="198.0" styleClass="menu-button" text="💭 Rental History" />
 
-                    <Button onAction="#handleLogout" prefHeight="46.0" prefWidth="148.0" styleClass="logout-button" text="🚪 Logout">
+                    <Button onAction="#handleLogout" prefHeight="49.0" prefWidth="200.0" styleClass="logout-button" text="🚪 Logout">
                   <font>
                      <Font size="14.0" />
                   </font></Button>
@@ -100,7 +92,7 @@
                     <HBox alignment="CENTER_LEFT" spacing="15">
                         <Circle radius="30" styleClass="stat-icon" />
                         <VBox>
-                            <Label style="-fx-font-size: 18px;" styleClass="stat-title" text="Total Customers" />
+                            <Label style="-fx-font-size: 18px;" styleClass="stat-title" text="Total Rentals" />
                             <Label fx:id="totalCustomersLabel" style="-fx-font-size: 24px;" styleClass="stat-value" text="15" />
                         </VBox>
                     </HBox>
